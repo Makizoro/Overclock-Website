@@ -1,0 +1,12 @@
+html{
+  font-family: Arial;
+  cursor: default;
+}
+::selection{
+  color: none;
+  background: none;
+}
+::-moz-selection{
+  color: none;
+  background: none;
+}

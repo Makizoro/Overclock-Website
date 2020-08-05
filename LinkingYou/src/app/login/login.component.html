@@ -1,0 +1,26 @@
+<div id="divLogin">
+  <div id="loginTitle">
+    <h1>Login Page</h1>
+  </div>
+  <br><br>
+  <div id="credentials">
+    <h3>Please enter your login details below</h3>
+    <br>
+    <label for="username">Username:</label>
+    <br>
+    <input type="text" id="username" name="username" autocomplete="on">
+    <br><br>
+    <label for="password">Password:</label>
+    <br>
+    <input type="password" id="password" name="password" autocomplete="off">
+    <br>
+    <i class="material-icons" (click)="togglePassword()" id="eye">visibility_off</i>
+    <br><br>
+    <button type="button" (click)="login()" routerLink="/sidebar" routerLinkActive="active">Continue</button>
+    <br>
+    <button type="button" routerLink="/register" routerLinkActive="active">Register</button>
+    <br>
+    <p id="lblForUsername" (mouseup)="forgot(false)" (mousedown)="forgot(true)">Click here if you have forgotten your password or username</p>
+  </div>
+</div>
+<app-sidebar id="appSidebar" [loginData]="loginData"></app-sidebar>

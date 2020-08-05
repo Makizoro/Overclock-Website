@@ -1,0 +1,23 @@
+<div id="divRegister" class="container">
+  <div class="row">
+    <form #regForm='ngForm' (ngSubmit)="signup(regForm)">
+      <h2 class="text-center">Registration Page</h2>
+      <br>
+      <div class="form-group">
+        <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Username" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" autocomplete="off">
+      </div>
+      <i class="material-icons" id="eye" (click)="togglePassword()">visibility_off</i>
+
+      <button type="submit"class="btn btn-default" id="signup">signup</button>
+    </form>
+  </div>
+</div>
