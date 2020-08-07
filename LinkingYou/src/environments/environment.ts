@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyCYFyZipVvsLmNukWB2yyglfH_dWwNY660',
-    authDomain: 'overclockwebapp.firebaseapp.com',
-    databaseURL: 'https://overclockwebapp.firebaseio.com',
-    projectId: 'overclockwebapp',
-    storageBucket: 'overclockwebapp.appspot.com',
-    messagingSenderId: '739798866467',
-    appId: '1:739798866467:web:426f2a0ab1bf524aa12f96',
-    measurementId: 'G-T3JW9E9WBM'
+    apiKey: "AIzaSyCdu6xNaSpItKPQzWYu5zbojm3PHVKNlyo",
+    authDomain: "overclock-e0ebc.firebaseapp.com",
+    databaseURL: "https://overclock-e0ebc.firebaseio.com",
+    projectId: "overclock-e0ebc",
+    storageBucket: "overclock-e0ebc.appspot.com",
+    messagingSenderId: "469566326323",
+    appId: "1:469566326323:web:a1aebcdc4154e91787c546",
+    measurementId: "G-16J0QF7ZQ2"
   }
 };
 
