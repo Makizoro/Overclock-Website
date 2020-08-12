@@ -54,15 +54,7 @@ export class RegisterComponent implements OnInit {
         csiName: 'none',
         type: 'user'
       };
-      let snapChanges = await this.fb.searchPerson(this.personForm);
-      console.log(snapChanges);
-      if (!snapChanges) {
-        this.fb.createPerson(this.personForm);
-        alert('Success!');
-        this.router.navigate(['login']);
-      } else {
-        alert('Failed: Username already taken!');
-      }
+      this.fb.createPerson(this.personForm, this.router);
     }
   }
 
