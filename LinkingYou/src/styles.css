@@ -10,3 +10,10 @@ html{
   color: none;
   background: none;
 }
+
+body{
+  background-image: url("assets/background.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}

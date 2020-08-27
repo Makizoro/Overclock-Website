@@ -1,26 +1,30 @@
 <div id="divLogin">
   <div id="loginTitle">
-    <h1>Login Page</h1>
+    <h1>Welcome to Linking You</h1>
   </div>
   <br><br>
   <div id="credentials">
-    <h3>Please enter your login details below</h3>
     <br>
-    <label for="username">Username:</label>
+
     <br>
-    <input type="text" id="username" name="username" autocomplete="on">
+    <input  type="text" id="username" name="username" autocomplete="on" placeholder="Email address">
     <br><br>
-    <label for="password">Password:</label>
+
     <br>
-    <input type="password" id="password" name="password" autocomplete="off">
+    <input type="password" id="password" name="password" autocomplete="off" placeholder="Password">
+    <i class="material-icons" (click)="togglePassword()" id="eye">visibility_off </i>
     <br>
-    <i class="material-icons" (click)="togglePassword()" id="eye">visibility_off</i>
     <br><br>
+<<<<<<< Updated upstream
     <button type="button" (click)="login()">Continue</button>
+=======
+    <button type="button" (click)="login()" routerLink="/sidebar" routerLinkActive="active">SIGN IN</button>
+>>>>>>> Stashed changes
     <br>
-    <button type="button" routerLink="/register" routerLinkActive="active">Register</button>
+    <p id="lblForUsername" (mouseup)="forgot(false)" (mousedown)="forgot(true)" rou>Forgot Password?</p>
     <br>
-    <p id="lblForUsername" (mouseup)="forgot(false)" (mousedown)="forgot(true)">Click here if you have forgotten your password or username</p>
+    <div id = "register" type="text" routerLink="/register" routerLinkActive="active">REGISTER</div>
+
   </div>
 </div>
 <app-sidebar id="appSidebar" [loginData]="loginData"></app-sidebar>

@@ -1,5 +1,11 @@
 #divRegister{
-  background-color: #FFFFFF;
+  background-color: #E1EFF4;
+  stroke: rgba(112,112,112,1);
+  border-radius: 25px;
+
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #5F5C6C;
+
   width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -13,4 +19,94 @@
   padding-left: 20px;
   padding-right: 20px;
   cursor: default;
+}
+
+#username{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 10px;
+}
+
+#email{
+
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 10px;
+
+}
+
+#password{
+
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 10px;
+
+}
+
+#confirmPassword{
+
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 10px;
+}
+
+#eye{
+  position: relative;
+  left: 15px;
+}
+
+
+#signup{
+
+  position: relative;
+  outline: none;
+  width: 100px;
+  height: 60px;
+  left: 17px;
+  top: 10px;
+  border-radius: 25px;
+  border-style: hidden;
+
+  background-image: url("src/assets/background.png");
+  background-size: 200%;
+
+  font-family: 'poppins', sans-serif;
+
+  transition: .5s;
+}
+
+button:hover{
+  background-position: left;
 }
