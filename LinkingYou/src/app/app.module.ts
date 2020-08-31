@@ -17,6 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { AppRouteModule } from './app.route';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {FormsModule} from '@angular/forms';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import {FormsModule} from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     SidebarComponent,
+    WelcomePageComponent,
+    CsiTabsComponent,
   ],
   imports: [
     BrowserModule,

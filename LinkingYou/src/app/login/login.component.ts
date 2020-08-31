@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
     usrnme: ''
   };
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
       alert('You are logged in as ' + u.value);
       l.style.display = 'none';
       this.loginData.usrnme = gr[0];
-      h.style.display = 'block';
+      this.router.navigateByUrl('/sidebar');
     } else {
     }
 
