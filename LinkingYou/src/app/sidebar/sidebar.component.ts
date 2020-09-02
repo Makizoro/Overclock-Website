@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
   data: any = {};
   routeState: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     if (this.router.getCurrentNavigation().extras.state){
       this.routeState = this.router.getCurrentNavigation().extras.state;
       if (this.routeState) {
@@ -20,6 +20,10 @@ export class SidebarComponent implements OnInit {
     } else {
       this.router.navigateByUrl('/login');
     }
+  }
+  viewProfile(): void{
+    console.log(this.router);
+    this.router.navigate([{outlets: { routerSidebar: ['userPage'] } }], {state: {username: this.data.username}, });
   }
 
   ngOnInit(): void {

@@ -1,8 +1,9 @@
-<p>sidebar works!</p>
 <div id="sidebarDrawer" class="sidebar">
-  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]">CSI Tabs</a>
+  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]" >CSI Tabs</a>
   <br>
   <br>
-  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage'}}]">User Profile Page</a>
+  <!--<a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage'}}]">User Profile Page</a>-->
+  <!--<a (click)="viewProfile()">User Profile Page</a>-->
+  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage/'+data.username}}]" routerLinkActive="active">User Profile Page</a>
 </div>
 <router-outlet name="routerSidebar"></router-outlet>
