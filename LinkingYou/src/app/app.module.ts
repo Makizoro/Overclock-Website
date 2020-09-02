@@ -20,6 +20,7 @@ import {FormsModule} from '@angular/forms';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { CsiPageComponent } from './csi-page/csi-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UserPageComponent } from './user-page/user-page.component';
     WelcomePageComponent,
     CsiTabsComponent,
     UserPageComponent,
+    CsiPageComponent,
   ],
   imports: [
     BrowserModule,
