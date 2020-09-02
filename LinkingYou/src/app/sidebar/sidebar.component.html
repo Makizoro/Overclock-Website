@@ -1,5 +1,8 @@
 <p>sidebar works!</p>
 <div id="sidebarDrawer" class="sidebar">
   <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]">CSI Tabs</a>
+  <br>
+  <br>
+  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage'}}]">User Profile Page</a>
 </div>
-<router-outlet name="routerSidebar"></router-outlet>d
+<router-outlet name="routerSidebar"></router-outlet>
