@@ -56,9 +56,8 @@ export class LoginComponent implements OnInit {
       alert('You are logged in as ' + u.value);
       l.style.display = 'none';
       this.loginData.usrnme = gr[0];
-      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
+      this.router.navigateByUrl('/sidebar');
     } else {
-      alert('Incorrect details entered');
     }
 
   }
