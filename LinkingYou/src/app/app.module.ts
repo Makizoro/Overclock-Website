@@ -19,6 +19,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {FormsModule} from '@angular/forms';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
     SidebarComponent,
     WelcomePageComponent,
     CsiTabsComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
