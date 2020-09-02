@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
+
+    // TODO: Validate the login credentials of the user
     // let validLogin = true;
 
     // validate credentials here
