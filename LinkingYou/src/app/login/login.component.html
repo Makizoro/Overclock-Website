@@ -5,22 +5,17 @@
   <br><br>
   <div id="credentials">
     <br>
-
-    <br>
+    <h2>Username:</h2>
     <input  type="text" id="username" name="username" autocomplete="on" placeholder="Email address">
     <br><br>
-
-    <br>
+    <h2>Password:</h2>
     <input type="password" id="password" name="password" autocomplete="off" placeholder="Password">
     <i class="material-icons" (click)="togglePassword()" id="eye">visibility_off </i>
     <br>
     <br><br>
-    <button type="button" (click)="login()">Continue</button>
+    <button type="button" id="signIn" (click)="login()">SIGN IN</button>
     <br>
-    <br>
-    <button type="button" (click)="login()" routerLink="/sidebar" routerLinkActive="active">SIGN IN</button>
-    <br>
-    <p id="lblForUsername" (mouseup)="forgot(false)" (mousedown)="forgot(true)" rou>Forgot Password?</p>
+    <p id="forgotPassword" (mouseup)="forgot(false)" (mousedown)="forgot(true)">Forgot Password?</p>
     <br>
     <div id = "register" type="text" routerLink="/register" routerLinkActive="active">REGISTER</div>
 

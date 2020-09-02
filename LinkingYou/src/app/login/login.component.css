@@ -22,9 +22,6 @@
   cursor: default;
 }
 
-#appSidebar{
-  display: none;
-}
 
 #password{
   position: relative;
@@ -87,7 +84,6 @@ button{
   width: 100px;
   height: 60px;
   top: 10px;
-  left: 15px;
   border-radius: 25px;
   border-style: hidden;
 
@@ -114,7 +110,7 @@ button:hover{
   color: #3E2F91;
 }
 
-#lblForUsername{
+#forgotPassword{
   position: relative;
   display: table;
   left: 625px;
@@ -124,7 +120,7 @@ button:hover{
   color: #3E2F91;
 }
 
-#lblForUsername:hover{
+#forgotPassword:hover{
   color: #00BFFF;
 }
 
