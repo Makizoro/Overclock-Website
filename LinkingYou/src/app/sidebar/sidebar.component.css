@@ -1,5 +1,6 @@
 .sidebar{
   position: fixed;
+  border-top-right-radius: 25px;
   left: -250px;
   width: 250px;
   height: 100%;
@@ -42,6 +43,8 @@
 
 ul li:hover a{
   padding-left: 50px;
+  background: #FFD700;
+  color: blue;
 }
 
 #check{
@@ -66,6 +69,11 @@ label #bar{
   transition: all .5s;
 }
 
+label #bar:hover{
+  background: #FFD700;
+  color: blue;
+}
+
 label #cancel{
   position: relative;
   z-index: 1111;
@@ -77,6 +85,11 @@ label #cancel{
   padding: 4px 8px;
 
   transition: all .5s ease;
+}
+
+label #cancel:hover{
+  background: #FFD700;
+  color: blue;
 }
 
 #check:checked ~ .sidebar{

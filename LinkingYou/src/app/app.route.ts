@@ -15,9 +15,10 @@ const routes: Routes = [
       { path: 'csi', component: CsiTabsComponent, outlet: 'routerSidebar'},
       { path: 'userPage/:name', component: UserPageComponent, outlet: 'routerSidebar'},
       { path: 'csiPage/:name', component: CsiPageComponent, outlet: 'routerSidebar'},
+      { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: '', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'}
     ]},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' }
 ];
 
 @NgModule({
