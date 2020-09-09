@@ -9,11 +9,11 @@
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 25px;
   text-align: center;
   border-style: ridge;
-  border-color: #888888;
-  border-width: 5px;
+  border-color: #707070;
+  border-width: 1px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 20px;
@@ -109,4 +109,17 @@
 
 button:hover{
   background-position: left;
+}
+
+#backLogin{
+  position: relative;
+  display: table;
+  bottom: 10px;
+  outline: none;
+  text-align: left;
+  color: #00BFFF;
+}
+
+#backLogin:hover{
+  color: #3E2F91;
 }
