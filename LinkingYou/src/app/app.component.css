@@ -1,16 +1,17 @@
 body{
   margin: 0;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-
 }
 
 #witsLogo{
+  position: relative;
   margin-left: 10px;
   margin-top: 5px;
   width: 60px;
 }
 #appName{
+  position: relative;
   margin-left: 10px;
-  color: black;
-  font-size: 50px;
+  color: #FFD700;
+  font-size: 25px;
 }

@@ -1,0 +1,102 @@
+.sidebar{
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #E1EFF4;
+
+  transition: all .5s ease;
+}
+
+.sidebar header{
+  font-size: 22px;
+  color: #707070;
+  text-align: center;
+  line-height: 70px;
+  user-select: none;
+}
+
+*{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 15px;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+  transition: .4s;
+}
+
+.sidebar ul a i{
+  margin-right: 16px;
+}
+
+ul li:hover a{
+  padding-left: 50px;
+}
+
+#check{
+  display: none;
+}
+
+label #bar, label #cancel{
+  position: absolute;
+  cursor: pointer;
+  background: darkgrey;
+}
+
+label #bar{
+  left: 40px;
+  top: 60px;
+  left: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #707070;
+  padding: 4px 8px;
+
+  transition: all .5s;
+}
+
+label #cancel{
+  position: relative;
+  z-index: 1111;
+  left: -195px;
+  top: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #707070;
+  padding: 4px 8px;
+
+  transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar{
+  left: 0;
+}
+
+#check:checked ~ label #bar{
+  display: none;
+}
+
+#check:checked ~ label #cancel{
+  left: 196px;
+}
+
+#check:checked ~ app-welcome-page{
+  margin-left: 250px;
+}
+
+app-welcome-page{
+  transition: all .5s ease;
+}
+
+

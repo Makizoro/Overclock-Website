@@ -1,9 +1,25 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+
+<input type=checkbox id = "check">
+<label for="check">
+  <i class="fas fa-bars" id="bar"></i>
+  <i class="fas fa-times" id="cancel"></i>
+</label>
+
 <div id="sidebarDrawer" class="sidebar">
-  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]" >CSI Tabs</a>
+  <header>Menu</header>
+  <ul>
+    <li><a href="#"><i class="fas fa-qrcode" [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]"></i>Dashboard</a></li>
+    <li><a href="#"><i class="fas fa-object-group"></i>CSI</a></li>
+    <li><a href="#"><i class="far fa-question-circle" [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage/'+data.username}}]" routerLinkActive="active" ></i>User Profile</a></li>
+
+  </ul>
   <br>
   <br>
   <!--<a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage'}}]">User Profile Page</a>-->
   <!--<a (click)="viewProfile()">User Profile Page</a>-->
-  <a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage/'+data.username}}]" routerLinkActive="active">User Profile Page</a>
+
 </div>
 <router-outlet name="routerSidebar"></router-outlet>
