@@ -29,4 +29,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  public logout() {
+    localStorage.removeItem('profile');
+    localStorage.removeItem('access_token');
+    this.router.navigateByUrl('/login');
+  }
+
 }
+
+

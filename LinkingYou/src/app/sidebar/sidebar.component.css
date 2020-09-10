@@ -1,21 +1,28 @@
 .sidebar{
   position: fixed;
+  border-top: 1px solid gold;
+  border-right: 1px solid gold;
   border-top-right-radius: 25px;
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #E1EFF4;
+  background-image: url("src/assets/background1.png");
+  background-repeat: no-repeat;
+  background-size: 250px 100%;
 
   transition: all .5s ease;
 }
 
+
 .sidebar header{
+  border-top-right-radius: 25px;
   font-size: 22px;
   color: #707070;
   text-align: center;
   line-height: 70px;
   user-select: none;
 }
+
 
 *{
   margin:0;
@@ -44,6 +51,7 @@
 ul li:hover a{
   padding-left: 50px;
   background: #FFD700;
+  opacity: 75%;
   color: blue;
 }
 
