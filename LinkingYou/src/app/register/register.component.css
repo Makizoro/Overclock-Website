@@ -19,6 +19,8 @@
   padding-left: 20px;
   padding-right: 20px;
   cursor: default;
+
+  opacity: 95%;
 }
 
 #username{

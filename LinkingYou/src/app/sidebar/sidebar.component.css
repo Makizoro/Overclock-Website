@@ -9,7 +9,6 @@
   background-image: url("src/assets/background1.png");
   background-repeat: no-repeat;
   background-size: 250px 100%;
-
   transition: all .5s ease;
 }
 
@@ -17,7 +16,7 @@
 .sidebar header{
   border-top-right-radius: 25px;
   font-size: 22px;
-  color: #707070;
+  color: gold;
   text-align: center;
   line-height: 70px;
   user-select: none;

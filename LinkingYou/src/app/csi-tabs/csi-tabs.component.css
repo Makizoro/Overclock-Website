@@ -3,7 +3,6 @@
   background-color: #E1EFF4;
   stroke: rgba(112,112,112,1);
   border-radius: 25px;
-
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: #5F5C6C;
 
@@ -19,4 +18,18 @@
   padding-right: 20px;
   cursor: default;
 
+  opacity: 95%;
+
+}
+
+#club1{
+  user-select: none;
+  transition: .5s;
+  outline: 0;
+}
+
+#club1:hover{
+  background: #FFD700;
+  opacity: 75%;
+  color: blue;
 }

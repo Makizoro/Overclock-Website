@@ -1,0 +1,22 @@
+#csiTabs{
+  background-color: #E1EFF4;
+  stroke: rgba(112,112,112,1);
+  border-radius: 25px;
+
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #5F5C6C;
+
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  text-align: center;
+  border-style: ridge;
+  border-color: #707070;
+  border-width: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: default;
+
+  opacity: 95%;
+}
