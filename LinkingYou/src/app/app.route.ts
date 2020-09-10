@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: '', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
     ]},
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'sidebar', pathMatch: 'full' }
 ];
 
 @NgModule({

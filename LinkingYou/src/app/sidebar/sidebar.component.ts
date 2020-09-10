@@ -26,6 +26,11 @@ export class SidebarComponent implements OnInit {
     this.router.navigate([{outlets: { routerSidebar: ['userPage'] } }], {state: {username: this.data.username}, });
   }
 
+  sidebarClose(): void{
+    const sidebarCancel = document.getElementById('cancel');
+    sidebarCancel.click();
+  }
+
   ngOnInit(): void {
   }
 
