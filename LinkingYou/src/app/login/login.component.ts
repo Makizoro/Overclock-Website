@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
     usrnme: ''
   };
 
-  constructor(private router: Router, private afAuth:AngularFireAuth) { }
-  
+  constructor(private router: Router, private afAuth: AngularFireAuth) { }
+
 
   ngOnInit(): void {
   }
@@ -41,38 +41,37 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  valid(valid: boolean,u: { value: string; },l: { style: { display: string; }; },gr: string[]): void{
+  valid(valid: boolean, u: { value: string; }, l: { style: { display: string; }; }, gr: string[]): void{
     alert('You are logged in as ' + u.value);
-      l.style.display = 'none';
-      this.loginData.usrnme = gr[0];
-      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
+    l.style.display = 'none';
+    this.loginData.usrnme = gr[0];
+    this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
   }
 
 
-  async login(){
+  async login(): Promise<void>{
     const u = document.getElementById('username') as HTMLInputElement;
     const p = document.getElementById('password') as HTMLInputElement;
-    let username = (document.getElementById('username') as HTMLInputElement).value;
-    let password = (document.getElementById('password') as HTMLInputElement).value;
+    const username = (document.getElementById('username') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
     const l = document.getElementById('divLogin');
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
-    // validate credentials here 
+    // validate credentials here
     // will move sigin and register to auth service
-    this.afAuth.auth.signInWithEmailAndPassword(username,password).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
+    this.afAuth.auth.signInWithEmailAndPassword(username, password).catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
         alert('Wrong password.');
       } else {
         alert(errorMessage);
       }
       console.log(error);
-      
-    }).then(user => 
-      this.valid(true,u, l ,gr), err => alert(err.message)
-      ); 
+    }).then(user =>
+      this.valid(true, u, l , gr), err => alert(err.message)
+      );
   }
 
 }

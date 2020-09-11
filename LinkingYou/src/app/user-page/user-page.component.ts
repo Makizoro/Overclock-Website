@@ -11,18 +11,17 @@ import { PersonService } from '../services/person.service';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-  person:Person;
+  person: Person;
 
-  constructor(private personService: PersonService) { 
-   
+  constructor(private personService: PersonService) {
   }
 
   ngOnInit(): void {
     this.personService.getPerson().subscribe(person =>
       {
-        document.getElementById("username").innerHTML =person.username;
-        document.getElementById("email").innerHTML = person.email;
-        document.getElementById("password").innerHTML = person.password;
+        document.getElementById('username').innerHTML = person.username;
+        document.getElementById('email').innerHTML = person.email;
+        document.getElementById('password').innerHTML = person.password;
       });
   }
 
@@ -40,10 +39,10 @@ export class UserPageComponent implements OnInit {
 
     console.log(this.personDoc);
 
-   
-    
 
-    
+
+
+
     /*(function(doc)
     {
       if(doc.exists){
@@ -57,6 +56,6 @@ export class UserPageComponent implements OnInit {
       }
     });*/
 
-  };
+  }
 
 

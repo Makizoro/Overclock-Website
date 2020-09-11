@@ -18,22 +18,14 @@ export class CsiTabsComponent implements OnInit {
   constructor(private csiService: CsiService) { }
 
   ngOnInit(): void {
-    
-    this.populate();
-      
+  this.populate();
   }
 
-  populate(type? :string){
-
+  populate (type?: string){
     this.csiService.getCSI(type).subscribe(csi =>{
-      
-       return  this.data =csi;  
-   
+       return  this.data = csi;
       }
-      
       );
-  
-
   }
 
 
