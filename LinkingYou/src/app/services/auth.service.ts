@@ -40,10 +40,18 @@ export class AuthService {
       );
   }
 
+  valid(valid: boolean,u: { value: string; },l: { style: { display: string; }; },gr: string[]): void{
+    alert('You are logged in as ' + u.value);
+      l.style.display = 'none';
+      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
+  }
 
-      async signIn(email: string, password: string){
+      async signIn(email: string, password: string, username:string,
+        u: { value: string; },l: { style: { display: string; }; },gr: string[]){
         
-        return this.afAuth.auth.signInWithEmailAndPassword(email,password).catch(function(error) {
+        return this.afAuth.auth.signInWithEmailAndPassword(email,password).then(user => 
+          this.valid(true,u, l ,gr)
+          ).catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
           if (errorCode === 'auth/wrong-password') {
@@ -63,23 +71,28 @@ export class AuthService {
             const uId = cred.user.uid
             const userRef: AngularFirestoreDocument<Person> = this.afs.doc(`Person/${uId}`);
             this.fb.createPerson(personForm, this.router, uId);
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode == 'auth/weak-password') {
+              alert('The password is too weak.');
+            } else {
+              alert(errorMessage);
+            }
+            console.log(error);
           });
       }
 
       userId(){
-        if(this.user$ != null){
-          return this.uId;
-        }else{
-          return null;
-        }
-        
+        return this.afAuth.auth.currentUser.uid;
       }
 
       async signOut(){
         this.afAuth.auth.signOut;
         return this.router.navigate(['/']);
       }
-      // to remove user account
+      // to remove user
       /*async deleteAcc(){
 
         this.afAuth.

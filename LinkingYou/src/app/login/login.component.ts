@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     usrnme: ''
   };
 
-  constructor(private router: Router, private afAuth:AngularFireAuth) { }
+  constructor(private router: Router, private afAuth:AuthService) { }
   
 
   ngOnInit(): void {
@@ -41,14 +41,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  valid(valid: boolean,u: { value: string; },l: { style: { display: string; }; },gr: string[]): void{
-    alert('You are logged in as ' + u.value);
-      l.style.display = 'none';
-      this.loginData.usrnme = gr[0];
-      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
-  }
-
-
   async login(){
     const u = document.getElementById('username') as HTMLInputElement;
     const p = document.getElementById('password') as HTMLInputElement;
@@ -58,21 +50,9 @@ export class LoginComponent implements OnInit {
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
-    // validate credentials here 
-    // will move sigin and register to auth service
-    this.afAuth.auth.signInWithEmailAndPassword(username,password).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
-        alert('Wrong password.');
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      
-    }).then(user => 
-      this.valid(true,u, l ,gr), err => alert(err.message)
-      ); 
+
+    this.afAuth.signIn(username,password,this.loginData.usrnme = gr[0]
+      ,u, l ,gr);
   }
 
 }

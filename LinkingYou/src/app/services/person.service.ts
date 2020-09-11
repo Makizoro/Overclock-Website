@@ -13,8 +13,7 @@ export class PersonService {
    person: Observable<Person>;
 
   constructor(private afs: AngularFirestore,private afAuth:AngularFireAuth) { 
-    //this.personDoc = this.afs.doc<Person>('Person/'+uId);
-    //this.person = this.personDoc.valueChanges();
+    
   }
 
   async createPerson(person: Person, router: Router, uid:string): Promise<void> {
@@ -31,7 +30,9 @@ export class PersonService {
       });
     }
 
-  getPerson() {
+  getPerson(uId: string) {
+    this.personDoc = this.afs.doc<Person>('Person/'+uId);
+    this.person = this.personDoc.valueChanges();
     return this.person;
   }
 
