@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {CsiService} from '../services/csi.service'
 
 @Component({
   selector: 'app-csi-tabs',
@@ -14,9 +15,25 @@ export class CsiTabsComponent implements OnInit {
   // an onClick method that navigates to the csiPage (CSI profile page) with the csi name as a route parameter
   // TODO: Pull all CSI names and descriptions and store them in data in the following format:
   //  data: { csi: {name, description}, societies: {name, description}, interestGroups: {name, description}}
-  constructor() { }
+  constructor(private csiService: CsiService) { }
 
   ngOnInit(): void {
+    
+    this.populate();
+      
+  }
+
+  populate(type? :string){
+
+    this.csiService.getCSI(type).subscribe(csi =>{
+      
+       return  this.data =csi;  
+   
+      }
+      
+      );
+  
+
   }
 
 

@@ -1,14 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { Component } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule} from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -21,6 +16,15 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { CsiPageComponent } from './csi-page/csi-page.component';
+
+const config = {
+  apiKey: "AIzaSyBB7TkPj2vOImaJicfl2fZmI4MTZvWsM1s",
+  authDomain: "linking-you.firebaseapp.com",
+  databaseURL: "https://linking-you.firebaseio.com",
+  projectId: "linking-you",
+  storageBucket: "linking-you.appspot.com",
+  messagingSenderId: "666490188669"
+};
 
 @NgModule({
   declarations: [
@@ -35,15 +39,12 @@ import { CsiPageComponent } from './csi-page/csi-page.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'overclockWebApp'),
+    AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
+    FormsModule,
     AppRouteModule
   ],
-  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

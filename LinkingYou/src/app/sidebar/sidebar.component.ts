@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,8 @@ export class SidebarComponent implements OnInit {
   data: any = {};
   routeState: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private aftAuth:AngularFireAuth ,
+    private activatedRoute: ActivatedRoute) {
     if (this.router.getCurrentNavigation().extras.state){
       this.routeState = this.router.getCurrentNavigation().extras.state;
       if (this.routeState) {
@@ -35,7 +37,8 @@ export class SidebarComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  public logout() {
+  async logout() {
+    this.aftAuth.auth.signOut();
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
     this.router.navigateByUrl('/login');

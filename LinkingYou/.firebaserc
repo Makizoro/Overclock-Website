@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "overclockwebapp"
+  },
+  "targets": {
+    "linking-you": {
+      "hosting": {
+        "temp": [
+          "linking-you"
+        ]
+      }
+    }
   }
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import * as firebase from 'firebase';
 import {Router} from '@angular/router';
-
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,8 @@ export class LoginComponent implements OnInit {
     usrnme: ''
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private afAuth:AngularFireAuth) { }
+  
 
   ngOnInit(): void {
   }
@@ -41,27 +41,38 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(): void{
+  valid(valid: boolean,u: { value: string; },l: { style: { display: string; }; },gr: string[]): void{
+    alert('You are logged in as ' + u.value);
+      l.style.display = 'none';
+      this.loginData.usrnme = gr[0];
+      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
+  }
+
+
+  async login(){
     const u = document.getElementById('username') as HTMLInputElement;
     const p = document.getElementById('password') as HTMLInputElement;
+    let username = (document.getElementById('username') as HTMLInputElement).value;
+    let password = (document.getElementById('password') as HTMLInputElement).value;
     const l = document.getElementById('divLogin');
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
-
-    // TODO: Validate the login credentials of the user
-    // let validLogin = true;
-
-    // validate credentials here
-
-    if (true) {
-      alert('You are logged in as ' + u.value);
-      l.style.display = 'none';
-      this.loginData.usrnme = gr[0];
-      this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
-    } else {
-    }
-
+    // validate credentials here 
+    // will move sigin and register to auth service
+    this.afAuth.auth.signInWithEmailAndPassword(username,password).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      
+    }).then(user => 
+      this.valid(true,u, l ,gr), err => alert(err.message)
+      ); 
   }
 
 }

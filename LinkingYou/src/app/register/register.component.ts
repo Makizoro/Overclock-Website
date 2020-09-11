@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import {Person} from '../entities/person.model';
-import {PersonService} from '../services/person.service';
+import {AuthService} from '../services/auth.service';
 import {NgForm} from '@angular/forms';
-import {setupTestingRouter} from '@angular/router/testing';
-import {ROUTES, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +13,9 @@ import {ROUTES, Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   personForm: Person;
+  user: firebase.User;
 
-  constructor(private fb: PersonService, private router: Router) {
+  constructor(private fb:AuthService) {
   }
 
   ngOnInit(): void {
@@ -38,10 +37,12 @@ export class RegisterComponent implements OnInit {
   }
 
   async signup(regForm: NgForm): Promise<void> {
+
     const u = regForm.value.username;
     const e = regForm.value.email;
     const p = regForm.value.password;
     const p2 = regForm.value.confirmPassword;
+    
     if (u === '' || p === '' || p2 === '') {
       alert('Please complete any missing details');
     } else if (p !== p2) {
@@ -52,9 +53,9 @@ export class RegisterComponent implements OnInit {
         email: e,
         password: p,
         csiName: 'none',
-        type: 'user'
+        type: 'User'
       };
-      this.fb.createPerson(this.personForm, this.router);
+      this.fb.register(e,p,this.personForm);
     }
   }
 
