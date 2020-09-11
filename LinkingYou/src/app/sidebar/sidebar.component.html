@@ -12,9 +12,9 @@
 <div id="sidebarDrawer" class="sidebar">
   <header>Menu</header>
   <ul>
-    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'welcome'}}]" routerLinkActive="active" ><i class="fas fa-qrcode"></i>Dashboard</a></li>
-    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]" routerLinkActive="active"><i class="fas fa-object-group"></i>CSI</a></li>
-    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage/'+data.username}}]" routerLinkActive="active" ><i class="far fa-question-circle"></i>User Profile</a></li>
+    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'welcome'}}]" routerLinkActive="active" (click)="sidebarClose()"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'csi'}}]" routerLinkActive="active" (click)="sidebarClose()"><i class="fas fa-object-group"></i>CSI</a></li>
+    <li><a href="#" [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage/'+data.username}}]" routerLinkActive="active" (click)="sidebarClose()"><i class="far fa-question-circle"></i>User Profile</a></li>
     <li><a href="#" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
 
   </ul>

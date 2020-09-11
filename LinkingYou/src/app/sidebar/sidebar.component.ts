@@ -12,8 +12,8 @@ export class SidebarComponent implements OnInit {
   data: any = {};
   routeState: any;
 
-  constructor(private router: Router, private aftAuth:AngularFireAuth ,
-    private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private aftAuth: AngularFireAuth ,
+              private activatedRoute: ActivatedRoute) {
     if (this.router.getCurrentNavigation().extras.state){
       this.routeState = this.router.getCurrentNavigation().extras.state;
       if (this.routeState) {
