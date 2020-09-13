@@ -34,6 +34,17 @@ export class CsiService {
 
    }
 
+   getACSI(name: string){
+   return this.afs.collection('CSI',ref => ref.where('name','==',''+name))
+    .snapshotChanges().pipe(
+      map(changes => changes.map(a=> {
+        const data = a.payload.doc.data() as CSI;
+        data.id = a.payload.doc.id;
+        return data;
+      }))
+    );
+   }
+
    getCSI(type?: string){
      switch (type){
        case "Club":

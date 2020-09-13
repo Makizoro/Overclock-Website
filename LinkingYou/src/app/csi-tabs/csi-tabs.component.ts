@@ -19,7 +19,7 @@ export class CsiTabsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.csiService.getCSI().subscribe(csi => {
+    this.csiService.getACSI("garfield").subscribe(csi => {
       this.data = csi;
       console.log(this.data);
       this.displayCSIData(this.data);

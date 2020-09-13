@@ -40,17 +40,16 @@ export class AuthService {
       );
   }
 
-  valid(valid: boolean, u: { value: string; }, l: { style: { display: string; }; }, gr: string[]): void{
-    alert('You are logged in as ' + u.value);
+  valid(  l: { style: { display: string; }; }, gr: string[]): void{
+    alert('You are logged in as ' + gr[0]);
     l.style.display = 'none';
-    this.router.navigateByUrl('/sidebar', {state: {username: u.value}});
+    this.router.navigateByUrl('/sidebar', {state: {username: gr[0]}});
   }
 
-      async signIn(email: string, password: string, username: string,
-                   u: { value: string; }, l: { style: { display: string; }; }, gr: string[]): Promise<void>{
+      async signIn(l: { style: { display: string; }; }, gr: string[]): Promise<void>{
 
-        return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(user =>
-          this.valid(true, u, l , gr)
+        return this.afAuth.auth.signInWithEmailAndPassword(gr[0], gr[1]).then(user =>
+          this.valid( l , gr)
           ).catch(error => {
           const errorCode = error.code;
           const errorMessage = error.message;
