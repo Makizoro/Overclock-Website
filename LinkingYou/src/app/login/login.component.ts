@@ -44,14 +44,14 @@ export class LoginComponent implements OnInit {
   async login(): Promise<void>{
     const u = document.getElementById('username') as HTMLInputElement;
     const p = document.getElementById('password') as HTMLInputElement;
-    const username = (document.getElementById('username') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
     const l = document.getElementById('divLogin');
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
 
-    this.afAuth.signIn(username, password, this.loginData.usrnme = gr[0]
+    this.afAuth.signIn(email, password, this.loginData.usrnme = gr[0]
       , u, l , gr);
   }
 
