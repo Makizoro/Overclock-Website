@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   personForm: Person;
   user: firebase.User;
 
-  constructor(private fb:AuthService) {
+  constructor(private fb: AuthService) {
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     const e = regForm.value.email;
     const p = regForm.value.password;
     const p2 = regForm.value.confirmPassword;
-    
+
     if (u === '' || p === '' || p2 === '') {
       alert('Please complete any missing details');
     } else if (p !== p2) {
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         csiName: 'none',
         type: 'User'
       };
-      this.fb.register(e,p,this.personForm);
+      this.fb.register(e, p, this.personForm);
     }
   }
 
