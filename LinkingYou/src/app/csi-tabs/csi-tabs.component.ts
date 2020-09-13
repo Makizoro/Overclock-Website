@@ -19,19 +19,16 @@ export class CsiTabsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.csiService.getACSI("garfield").subscribe(csi => {
+    this.csiService.getACSI('garfield').subscribe(csi => {
       this.data = csi;
-      console.log(this.data);
       this.displayCSIData(this.data);
 
     });
   }
 
   navigateToCSI: EventListener = (e) => {
-    console.log(e);
     const temp = e.composedPath()[1] as HTMLDivElement;
     const csiName = temp.id;
-    console.log(csiName);
     this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csiPage/' + csiName}}]);
 
   }

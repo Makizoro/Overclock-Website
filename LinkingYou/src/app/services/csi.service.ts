@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from '@angular/fire/firestore';
-import {CSI} from '../entities/csi.model'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {CSI} from '../entities/csi.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class CsiService {
-  csiCollection:AngularFirestoreCollection<CSI>;
+  csiCollection: AngularFirestoreCollection<CSI>;
   csi: Observable<CSI[] >;
   csiAdd: CSI;
 
-  constructor(private afs:AngularFirestore) {
+  constructor(private afs: AngularFirestore) {
     this.csiCollection = this.afs.collection('CSI');
     this.csi = this.csiCollection.snapshotChanges().pipe(
-      map(changes => changes.map(a=> {
+      map(changes => changes.map( a => {
         const data = a.payload.doc.data() as CSI;
         data.id = a.payload.doc.id;
         return data;
@@ -22,22 +22,22 @@ export class CsiService {
     );
    }
 
-   addCSI(name: string, type:string, description:string){
+   addCSI(name: string, type: string, description: string): void{
      this.csiAdd = {
-       name: name,
-       description: description,
-       type: type,
-       id: ""
-     }
-     
+       name,
+       description,
+       type,
+       id: ''
+     };
+
      this.csiCollection.add(this.csiAdd);
 
    }
 
-   getACSI(name: string){
-   return this.afs.collection('CSI',ref => ref.where('name','==',''+name))
+   getACSI(name: string): any{
+   return this.afs.collection('CSI', ref => ref.where('name', '==', '' + name))
     .snapshotChanges().pipe(
-      map(changes => changes.map(a=> {
+      map(changes => changes.map(a => {
         const data = a.payload.doc.data() as CSI;
         data.id = a.payload.doc.id;
         return data;
@@ -45,38 +45,38 @@ export class CsiService {
     );
    }
 
-   getCSI(type?: string){
+   getCSI(type?: string): any{
      switch (type){
-       case "Club":
-        this.afs.collection('CSI',ref => ref.where('type','==','Club'))
+       case 'Club':
+        this.afs.collection('CSI', ref => ref.where('type', '==', 'Club'))
         .snapshotChanges().pipe(
-          map(changes => changes.map(a=> {
+          map(changes => changes.map(a => {
             const data = a.payload.doc.data() as CSI;
             data.id = a.payload.doc.id;
             return data;
           }))
         );
-         break;
-         case "Society":
-          this.afs.collection('CSI',ref => ref.where('type','==','Society'))
+        break;
+         case 'Society':
+          this.afs.collection('CSI', ref => ref.where('type', '==', 'Society'))
           .snapshotChanges().pipe(
-            map(changes => changes.map(a=> {
+            map(changes => changes.map(a => {
               const data = a.payload.doc.data() as CSI;
               data.id = a.payload.doc.id;
               return data;
             }))
           );
-           break;
-           case "Interest Group":
-            this.afs.collection('CSI',ref => ref.where('type','==','Interest Group'))
+          break;
+           case 'Interest Group':
+            this.afs.collection('CSI', ref => ref.where('type', '==', 'Interest Group'))
             .snapshotChanges().pipe(
-              map(changes => changes.map(a=> {
+              map(changes => changes.map(a => {
                 const data = a.payload.doc.data() as CSI;
                 data.id = a.payload.doc.id;
                 return data;
               }))
             );
-             break;
+            break;
 
      }
      return this.csi;
