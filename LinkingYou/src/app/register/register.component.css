@@ -36,6 +36,10 @@
 
   left: 10px;
 }
+#username::selection{
+  background: deepskyblue;
+  color: aliceblue;
+}
 
 #email{
 
@@ -51,6 +55,10 @@
 
   left: 10px;
 
+}
+#email::selection{
+  background: deepskyblue;
+  color: aliceblue;
 }
 
 #password{
@@ -68,6 +76,10 @@
   left: 10px;
 
 }
+#password::selection{
+  background: deepskyblue;
+  color: aliceblue;
+}
 
 #confirmPassword{
 
@@ -82,6 +94,10 @@
   height: 35px;
 
   left: 10px;
+}
+#confirmPassword::selection{
+  background: deepskyblue;
+  color: aliceblue;
 }
 
 #eye{
