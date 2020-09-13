@@ -32,7 +32,7 @@ export class CsiTabsComponent implements OnInit {
     const temp = e.composedPath()[1] as HTMLDivElement;
     const csiName = temp.id;
     console.log(csiName);
-    this.router.navigateByUrl('/sidebar/csiPage:' + csiName, );
+    this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csiPage/' + csiName}}]);
 
   }
 
