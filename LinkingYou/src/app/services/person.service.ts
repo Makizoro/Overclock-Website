@@ -12,16 +12,16 @@ export class PersonService {
    private personDoc: AngularFirestoreDocument<Person>;
    person: Observable<Person>;
 
-  constructor(private afs: AngularFirestore,private afAuth:AngularFireAuth) { 
-    
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
+
   }
 
-  async createPerson(person: Person, router: Router, uid:string): Promise<void> {
+  async createPerson(person: Person, router: Router, uid: string): Promise<void> {
     const docRef = this.afs.collection('Person').ref.where('email', '==', person.email)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
-          this.afs.doc<Person>('Person/'+uid).set(person);
+          this.afs.doc<Person>('Person/'+ uid).set(person);
           alert('Success!');
           router.navigate(['login']);
         } else {
@@ -30,7 +30,7 @@ export class PersonService {
       });
     }
 
-  getPerson(uId: string) {
+  getPerson(uId: string): any{
     this.personDoc = this.afs.doc<Person>('Person/'+uId);
     this.person = this.personDoc.valueChanges();
     return this.person;
@@ -38,7 +38,7 @@ export class PersonService {
 
   // @ts-ignore
   /*async searchPerson(person: Person): boolean {
-    
+
     const snapChanges = await this.firestore.collection('PERSON').ref.where('username', '==', true).get();
     console.log(snapChanges);
     if (snapChanges.empty){
@@ -46,15 +46,15 @@ export class PersonService {
     } else {
       return true;
     }
-    
+
     const docRef = this.firestore.collection('PERSON').doc(person.email);
     const doc = await docRef.get();
     console.log(doc);
     return true;
   }
 
-   
-    
+
+
     docRef.then(doc => {
 
       console.log(doc.data());
@@ -66,7 +66,7 @@ export class PersonService {
         alert('Email already taken!');
       }
     });
-     
+
   }*/
 
   deletePerson(): void{
