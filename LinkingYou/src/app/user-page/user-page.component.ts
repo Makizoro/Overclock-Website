@@ -11,18 +11,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-  person:Person;
+  person: Person;
 
-  constructor(private personService: PersonService, private afAuth: AuthService) { 
-   
+  constructor(private personService: PersonService, private afAuth: AuthService) {
   }
 
   ngOnInit(): void {
     this.personService.getPerson(this.afAuth.userId()).subscribe(person =>
       {
-        document.getElementById("username").innerHTML =person.username;
-        document.getElementById("email").innerHTML = person.email;
-        document.getElementById("password").innerHTML = person.password;
+        document.getElementById('username').innerHTML = person.username;
+        document.getElementById('email').innerHTML = person.email;
+        document.getElementById('password').innerHTML = person.password;
       });
   }
 
