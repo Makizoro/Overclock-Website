@@ -21,7 +21,6 @@ export class UserPageComponent implements OnInit {
       {
         document.getElementById('username').innerHTML = person.username;
         document.getElementById('email').innerHTML = person.email;
-        document.getElementById('password').innerHTML = person.password;
       });
   }
 
