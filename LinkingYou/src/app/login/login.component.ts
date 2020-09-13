@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
     usrnme: ''
   };
 
-  constructor(private router: Router, private afAuth:AuthService) { }
-  
+  constructor(private router: Router, private afAuth: AuthService) { }
+
 
   ngOnInit(): void {
   }
@@ -41,18 +41,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async login(){
+  async login(): Promise<void>{
     const u = document.getElementById('username') as HTMLInputElement;
     const p = document.getElementById('password') as HTMLInputElement;
-    let username = (document.getElementById('username') as HTMLInputElement).value;
-    let password = (document.getElementById('password') as HTMLInputElement).value;
+    const username = (document.getElementById('username') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
     const l = document.getElementById('divLogin');
     const h = document.getElementById('appSidebar');
 
     const gr = [u.value, p.value];
 
-    this.afAuth.signIn(username,password,this.loginData.usrnme = gr[0]
-      ,u, l ,gr);
+    this.afAuth.signIn(username, password, this.loginData.usrnme = gr[0]
+      , u, l , gr);
   }
 
 }
