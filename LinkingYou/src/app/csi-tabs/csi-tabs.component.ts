@@ -19,8 +19,9 @@ export class CsiTabsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.csiService.getACSI('garfield').subscribe(csi => {
-      this.data = csi;
+    this.csiService.getCSI().subscribe(data => {
+      this.data = data;
+      console.log(data);
       this.displayCSIData(this.data);
 
     });
@@ -38,18 +39,18 @@ export class CsiTabsComponent implements OnInit {
     const s = document.getElementById('societyList');
     const ig = document.getElementById('interestGroupList');
 
-    for (const e of data){
+    for (const csi of data){
       const newDiv = document.createElement('div');
-      newDiv.id = (e.name);
+      newDiv.id = (csi.name);
       const csiTitle = document.createElement('h5');
-      csiTitle.innerHTML = e.name;
+      csiTitle.innerHTML = csi.name;
       csiTitle.addEventListener('click', this.navigateToCSI);
       newDiv.appendChild(csiTitle);
       const csiDescription = document.createElement('p');
-      csiDescription.innerHTML = e.description;
+      csiDescription.innerHTML = csi.description;
       csiDescription.addEventListener('click', this.navigateToCSI);
       newDiv.appendChild(csiDescription);
-      switch (e.type){
+      switch (csi.type){
         case 'Club': {
           c.appendChild(newDiv);
           break;
