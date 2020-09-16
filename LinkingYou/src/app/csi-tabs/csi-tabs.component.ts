@@ -59,7 +59,7 @@ export class CsiTabsComponent implements OnInit {
           s.appendChild(newDiv);
           break;
         }
-        case 'InterestGroup': {
+        case 'Interest Group': {
           ig.appendChild(newDiv);
           break;
         }
