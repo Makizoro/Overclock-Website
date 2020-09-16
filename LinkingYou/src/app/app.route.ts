@@ -7,6 +7,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {CsiTabsComponent} from './csi-tabs/csi-tabs.component';
 import {UserPageComponent} from './user-page/user-page.component';
 import {CsiPageComponent} from './csi-page/csi-page.component';
+import {CsiSubmissionFormComponent} from './csi-submission-form/csi-submission-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'userPage/:name', component: UserPageComponent, outlet: 'routerSidebar'},
       { path: 'csiPage/:name', component: CsiPageComponent, outlet: 'routerSidebar'},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
-      { path: '', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
+      { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},
+      { path: '', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'}
     ]},
   { path: '', redirectTo: 'sidebar', pathMatch: 'full' }
 ];

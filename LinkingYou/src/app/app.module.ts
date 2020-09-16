@@ -16,6 +16,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CsiTabsComponent } from './csi-tabs/csi-tabs.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { CsiPageComponent } from './csi-page/csi-page.component';
+import { CsiSubmissionFormComponent } from './csi-submission-form/csi-submission-form.component';
 
 const config = {
   apiKey: "AIzaSyBB7TkPj2vOImaJicfl2fZmI4MTZvWsM1s",
@@ -36,6 +37,7 @@ const config = {
     CsiTabsComponent,
     UserPageComponent,
     CsiPageComponent,
+    CsiSubmissionFormComponent,
   ],
   imports: [
     BrowserModule,

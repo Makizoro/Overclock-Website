@@ -10,18 +10,20 @@ import {CSI} from '../entities/csi.model';
 })
 export class CsiPageComponent implements OnInit {
 
-  data: any = {};
+  csiData: any = {};
+  forumData: any = {};
+  eventData: any = {};
   routeState: any;
 
-  // this.data.csiName will contain the CSI name that must have its data pulled and displayed
-  // TODO: pull data of CSI from Firebase and store in this.data.csiData
+  // TODO: Retrieve all topics and messages from a particular CSI and store them in forumData
+  // TODO: Retrieve all event data for a particular CSI and store them in eventData
   constructor(private route: ActivatedRoute, private csiService: CsiService) {
 
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.data.csiName = params.name);
-    const thisCSI = this.csiService.getACSI(this.data.csiName).subscribe(csi => {
+    this.route.params.subscribe(params => this.csiData.csiName = params.name);
+    const thisCSI = this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
       const csiName = document.getElementById('csiName');
       const csiEmail = document.getElementById('csiEmail');
       const csiDescription = document.getElementById('csiDescription');
@@ -29,7 +31,8 @@ export class CsiPageComponent implements OnInit {
 
       csiName.innerHTML = csi[0].name;
       csiDescription.innerHTML = csi[0].description;
-    });
+    }); // retrieve and display CSI data
+
   }
 
 }
