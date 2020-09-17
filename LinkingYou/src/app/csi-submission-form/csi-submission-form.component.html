@@ -1,1 +1,35 @@
 <p>csi-submission-form works!</p>
+<div id="form">
+  <div id="titleDiv">
+    <h3 id="titleHeader">CSI Submission Form</h3>
+    <p id="titleDescription1">Please fill out the details below.</p>
+    <p id="titleDescription2">Once all details are complete, you may submit your form for authentication.</p>
+    <p id="titleDescription3">Once authenticated, this user will be the CSI owner for the CSI</p>
+  </div>
+  <div id="nameDiv">
+    <h4 id="nameHeader">CSI name:</h4>
+    <input type="text" id="nameInput" autocomplete="off">
+  </div>
+  <div id="typeDiv">
+    <h4 id="typeHeader">CSI Type:</h4><br>
+    <Label for="typeInputClub">Club:  </Label>
+    <input type="radio" id="typeInputClub" name="csiType" value="Club"><br>
+    <Label for="typeInputSociety">Society:</Label>
+    <input type="radio" id="typeInputSociety" name="csiType" value="Society"><br>
+    <Label for="typeInputInterestGroup">Interest Group:</Label>
+    <input type="radio" id="typeInputInterestGroup" name="csiType" value="InterestGroup">
+  </div>
+  <div id="venueDiv">
+    <h4 id="venueHeader">CSI Venue:</h4>
+    <input type="text" id="venueInput" autocomplete="off">
+  </div>
+  <div id="descriptionDiv">
+    <h4 id="descriptionHeader">CSI Description:</h4>
+    <textarea id="descriptionInput" rows="4" cols="50">
+    </textarea>
+  </div>
+  <div id="submission">
+    <h4 id="SubmissionHeader">Click the button below to submit your CSI details for authentication</h4>
+    <button type="button" id="buttonSubmit" (click)="submitForm()"></button>
+  </div>
+</div>
