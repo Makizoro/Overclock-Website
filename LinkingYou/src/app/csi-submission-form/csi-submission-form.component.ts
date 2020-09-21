@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CsiService} from '../services/csi.service'
+
 
 @Component({
   selector: 'app-csi-submission-form',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CsiSubmissionFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private csiService: CsiService) { }
 
   ngOnInit(): void {
   }
@@ -25,12 +27,13 @@ export class CsiSubmissionFormComponent implements OnInit {
     } else if (typeInterestGroup){
       type = (document.getElementById('typeInputInterestGroup') as HTMLInputElement).value;
     }
-    const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
+    //const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
     const description = (document.getElementById('descriptionInput') as HTMLInputElement).value;
 
-    if (name === '' || type === '' || venue === '' || description === ''){
+    if (name === '' || type === '' ||/* venue === '' ||*/ description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
+      this.csiService.addCSI(name, type,description);
     }
   }
 
