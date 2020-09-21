@@ -25,7 +25,8 @@ export class CsiService {
     );
    }
 
-   async addCSI(name: string, type: string, description: string){
+   //For users who want to request to be a CSI owner
+   async addCSIRequest(name: string, type: string, description: string){
     const uid = this.fb.userId();
     this.csiAdd = {
       name: name,
@@ -42,6 +43,23 @@ export class CsiService {
           alert('Success!');
         } else {
           alert('Request already sent!');
+        }
+      });
+
+   }
+
+   //To add user request to become a CSI owner
+   async addCSI(csiData: CSI){
+    
+    const docRef = this.csiCollection.ref.where('id', '==', csiData.id)
+    .where('name','==',csiData.name)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty){
+          this.csiCollection.add(this.csiAdd);
+          alert('Success!');
+        } else {
+          alert('CSI already exists!');
         }
       });
 
