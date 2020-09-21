@@ -65,6 +65,7 @@ export class CsiService {
 
    }
 
+   //To fetch a csi document
    getACSI(name: string): any{
    return this.afs.collection('CSI', ref => ref.where('name', '==', '' + name))
     .snapshotChanges().pipe(
@@ -76,6 +77,7 @@ export class CsiService {
     );
    }
 
+   // to fetch all CSIs or CSIs by type
    getCSI(type?: string): any{
      switch (type){
        case 'Club':
