@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import {CSI} from '../entities/csi.model';
 import { Observable } from 'rxjs';
+import {PersonService} from '../services/person.service';
 import {AuthService} from '../services/auth.service';
 import { map } from 'rxjs/operators';
+import {Person} from '../entities/person.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +14,9 @@ export class CsiService {
   csiCollectionRequest: AngularFirestoreCollection<CSI>;
   csi: Observable<CSI[] >;
   csiAdd: CSI;
+  personService: PersonService;
+  afAuth: AuthService;
+
 
   constructor(private afs: AngularFirestore, private fb: AuthService ) {
     this.csiCollection = this.afs.collection('CSI');
@@ -39,6 +44,7 @@ export class CsiService {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
+
           this.csiCollectionRequest.add(this.csiAdd);
           alert('Success!');
         } else {
@@ -56,6 +62,11 @@ export class CsiService {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
+          this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+            person.csiName = csiData.name;
+            person.type = 'CSIOwner';
+            this.personService.updatePerson(person);
+          });
           this.csiCollection.add(this.csiAdd);
           alert('Success!');
         } else {

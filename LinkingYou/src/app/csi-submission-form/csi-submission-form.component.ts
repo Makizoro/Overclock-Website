@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CsiService } from '../services/csi.service';
+import {PersonService} from '../services/person.service';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -9,9 +12,14 @@ import { CsiService } from '../services/csi.service';
 })
 export class CsiSubmissionFormComponent implements OnInit {
 
-  constructor(private csiService: CsiService) { }
+  constructor(private csiService: CsiService, private router: Router, private personService: PersonService, private afAuth: AuthService) { }
 
   ngOnInit(): void {
+    this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+      if (person.type !== 'User'){
+        this.router.navigateByUrl('/sidebar');
+      }
+    });
   }
 
   submitForm(): void{

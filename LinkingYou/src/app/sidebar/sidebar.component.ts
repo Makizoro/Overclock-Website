@@ -23,10 +23,6 @@ export class SidebarComponent implements OnInit {
 
 
   }
-  viewProfile(): void{
-    console.log(this.router);
-    this.router.navigate([{outlets: { routerSidebar: ['userPage'] } }], {state: {username: this.data.username}, });
-  }
 
   sidebarClose(): void{
     const sidebarCancel = document.getElementById('cancel');
@@ -36,11 +32,15 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     const createCSILink = document.getElementById('createCSI');
     createCSILink.style.display = 'none';
+    const adminCSIFormLink = document.getElementById('adminCsiForm');
+    adminCSIFormLink.style.display = 'none';
     try {
       this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
         this.data.username = person.username;
         if (person.type === 'User'){
           createCSILink.style.display = 'block';
+        } else if (person.type === 'admin') {
+          adminCSIFormLink.style.display = 'block'
         }
       });
     } catch (e) {

@@ -19,7 +19,6 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     this.personService.getPerson(this.afAuth.userId()).subscribe(person =>
       {
-        console.log(person);
         document.getElementById('username').innerHTML = person.username;
         document.getElementById('email').innerHTML = person.email;
       });
