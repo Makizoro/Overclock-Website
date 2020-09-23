@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import {AuthService} from '../services/auth.service';
+import {PersonService} from '../services/person.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,18 +12,16 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class SidebarComponent implements OnInit {
 
   data: any = {};
-  routeState: any;
 
-  constructor(private router: Router, private aftAuth: AngularFireAuth ,
-              private activatedRoute: ActivatedRoute) {
-    if (this.router.getCurrentNavigation().extras.state){
-      this.routeState = this.router.getCurrentNavigation().extras.state;
-      if (this.routeState) {
-        this.data.username = this.routeState.username;
-      }
-    } else {
-      this.router.navigateByUrl('/login');
-    }
+  constructor(
+    private router: Router,
+    private aftAuth: AngularFireAuth ,
+    private activatedRoute: ActivatedRoute,
+    private personService: PersonService,
+    private afAuth: AuthService
+  ) {
+
+
   }
   viewProfile(): void{
     console.log(this.router);
@@ -34,6 +34,18 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const createCSILink = document.getElementById('createCSI');
+    createCSILink.style.display = 'none';
+    try {
+      this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+        this.data.username = person.username;
+        if (person.type === 'User'){
+          createCSILink.style.display = 'block';
+        }
+      });
+    } catch (e) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   // tslint:disable-next-line:typedef

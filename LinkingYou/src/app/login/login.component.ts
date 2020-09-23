@@ -8,12 +8,9 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usrnme = 'loginData';
-  loginData = {
-    usrnme: ''
-  };
 
-  constructor(private router: Router, private afAuth: AuthService) { }
+  constructor(private router: Router, private afAuth: AuthService) {
+  }
 
 
   ngOnInit(): void {

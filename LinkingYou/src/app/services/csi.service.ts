@@ -25,17 +25,17 @@ export class CsiService {
     );
    }
 
-   //For users who want to request to be a CSI owner
-   async addCSIRequest(name: string, type: string, description: string){
+   // For users who want to request to be a CSI owner
+   async addCSIRequest(name: string, type: string, description: string): Promise<void>{
     const uid = this.fb.userId();
     this.csiAdd = {
-      name: name,
-      description: description,
-      type: type,
+      name,
+      description,
+      type,
       id: uid
     };
     const docRef = this.csiCollectionRequest.ref.where('id', '==', uid)
-    .where('name','==',this.csiAdd.name)
+    .where('name', '==', this.csiAdd.name)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
@@ -48,11 +48,11 @@ export class CsiService {
 
    }
 
-   //To add user request to become a CSI owner
-   async addCSI(csiData: CSI){
-    
+   // To add user request to become a CSI owner
+   async addCSI(csiData: CSI): Promise<void>{
+
     const docRef = this.csiCollection.ref.where('id', '==', csiData.id)
-    .where('name','==',csiData.name)
+    .where('name', '==', csiData.name)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
@@ -65,7 +65,7 @@ export class CsiService {
 
    }
 
-   //To fetch a csi document
+   // To fetch a csi document
    getACSI(name: string): any{
    return this.afs.collection('CSI', ref => ref.where('name', '==', '' + name))
     .snapshotChanges().pipe(

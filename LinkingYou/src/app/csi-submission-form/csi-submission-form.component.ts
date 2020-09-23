@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CsiService} from '../services/csi.service'
+import { CsiService } from '../services/csi.service';
 
 
 @Component({
@@ -27,13 +27,13 @@ export class CsiSubmissionFormComponent implements OnInit {
     } else if (typeInterestGroup){
       type = (document.getElementById('typeInputInterestGroup') as HTMLInputElement).value;
     }
-    //const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
+    // const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
     const description = (document.getElementById('descriptionInput') as HTMLInputElement).value;
 
-    if (name === '' || type === '' ||/* venue === '' ||*/ description === ''){
+    if (name === '' || type === '' || /* venue === '' ||*/ description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
-      this.csiService.addCSIRequest(name, type,description);
+      this.csiService.addCSIRequest(name, type, description);
     }
   }
 
