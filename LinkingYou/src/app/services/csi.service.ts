@@ -64,7 +64,7 @@ export class CsiService {
         if (querySnapshot.empty){
           this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
             person.csiName = csiData.name;
-            person.type = 'CSIOwner';
+            person.type = 'CSI';
             this.personService.updatePerson(person);
           });
           this.csiCollection.add(this.csiAdd);
