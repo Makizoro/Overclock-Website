@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   forgot(flag: boolean): void{
-    const f = document.getElementById('lblForUsername') as HTMLParagraphElement;
+    const f = document.getElementById('forgotPassword') as HTMLParagraphElement;
     if (flag){
       f.style.color = 'red';
     } else {
