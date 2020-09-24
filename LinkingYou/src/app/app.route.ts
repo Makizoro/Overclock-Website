@@ -10,6 +10,7 @@ import {CsiPageComponent} from './csi-page/csi-page.component';
 import {CsiSubmissionFormComponent} from './csi-submission-form/csi-submission-form.component';
 import {AdminCsiAuthorisationComponent} from './admin-csi-authorisation/admin-csi-authorisation.component';
 import {CsiForumComponent} from './csi-forum/csi-forum.component';
+import {CsiForumTopicComponent} from './csi-forum-topic/csi-forum-topic.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'csi', component: CsiTabsComponent, outlet: 'routerSidebar'},
       { path: 'userPage', component: UserPageComponent, outlet: 'routerSidebar'},
       { path: 'csiPage/:name', component: CsiPageComponent, outlet: 'routerSidebar', children: [
-          { path: 'csiForum', component: CsiForumComponent, outlet: 'routerForum'}
+          { path: 'csiForum/:name', component: CsiForumComponent, outlet: 'routerForum'},
+          { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'}
         ]},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},

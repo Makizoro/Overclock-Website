@@ -33,8 +33,7 @@ export class CsiPageComponent implements OnInit {
       csiName.innerHTML = csi[0].name;
       csiDescription.innerHTML = csi[0].description;
 
-      this.router.navigate([ { outlets: {routerForum: 'csiForum'} } ], { relativeTo: this.route });
-      //this.router.navigate([ { outlets: {routerForum: 'csiForum'} } ]);
+      this.router.navigate([ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ], { relativeTo: this.route });
     }); // retrieve and display CSI data
 
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-csi-forum',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CsiForumComponent implements OnInit {
 
-  constructor() { }
+  csiName: string;
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    try{
+      this.route.params.subscribe(params => this.csiName = params.name);
+    } catch (e) {
+      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
+    }
   }
 
 }
