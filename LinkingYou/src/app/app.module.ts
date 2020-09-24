@@ -18,6 +18,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { CsiPageComponent } from './csi-page/csi-page.component';
 import { CsiSubmissionFormComponent } from './csi-submission-form/csi-submission-form.component';
 import { AdminCsiAuthorisationComponent } from './admin-csi-authorisation/admin-csi-authorisation.component';
+import { CsiForumComponent } from './csi-forum/csi-forum.component';
 
 const config = {
   apiKey: "AIzaSyBB7TkPj2vOImaJicfl2fZmI4MTZvWsM1s",
@@ -40,6 +41,7 @@ const config = {
     CsiPageComponent,
     CsiSubmissionFormComponent,
     AdminCsiAuthorisationComponent,
+    CsiForumComponent,
   ],
   imports: [
     BrowserModule,

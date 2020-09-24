@@ -27,7 +27,6 @@ export class CsiTabsComponent implements OnInit {
     const temp = e.composedPath()[1] as HTMLDivElement;
     const csiName = temp.id;
     this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csiPage/' + csiName}}]);
-
   }
 
   displayCSIData(data): void{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CsiService} from '../services/csi.service';
 import {CSI} from '../entities/csi.model';
+import {relativeToRootDirs} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-csi-page',
@@ -17,7 +18,7 @@ export class CsiPageComponent implements OnInit {
 
   // TODO: Retrieve all topics and messages from a particular CSI and store them in forumData
   // TODO: Retrieve all event data for a particular CSI and store them in eventData
-  constructor(private route: ActivatedRoute, private csiService: CsiService) {
+  constructor(private router: Router, private route: ActivatedRoute, private csiService: CsiService) {
 
   }
 
@@ -31,6 +32,9 @@ export class CsiPageComponent implements OnInit {
 
       csiName.innerHTML = csi[0].name;
       csiDescription.innerHTML = csi[0].description;
+
+      this.router.navigate([ { outlets: {routerForum: 'csiForum'} } ], { relativeTo: this.route });
+      //this.router.navigate([ { outlets: {routerForum: 'csiForum'} } ]);
     }); // retrieve and display CSI data
 
   }
