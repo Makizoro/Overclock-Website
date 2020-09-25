@@ -49,6 +49,7 @@ export class SidebarComponent implements OnInit {
       });
     } catch (e) {
       if (this.cookieService.check('uid')){
+        console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
         const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
         this.afAuth.signIn(null , gr);
         this.unblockElements(this.cookieService.get('type'));
@@ -61,13 +62,11 @@ export class SidebarComponent implements OnInit {
 
   unblockElements(type): void{
     const createCSILink = document.getElementById('createCSI');
-    createCSILink.style.display = 'none';
     const adminCSIFormLink = document.getElementById('adminCsiForm');
-    adminCSIFormLink.style.display = 'none';
     if (type === 'User'){
       createCSILink.style.display = 'block';
       adminCSIFormLink.style.display = 'none';
-    } else if (type === 'admin') {
+    } else if (type === 'Admin') {
       adminCSIFormLink.style.display = 'block';
       createCSILink.style.display = 'none';
     } else {
@@ -85,9 +84,8 @@ export class SidebarComponent implements OnInit {
   // tslint:disable-next-line:typedef
   async asynclogout() {
     this.cookieService.deleteAll();
-    await this.aftAuth.auth.signOut().finally(() => {
-      this.router.navigateByUrl('login');
-    });
+    await this.aftAuth.auth.signOut();
+    this.router.navigateByUrl('login');
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
   }
