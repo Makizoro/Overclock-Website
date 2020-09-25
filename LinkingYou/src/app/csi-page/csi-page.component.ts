@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CsiService} from '../services/csi.service';
-import {CSI} from '../entities/csi.model';
-import {relativeToRootDirs} from '@angular/compiler-cli/src/transformers/util';
 
 @Component({
   selector: 'app-csi-page',
@@ -31,7 +29,9 @@ export class CsiPageComponent implements OnInit {
       const csiVenue = document.getElementById('csiVenue');
 
       csiName.innerHTML = csi[0].name;
+      csiEmail.innerHTML = csi[0].email;
       csiDescription.innerHTML = csi[0].description;
+      csiVenue.innerHTML = csi[0].venue;
 
       this.router.navigate([ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ], { relativeTo: this.route });
     }); // retrieve and display CSI data
