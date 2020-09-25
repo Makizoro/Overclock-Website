@@ -10,8 +10,9 @@
   background-repeat: no-repeat;
   background-size: 250px 100%;
   transition: all .5s ease;
-}
 
+  z-index: 1111;
+}
 
 .sidebar header{
   border-top-right-radius: 25px;
@@ -21,7 +22,6 @@
   line-height: 70px;
   user-select: none;
 }
-
 
 *{
   margin:0;
@@ -83,7 +83,7 @@ label #bar:hover{
 
 label #cancel{
   position: relative;
-  z-index: 1111;
+  z-index: 1119;
   left: -195px;
   top: 50px;
   border-radius: 5px;
@@ -118,5 +118,3 @@ label #cancel:hover{
 app-welcome-page{
   transition: all .5s ease;
 }
-
-
