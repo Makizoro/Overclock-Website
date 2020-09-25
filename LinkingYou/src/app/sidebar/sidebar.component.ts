@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AuthService} from '../services/auth.service';
 import {PersonService} from '../services/person.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,7 +19,8 @@ export class SidebarComponent implements OnInit {
     private aftAuth: AngularFireAuth ,
     private activatedRoute: ActivatedRoute,
     private personService: PersonService,
-    private afAuth: AuthService
+    private afAuth: AuthService,
+    private cookieService: CookieService
   ) {
 
 
@@ -36,24 +38,58 @@ export class SidebarComponent implements OnInit {
     adminCSIFormLink.style.display = 'none';
     try {
       this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
-        this.data.username = person.username;
-        if (person.type === 'User'){
-          createCSILink.style.display = 'block';
-        } else if (person.type === 'admin') {
-          adminCSIFormLink.style.display = 'block'
-        }
+        this.data.user = person;
+        this.cookieService.set('uid', person);
+        this.cookieService.set('username', person.username);
+        this.cookieService.set('email', person.email);
+        this.cookieService.set('password', person.password);
+        this.cookieService.set('type', person.type);
+        console.log(person);
+        this.unblockElements(person.type);
       });
     } catch (e) {
-      this.router.navigateByUrl('/login');
+      if (this.cookieService.check('uid')){
+        const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
+        this.afAuth.signIn(null , gr);
+        this.unblockElements(this.cookieService.get('type'));
+      } else {
+        this.router.navigateByUrl('login');
+      }
     }
   }
 
+
+  unblockElements(type): void{
+    const createCSILink = document.getElementById('createCSI');
+    createCSILink.style.display = 'none';
+    const adminCSIFormLink = document.getElementById('adminCsiForm');
+    adminCSIFormLink.style.display = 'none';
+    if (type === 'User'){
+      createCSILink.style.display = 'block';
+      adminCSIFormLink.style.display = 'none';
+    } else if (type === 'admin') {
+      adminCSIFormLink.style.display = 'block';
+      createCSILink.style.display = 'none';
+    } else {
+      adminCSIFormLink.style.display = 'none';
+      createCSILink.style.display = 'none';
+
+    }
+  }
+
+  logout(): void{
+
+    this.asynclogout();
+  }
+
   // tslint:disable-next-line:typedef
-  async logout() {
-    this.aftAuth.auth.signOut();
+  async asynclogout() {
+    this.cookieService.deleteAll();
+    await this.aftAuth.auth.signOut().finally(() => {
+      this.router.navigateByUrl('login');
+    });
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
-    this.router.navigateByUrl('/login');
   }
 
 }

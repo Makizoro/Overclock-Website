@@ -41,25 +41,24 @@ export class AuthService {
   }
 
   valid(  l: { style: { display: string; }; }, gr: string[]): void{
-    alert('You are logged in as ' + gr[0]);
-    l.style.display = 'none';
-    this.router.navigateByUrl('/sidebar');
+    if (l !== null){
+      l.style.display = 'none';
+    }
+    // this.router.navigateByUrl('/sidebar');
   }
 
-  async signIn(l: { style: { display: string; }; }, gr: string[]): Promise<void>{
+  async signIn(l: { style: { display: string; }; }, gr: string[]): Promise<any>{
 
-    return this.afAuth.auth.signInWithEmailAndPassword(gr[0], gr[1]).then(user =>
-      this.valid( l , gr)
-      ).catch(error => {
+    return this.afAuth.auth.signInWithEmailAndPassword(gr[0], gr[1]).then(user => {
+      this.valid( l , gr);
+    }).catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
         alert('Wrong password.');
       } else {
-        alert(errorMessage);
       }
       console.log(error);
-
     });
 
   }
@@ -89,7 +88,6 @@ export class AuthService {
 
   async signOut(): Promise<void>{
     this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
   }
       // to remove user
       /*async deleteAcc(){

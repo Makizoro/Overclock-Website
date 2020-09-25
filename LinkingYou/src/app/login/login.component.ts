@@ -45,7 +45,9 @@ export class LoginComponent implements OnInit {
 
     const gr = [email, password];
 
-    this.afAuth.signIn(l , gr);
+    this.afAuth.signIn(l , gr).finally(() => {
+      this.router.navigateByUrl('sidebar');
+    });
   }
 
 }
