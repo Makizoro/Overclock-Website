@@ -23,3 +23,99 @@
 
   opacity: 95%;
 }
+
+#typeInputClub{
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 11px;
+}
+
+#typeInputClub::selection{
+  background: deepskyblue;
+  color: aliceblue;
+}
+
+#typeInputInterestGroup{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 11px;
+}
+
+#typeInputInterestGroup::selection{
+  background: deepskyblue;
+  color: aliceblue;
+}
+
+#typeInputSociety{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+
+  left: 11px;
+}
+
+#typeInputSociety::selection{
+  background: deepskyblue;
+  color: aliceblue;
+}
+
+#nameInput{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+  text-align: center;
+
+  left: 11px;
+}
+
+#venueInput{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+  width: 200px;
+  height: 35px;
+  text-align: center;
+
+  left: 11px;
+}
+
+#descriptionInput{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: -moz-center;
+  border: #707070;
+}
