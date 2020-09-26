@@ -126,6 +126,17 @@ export class CsiService {
      return this.csi;
    }
 
+   // Get list of CSI requests to accept or reject 
+   getCSIRequests(): any{
+    return this.csiCollectionRequest
+     .snapshotChanges().pipe(
+       map(changes => changes.map(a => {
+         const data = a.payload.doc.data() as CSI;
+         return data;
+       }))
+     );
+    }
+
 }
 
 

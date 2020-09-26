@@ -66,4 +66,15 @@ export class SubscriptionService {
            }))
          );
         }
+
+   // Get list of user requests to accept or reject 
+   getCSIRequests(csiName: string): any{
+    return this.afs.collection('Subscription_Request', ref => ref.where('csi', '==', '' + csiName))
+     .snapshotChanges().pipe(
+       map(changes => changes.map(a => {
+         const data = a.payload.doc.data() as Subscription;
+         return data;
+       }))
+     );
+    }
 }
