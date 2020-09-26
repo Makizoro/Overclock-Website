@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AuthService} from '../services/auth.service';
 import {PersonService} from '../services/person.service';
+//run: npm install ngx-cookie-service --save
+//to use the import below 
 import {CookieService} from 'ngx-cookie-service';
 
 @Component({
