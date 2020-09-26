@@ -137,6 +137,11 @@ export class CsiService {
      );
     }
 
+    //Remove from request collection regardless of reject/accept
+    delete(docId: string): void{
+      this.afs.doc<CSI>('CSI_Request/'+docId).delete();
+    }
+
 }
 
 

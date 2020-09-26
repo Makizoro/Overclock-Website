@@ -51,6 +51,7 @@ export class SubscriptionService {
          .snapshotChanges().pipe(
            map(changes => changes.map(a => {
              const data = a.payload.doc.data() as Subscription;
+             data.docId = a.payload.doc.id;
              return data;
            }))
          );
@@ -62,6 +63,7 @@ export class SubscriptionService {
          .snapshotChanges().pipe(
            map(changes => changes.map(a => {
              const data = a.payload.doc.data() as Subscription;
+             data.docId = a.payload.doc.id;
              return data;
            }))
          );
@@ -73,8 +75,13 @@ export class SubscriptionService {
      .snapshotChanges().pipe(
        map(changes => changes.map(a => {
          const data = a.payload.doc.data() as Subscription;
+         data.docId = a.payload.doc.id;
          return data;
        }))
      );
+    }
+    //Remove from request collection 
+    delete(docId: string): void{
+      this.afs.doc<Subscription>('Subscription_Request/'+docId).delete();
     }
 }
