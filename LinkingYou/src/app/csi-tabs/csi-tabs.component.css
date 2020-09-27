@@ -6,6 +6,7 @@
   color: #5F5C6C;
 
   width: 1250px;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
@@ -15,14 +16,37 @@
   border-width: 1px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
   cursor: default;
 
   opacity: 95%;
 
 }
 
+#csiBar.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+h3{
+  color: blue;
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+}
+
 #clubList{
   background-color: white;
+  color: #707070;
   overflow: auto;
   border-radius: 25px;
   user-select: none;
@@ -38,6 +62,7 @@
 
 #societyList{
   background-color: white;
+  color: #707070;
   overflow: auto;
   border-radius: 25px;
   user-select: none;
@@ -52,6 +77,7 @@
 }
 
 #interestGroupList{
+  color: #707070;
   background-color: white;
   overflow: auto;
   border-radius: 25px;

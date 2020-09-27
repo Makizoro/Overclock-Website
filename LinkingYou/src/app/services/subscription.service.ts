@@ -20,6 +20,7 @@ export class SubscriptionService {
   // For user to request to join a CSI
   async addSubRequest(sub: Subscription): Promise<void> {
     const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
+    .where('csi', '==', sub.csi)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
@@ -34,6 +35,7 @@ export class SubscriptionService {
     // When a CSI accepts a user request to join a CSI
     async addSubscription(sub: Subscription): Promise<void> {
       const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
+      .where('csi', '==', sub.csi)
         .get()
         .then(querySnapshot => {
           if (querySnapshot.empty){

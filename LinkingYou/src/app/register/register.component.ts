@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         username: u,
         email: e,
         password: p,
-        csiName: 'none',
+        csiName: 'None',
         type: 'User'
       };
       this.fb.register(e, p, this.personForm);

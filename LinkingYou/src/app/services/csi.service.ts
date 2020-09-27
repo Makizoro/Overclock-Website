@@ -55,14 +55,14 @@ export class CsiService {
    }
 
    // To add user request to become a CSI owner
-   async addCSI(csiData: CSI): Promise<void>{
+   async addCSI(csiData: CSI, ): Promise<void>{
 
-    const docRef = this.csiCollection.ref.where('id', '==', csiData.id)
+    const docRef = this.csiCollection.ref
     .where('name', '==', csiData.name)
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
-          this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+          this.personService.getPerson(csiData.id).subscribe((person: Person) => {
             person.csiName = csiData.name;
             person.type = 'CSI';
             this.personService.updatePerson(person);
@@ -132,14 +132,14 @@ export class CsiService {
      .snapshotChanges().pipe(
        map(changes => changes.map(a => {
          const data = a.payload.doc.data() as CSI;
-         return data;
+         return [data, a.payload.doc.id];
+          ;
        }))
      );
     }
-
-    // Remove from request collection regardless of reject/accept
+    // Remove from request collection
     delete(docId: string): void{
-      this.afs.doc<CSI>('CSI_Request/'+docId).delete();
+      this.afs.doc<CSI>('CSI_Request/' + docId).delete();
     }
 
 }

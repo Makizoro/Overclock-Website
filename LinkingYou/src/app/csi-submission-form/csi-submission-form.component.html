@@ -1,4 +1,4 @@
-<div id="form">
+<div id="form" class="scroll">
   <div id="titleDiv">
     <h3 id="titleHeader">CSI Submission Form</h3>
     <p id="titleDescription1">Please fill out the details below.</p>
@@ -6,12 +6,11 @@
     <p id="titleDescription3">Once authenticated, this user will be the CSI owner for the CSI</p>
   </div>
   <div id="nameDiv">
-    <h4 id="nameHeader">CSI name:</h4>
-    <input type="text" id="nameInput" autocomplete="off">
+    <input type="text" id="nameInput" placeholder="CSI Name" autocomplete="off">
   </div>
   <div id="typeDiv">
-    <h4 id="typeHeader">CSI Type:</h4><br>
-    <Label for="typeInputClub">Club:  </Label>
+    <h4 id="typeHeader">CSI Type</h4><br>
+    <Label for="typeInputClub">Club:</Label>
     <input type="radio" id="typeInputClub" name="csiType" value="Club"><br>
     <Label for="typeInputSociety">Society:</Label>
     <input type="radio" id="typeInputSociety" name="csiType" value="Society"><br>
@@ -19,12 +18,11 @@
     <input type="radio" id="typeInputInterestGroup" name="csiType" value="Interest Group">
     </div>
   <div id="venueDiv">
-    <h4 id="venueHeader">CSI Venue:</h4>
-    <input type="text" id="venueInput" autocomplete="off">
+    <input type="text" id="venueInput" placeholder="CSI Venue" autocomplete="off">
   </div>
   <div id="descriptionDiv">
-    <h4 id="descriptionHeader">CSI Description:</h4>
-    <textarea id="descriptionInput" rows="4" cols="50">
+    <h4 id="descriptionHeader">CSI Description</h4>
+    <textarea id="descriptionInput" placeholder="CSI description" rows="4" cols="50">
     </textarea>
   </div>
   <div id="submission">
