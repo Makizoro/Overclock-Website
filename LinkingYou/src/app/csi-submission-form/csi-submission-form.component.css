@@ -7,6 +7,7 @@
   color: #5F5C6C;
 
   width: 1250px;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
@@ -16,25 +17,50 @@
   border-width: 1px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
   cursor: default;
-
-  overflow-y : auto;
-  overflow-x : hidden;
 
   opacity: 95%;
 }
 
-#typeInputClub{
-  border: none;
-  outline: none;
-  background-color: #BFBFBF;
-  border-radius: 25px;
-  text-align: -moz-center;
-  border: #707070;
-  width: 200px;
-  height: 35px;
+#form.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
 
-  left: 11px;
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+#titleDiv{
+  color: blue;
+  display: block;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+}
+
+#nameDiv{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#typeDiv{
+  padding-bottom: 20px;
+}
+
+#venueDiv{
+  padding-bottom: 20px;
+}
+
+
+
+#typeInputClub{
+  background-color: #BFBFBF;
+  border: #707070;
+  width: 100px;
+  height: 35px;
 }
 
 #typeInputClub::selection{
@@ -43,17 +69,10 @@
 }
 
 #typeInputInterestGroup{
-  position: relative;
-  border: none;
-  outline: none;
   background-color: #BFBFBF;
-  border-radius: 25px;
-  text-align: -moz-center;
   border: #707070;
-  width: 200px;
+  width: 100px;
   height: 35px;
-
-  left: 11px;
 }
 
 #typeInputInterestGroup::selection{
@@ -62,17 +81,10 @@
 }
 
 #typeInputSociety{
-  position: relative;
-  border: none;
-  outline: none;
   background-color: #BFBFBF;
-  border-radius: 25px;
-  text-align: -moz-center;
   border: #707070;
-  width: 200px;
+  width: 100px;
   height: 35px;
-
-  left: 11px;
 }
 
 #typeInputSociety::selection{
@@ -95,7 +107,7 @@
   left: 11px;
 }
 
-#venueInput{
+#venueInput {
   position: relative;
   border: none;
   outline: none;
@@ -110,6 +122,10 @@
   left: 11px;
 }
 
+#descriptionDiv{
+  padding-bottom: 20px;
+}
+
 #descriptionInput{
   position: relative;
   border: none;
@@ -118,4 +134,12 @@
   border-radius: 25px;
   text-align: -moz-center;
   border: #707070;
+}
+
+#submission{
+  color: gray;
+  display: block;
+  box-sizing: border-box;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
