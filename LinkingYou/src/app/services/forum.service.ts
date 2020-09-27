@@ -30,7 +30,7 @@ export class ForumService {
        );
       }
       
-    // Get topics given a certain topic name
+    // Get topics 
     getTopics(): any{
       return this.afs.collection('Forum')
        .snapshotChanges().pipe(
