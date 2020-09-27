@@ -32,7 +32,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/sidebar/(routerSidebar:welcome)', pathMatch: 'full'},
       { path: '**', redirectTo: '/sidebar/(routerSidebar:welcome)', pathMatch: 'full'}
     ]},
-  { path: '**', redirectTo: 'sidebar', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

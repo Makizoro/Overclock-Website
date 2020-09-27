@@ -75,9 +75,8 @@ export class SidebarComponent implements OnInit {
   async asynclogout() {
     this.cookieService.deleteAll();
     await this.aftAuth.signOut().finally(() => {
-      this.cookieService.deleteAll();
     });
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('');
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
   }

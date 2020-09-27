@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.cookieService.check('uid')){
+      // console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
+      this.router.navigate(['sidebar']);
+    }
   }
 
 
