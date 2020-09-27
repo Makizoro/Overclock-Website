@@ -11,6 +11,8 @@ import {CsiSubmissionFormComponent} from './csi-submission-form/csi-submission-f
 import {AdminCsiAuthorisationComponent} from './admin-csi-authorisation/admin-csi-authorisation.component';
 import {CsiForumComponent} from './csi-forum/csi-forum.component';
 import {CsiForumTopicComponent} from './csi-forum-topic/csi-forum-topic.component';
+import {CsiForumCreateTopicComponent} from './csi-forum-create-topic/csi-forum-create-topic.component';
+import {CsiEventDetailsComponent} from './csi-event-details/csi-event-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -20,7 +22,9 @@ const routes: Routes = [
       { path: 'userPage', component: UserPageComponent, outlet: 'routerSidebar'},
       { path: 'csiPage/:name', component: CsiPageComponent, outlet: 'routerSidebar', children: [
           { path: 'csiForum/:name', component: CsiForumComponent, outlet: 'routerForum'},
-          { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'}
+          { path: 'csiEventDetails/:eventName', component: CsiEventDetailsComponent, outlet: 'routerForum'},
+          { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'},
+          { path: 'csiForumCreateTopic/:name', component: CsiForumCreateTopicComponent, outlet: 'routerForum'}
         ]},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},

@@ -29,8 +29,8 @@ export class ForumService {
          }))
        );
       }
-      
-    // Get topics 
+
+    // Get topics
     getTopics(): any{
       return this.afs.collection('Forum')
        .snapshotChanges().pipe(

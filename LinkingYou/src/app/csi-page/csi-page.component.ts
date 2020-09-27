@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CsiService} from '../services/csi.service';
+import {CsiEventComponent} from '../csi-event/csi-event.component';
 
 @Component({
   selector: 'app-csi-page',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ForumService} from '../services/forum.service';
 
 @Component({
   selector: 'app-csi-forum',
@@ -8,8 +9,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class CsiForumComponent implements OnInit {
 
-  csiName: string;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  private csiName: string;
+  private csiTopic: any;
+  constructor(private route: ActivatedRoute, private router: Router, private forumService: ForumService) { }
 
   ngOnInit(): void {
     try{
@@ -17,6 +19,18 @@ export class CsiForumComponent implements OnInit {
     } catch (e) {
       this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
     }
+
+    this.retrieveTopics();
   }
 
+  private async retrieveTopics(): Promise<void> {
+    this.forumService.getTopics().subscribe(topicList => {
+      console.log('Topic list:');
+      console.log(topicList);
+    });
+  }
+
+  createTopic(): void {
+
+  }
 }
