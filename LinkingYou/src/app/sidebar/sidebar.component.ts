@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private aftAuth: AngularFireAuth ,
+    private aftAuth: AuthService ,
     private activatedRoute: ActivatedRoute,
     private personService: PersonService,
     private afAuth: AuthService,
@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit {
   // tslint:disable-next-line:typedef
   async asynclogout() {
     this.cookieService.deleteAll();
-    await this.aftAuth.auth.signOut();
+    await this.aftAuth.signOut();
     this.router.navigateByUrl('login');
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
