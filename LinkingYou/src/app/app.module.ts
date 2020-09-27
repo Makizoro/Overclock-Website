@@ -21,7 +21,7 @@ import { AdminCsiAuthorisationComponent } from './admin-csi-authorisation/admin-
 import { CsiForumComponent } from './csi-forum/csi-forum.component';
 import { CsiForumTopicComponent } from './csi-forum-topic/csi-forum-topic.component';
 
-const config = {
+export const config = {
   apiKey: "AIzaSyBB7TkPj2vOImaJicfl2fZmI4MTZvWsM1s",
   authDomain: "linking-you.firebaseapp.com",
   databaseURL: "https://linking-you.firebaseio.com",
@@ -53,6 +53,7 @@ const config = {
     FormsModule,
     AppRouteModule
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,8 +8,9 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  router: Router;
 
-  constructor(private router: Router, private afAuth: AuthService) {
+  constructor( private afAuth: AuthService) {
   }
 
 
