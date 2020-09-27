@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import {CookieService} from 'ngx-cookie-service';
+import {PersonService} from '../services/person.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private afAuth: AuthService) {
+  constructor(private router: Router, private afAuth: AuthService, private cookieService: CookieService, private personService: PersonService) {
   }
 
 
@@ -45,8 +47,16 @@ export class LoginComponent implements OnInit {
 
     const gr = [email, password];
 
-    this.afAuth.signIn(l , gr).finally(() => {
-      this.router.navigateByUrl('sidebar');
+    this.afAuth.signIn(l , gr).finally(async () => {
+      await this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+        this.cookieService.set('uid', person);
+        this.cookieService.set('username', person.username);
+        this.cookieService.set('email', person.email);
+        this.cookieService.set('password', person.password);
+        this.cookieService.set('type', person.type);
+        console.log(this.cookieService.get('username'));
+        this.router.navigateByUrl('sidebar');
+      });
     });
   }
 

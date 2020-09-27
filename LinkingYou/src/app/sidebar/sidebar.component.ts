@@ -38,25 +38,14 @@ export class SidebarComponent implements OnInit {
     createCSILink.style.display = 'none';
     const adminCSIFormLink = document.getElementById('adminCsiForm');
     adminCSIFormLink.style.display = 'none';
-    try {
-      this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
-        this.data.user = person;
-        this.cookieService.set('uid', person);
-        this.cookieService.set('username', person.username);
-        this.cookieService.set('email', person.email);
-        this.cookieService.set('password', person.password);
-        this.cookieService.set('type', person.type);
-        this.unblockElements(person.type);
-      });
-    } catch (e) {
-      if (this.cookieService.check('uid')){
-        // console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
-        const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
-        this.afAuth.signIn(null , gr);
-        this.unblockElements(this.cookieService.get('type'));
-      } else {
+
+    if (this.cookieService.check('uid')){
+      // console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
+      console.log('yes');
+      const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
+      this.unblockElements(this.cookieService.get('type'));
+    } else {
         this.router.navigateByUrl('login');
-      }
     }
   }
 
@@ -85,7 +74,9 @@ export class SidebarComponent implements OnInit {
   // tslint:disable-next-line:typedef
   async asynclogout() {
     this.cookieService.deleteAll();
-    await this.aftAuth.signOut();
+    await this.aftAuth.signOut().finally(() => {
+      this.cookieService.deleteAll();
+    });
     this.router.navigateByUrl('login');
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
