@@ -59,7 +59,7 @@ export class CsiService {
    // To add user request to become a CSI owner
    async addCSI(csiData: CSI, ): Promise<void>{
 
-    const docRef = this.csiCollection.ref 
+    const docRef = this.csiCollection.ref
     .where('name', '==', csiData.name)
       .get()
       .then(querySnapshot => {
@@ -128,7 +128,7 @@ export class CsiService {
      return this.csi;
    }
 
-   // Get list of CSI requests to accept or reject 
+   // Get list of CSI requests to accept or reject
    getCSIRequests(): any{
     return this.csiCollectionRequest
      .snapshotChanges().pipe(
@@ -139,10 +139,9 @@ export class CsiService {
        }))
      );
     }
-
-    //Remove from request collection 
+    // Remove from request collection
     delete(docId: string): void{
-      this.afs.doc<CSI>('CSI_Request/'+docId).delete();
+      this.afs.doc<CSI>('CSI_Request/' + docId).delete();
     }
 
 }

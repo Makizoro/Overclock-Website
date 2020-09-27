@@ -3,7 +3,6 @@ import { CsiService } from '../services/csi.service';
 import {PersonService} from '../services/person.service';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
-import {CSI} from '../entities/csi.model'
 
 
 @Component({
@@ -12,8 +11,6 @@ import {CSI} from '../entities/csi.model'
   styleUrls: ['./csi-submission-form.component.css']
 })
 export class CsiSubmissionFormComponent implements OnInit {
-
-  csiRequest:CSI;
 
   constructor(private csiService: CsiService, private router: Router, private personService: PersonService, private afAuth: AuthService) { }
 
@@ -40,13 +37,15 @@ export class CsiSubmissionFormComponent implements OnInit {
     } else if (typeInterestGroup){
       type = (document.getElementById('typeInputInterestGroup') as HTMLInputElement).value;
     }
-    const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
+    // const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
     const description = (document.getElementById('descriptionInput') as HTMLInputElement).value;
 
-    if (name === '' || type === '' ||  venue === '' || description === ''){
+    if (name === '' || type === '' || /* venue === '' ||*/ description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
-      this.csiService.addCSIRequest(name, type, description, venue, 'email');
+      this.csiService.addCSIRequest(name, type, description).finally(() => {
+        this.router.navigate(['sidebar']);
+      });
     }
   }
 

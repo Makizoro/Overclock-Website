@@ -8,5 +8,4 @@ export interface CSI{
     image?: string;
     venue?: string;
     status?: string;
-    
   }
