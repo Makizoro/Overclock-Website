@@ -54,11 +54,20 @@ export class AuthService {
     }).catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
-        alert('Wrong password.');
-      } else {
+      switch (errorCode){
+        case ('auth/wrong-password'): {
+          alert('Invalid password entered');
+          break;
+        }
+        case ('auth/invalid-email'): {
+          alert('Invalid email entered');
+          break;
+        }
+        default: {
+          console.log(error);
+          break;
+        }
       }
-      console.log(error);
     });
 
   }

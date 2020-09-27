@@ -126,7 +126,7 @@ export class CsiService {
      return this.csi;
    }
 
-   // Get list of CSI requests to accept or reject 
+   // Get list of CSI requests to accept or reject
    getCSIRequests(): any{
     return this.csiCollectionRequest
      .snapshotChanges().pipe(
@@ -137,7 +137,7 @@ export class CsiService {
      );
     }
 
-    //Remove from request collection regardless of reject/accept
+    // Remove from request collection regardless of reject/accept
     delete(docId: string): void{
       this.afs.doc<CSI>('CSI_Request/'+docId).delete();
     }

@@ -41,7 +41,9 @@ export class CsiSubmissionFormComponent implements OnInit {
     if (name === '' || type === '' || /* venue === '' ||*/ description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
-      this.csiService.addCSIRequest(name, type, description);
+      this.csiService.addCSIRequest(name, type, description).finally(() => {
+        this.router.navigate(['sidebar']);
+      });
     }
   }
 
