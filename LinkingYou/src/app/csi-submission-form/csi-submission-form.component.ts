@@ -17,11 +17,11 @@ export class CsiSubmissionFormComponent implements OnInit {
   ngOnInit(): void {
     // commented this code out due to failing test
 
-    /*this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+    this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
       if (person.type !== 'User'){
         this.router.navigateByUrl('/sidebar');
       }
-    });*/
+    });
   }
 
   submitForm(): void{
@@ -37,10 +37,11 @@ export class CsiSubmissionFormComponent implements OnInit {
     } else if (typeInterestGroup){
       type = (document.getElementById('typeInputInterestGroup') as HTMLInputElement).value;
     }
-    // const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
+    const email = (document.getElementById('emailInput') as HTMLInputElement).value;
+    const venue = (document.getElementById('venueInput') as HTMLInputElement).value;
     const description = (document.getElementById('descriptionInput') as HTMLInputElement).value;
 
-    if (name === '' || type === '' || /* venue === '' ||*/ description === ''){
+    if (name === '' || type === '' || email === '' || venue === '' || description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
       this.csiService.addCSIRequest(name, type, description).finally(() => {
