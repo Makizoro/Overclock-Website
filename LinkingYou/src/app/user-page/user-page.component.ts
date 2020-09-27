@@ -17,7 +17,9 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    // Same comment with admin componenet
+      this.userPage();
+    /**/
   }
 
   userPage(){
