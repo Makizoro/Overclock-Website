@@ -17,13 +17,15 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Same comment with admin componenet
+    
+  }
 
-    /*this.personService.getPerson(this.afAuth.userId()).subscribe(person =>
+  userPage(){
+    this.personService.getPerson(this.afAuth.userId()).subscribe(person =>
       {
         document.getElementById('username').innerHTML = person.username;
         document.getElementById('email').innerHTML = person.email;
-      });*/
+      });
   }
 
   }

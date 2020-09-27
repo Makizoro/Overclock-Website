@@ -29,6 +29,17 @@ export class ForumService {
          }))
        );
       }
+      
+    // Get topics 
+    getTopics(): any{
+      return this.afs.collection('Forum')
+       .snapshotChanges().pipe(
+         map(changes => changes.map(a => {
+           const data = a.payload.doc.data() as Forum;
+           return data;
+         }))
+       );
+      }
 
     // Get messages given a certain csi name and topic
     getCSIMessage(topicName: string, csiName): any{
