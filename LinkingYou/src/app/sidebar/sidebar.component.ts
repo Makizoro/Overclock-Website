@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit {
       });
     } catch (e) {
       if (this.cookieService.check('uid')){
-        console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
+        // console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
         const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
         this.afAuth.signIn(null , gr);
         this.unblockElements(this.cookieService.get('type'));

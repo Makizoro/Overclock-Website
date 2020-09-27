@@ -23,17 +23,17 @@ export class AdminCsiAuthorisationComponent implements OnInit {
   ngOnInit(): void {
     // Same comment as with submission form
 
-    /*this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
+    this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
       if (person.type !== 'Admin'){
         this.router.navigateByUrl('/sidebar');
       } else {
         this.csiService.getCSIRequests().subscribe(list => {
-          this.csiList = list;
+          this.csiList = list[0];
           console.log(this.csiList);
           this.displayCsiData(this.csiList);
         });
       }
-    });*/
+    });
   }
 
   displayCsiData(csiList): void {
