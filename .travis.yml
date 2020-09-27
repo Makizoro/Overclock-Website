@@ -4,7 +4,9 @@ node_js:
 
 before_install:
   - cd LinkingYou
-  
+
+install:
+  -npm install
 script:
   -npm run test
 
