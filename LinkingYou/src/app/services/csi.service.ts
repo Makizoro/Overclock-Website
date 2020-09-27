@@ -57,7 +57,7 @@ export class CsiService {
    }
 
    // To add user request to become a CSI owner
-   async addCSI(csiData: CSI, ): Promise<void>{
+   async addCSI(csiData: CSI ): Promise<void>{
 
     const docRef = this.csiCollection.ref
     .where('name', '==', csiData.name)
