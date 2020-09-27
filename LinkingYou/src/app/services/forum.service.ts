@@ -18,17 +18,6 @@ export class ForumService {
    async addForum(forum: Forum): Promise<void> {
     this.forumCollection.add(forum);
     }
-
-    // Get messages given a certain topic name
-    getMessage(topicName: string): any{
-      return this.afs.collection('Forum', ref => ref.where('topic', '==', '' + topicName))
-       .snapshotChanges().pipe(
-         map(changes => changes.map(a => {
-           const data = a.payload.doc.data() as Forum;
-           return data;
-         }))
-       );
-      }
       
     // Get topics 
     getTopics(): any{
@@ -41,10 +30,9 @@ export class ForumService {
        );
       }
 
-    // Get messages given a certain csi name and topic
-    getCSIMessage(topicName: string, csiName): any{
-      return this.afs.collection('Forum', ref => ref.where('topic', '==', '' + topicName)
-      .where('csi', '==', '' + csiName))
+      // Get topics which were made by a certain csi
+    getCSITopic(csiName: string): any{
+      return this.afs.collection('Forum',ref => ref.where('csi', '==', '' + csiName))
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {
            const data = a.payload.doc.data() as Forum;
@@ -52,4 +40,5 @@ export class ForumService {
          }))
        );
       }
+
 }
