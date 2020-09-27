@@ -135,7 +135,6 @@ export class CsiService {
        map(changes => changes.map(a => {
          const data = a.payload.doc.data() as CSI;
          return [data, a.payload.doc.id];
-          ;
        }))
      );
     }
