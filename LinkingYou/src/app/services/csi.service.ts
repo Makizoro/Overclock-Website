@@ -57,7 +57,7 @@ export class CsiService {
    // To add user request to become a CSI owner
    async addCSI(csiData: CSI, ): Promise<void>{
 
-    const docRef = this.csiCollectionRequest.ref 
+    const docRef = this.csiCollection.ref 
     .where('name', '==', csiData.name)
       .get()
       .then(querySnapshot => {
@@ -67,7 +67,7 @@ export class CsiService {
             person.type = 'CSI';
             this.personService.updatePerson(person);
           });
-          this.csiCollectionRequest.add(this.csiAdd);
+          this.csiCollection.add(this.csiAdd);
           alert('Success!');
         } else {
           alert('CSI already exists!');
