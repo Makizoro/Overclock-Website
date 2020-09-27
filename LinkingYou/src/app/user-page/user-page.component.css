@@ -5,7 +5,7 @@
   border-radius: 25px;
 
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  color: #5F5C6C;
+  color: blue;
 
   width: 750px;
   margin-left: auto;
@@ -26,4 +26,20 @@
 #pic{
   width: 150px;
   height: 150px;
+}
+
+h3{
+  color: gray;
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+}
+
+#email{
+  padding-bottom: 20px;
 }
