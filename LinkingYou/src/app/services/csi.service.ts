@@ -31,12 +31,14 @@ export class CsiService {
    }
 
    // For users who want to request to be a CSI owner
-   async addCSIRequest(name: string, type: string, description: string): Promise<void>{
+   async addCSIRequest(name: string, type: string, description: string, venue: string, email: string): Promise<void>{
     const uid = this.fb.userId();
     this.csiAdd = {
       name,
       description,
       type,
+      email,
+      venue,
       id: uid
     };
     const docRef = this.csiCollectionRequest.ref.where('id', '==', uid)
