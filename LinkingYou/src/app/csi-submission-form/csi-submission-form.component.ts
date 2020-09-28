@@ -64,7 +64,7 @@ export class CsiSubmissionFormComponent implements OnInit {
         }
 
         if (valid){
-          this.csiService.addCSIRequest(name, type, description,venue,email).finally(() => {
+          this.csiService.addCSIRequest(name, type, description, venue, email).finally(() => {
             this.router.navigate(['sidebar']);
           });
         } else {
