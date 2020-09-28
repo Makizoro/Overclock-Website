@@ -29,7 +29,6 @@ export class AdminCsiAuthorisationComponent implements OnInit {
       } else {
         this.csiService.getCSIRequests().subscribe(list => {
           this.csiList = list;
-          console.log(this.csiList);
           this.displayCsiData(this.csiList);
         });
       }
@@ -48,13 +47,13 @@ export class AdminCsiAuthorisationComponent implements OnInit {
       btnAccept.name = 'btnAccept';
       btnAccept.innerHTML = 'ACCEPT';
       btnAccept.addEventListener('click', () => {
-        this.judge(true, csiData);
+        this.judge(true, csi);
       });
       const btnReject = document.createElement('button');
       btnReject.name = 'btnReject';
       btnReject.innerHTML = 'REJECT';
       btnReject.addEventListener('click', () => {
-        this.judge(false, csiData);
+        this.judge(false, csi);
       });
 
       const newDiv = document.createElement('div');
@@ -84,16 +83,21 @@ export class AdminCsiAuthorisationComponent implements OnInit {
 
   }
 
-  judge(verdict: boolean, csi: CSI): void{
+  judge(verdict: boolean, csi): void{
+
+    const csiData = csi[0];
+    const csiId = csi[1];
+    const csiDiv = document.getElementById(csiData.name);
 
     if (verdict){
-      alert('Will accept ' + csi.name + ' as a CSI');
-      console.log(csi);
-      const csiDiv = document.getElementById(csi.name);
-      this.csiService.addCSI(csi);
+      alert('Will accept ' + csiData.name + ' as a CSI');
+      this.csiService.addCSI(csiData);
+      this.csiService.delete(csiId);
       csiDiv.remove();
     } else {
-      alert('Will reject ' + csi.name + ' as a CSI');
+      alert('Will reject ' + csiData.name + ' as a CSI');
+      csiDiv.remove();
+      this.csiService.delete(csiId);
     }
   }
 

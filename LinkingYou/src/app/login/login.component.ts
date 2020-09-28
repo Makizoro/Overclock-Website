@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
         this.cookieService.set('password', person.password);
         this.cookieService.set('type', person.type);
         this.cookieService.set('csiName', person.csiName);
-        console.log(this.cookieService.get('username'));
         this.router.navigateByUrl('sidebar');
       });
     });

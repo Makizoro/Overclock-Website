@@ -43,6 +43,9 @@ export class CsiForumComponent implements OnInit {
     for (const topic of this.topicList){
       try {
         const thisTopic = topic[0] as Forum;
+        if (thisTopic.csi !== this.csiName){
+          continue;
+        }
         const topicId = topic[1];
         const topicDiv = document.createElement('div');
         const topicTitle = document.createElement('h6');

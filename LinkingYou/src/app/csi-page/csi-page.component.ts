@@ -30,8 +30,12 @@ export class CsiPageComponent implements OnInit {
               private cookieService: CookieService) {  }
 
   ngOnInit(): void {
+    const btnSub = document.getElementById('btnSubscribe');
+    btnSub.style.display = 'none';
+    const btnEdit = document.getElementById('btnEdit');
+    btnEdit.style.display = 'none';
     this.route.params.subscribe(params => this.csiData.csiName = params.name);
-    const thisCSI = this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
+    this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
       const csiName = document.getElementById('csiName');
       const csiEmail = document.getElementById('csiEmail');
       const csiDescription = document.getElementById('csiDescription');
@@ -44,16 +48,20 @@ export class CsiPageComponent implements OnInit {
 
       if (this.cookieService.check('username')){
         this.userId = this.cookieService.get('username');
+        if (this.cookieService.get('csiName') === this.csiData.csiName) {
+          btnEdit.style.display = 'block';
+
+        } else {
+          btnSub.style.display = 'block';
+        }
       } else {
       }
-      this.subscriptionService.getCSISubList(this.csiData.name).subscribe(csiSubList => {
+      this.subscriptionService.getCSISubList(this.csiData.csiName).subscribe(csiSubList => {
         this.csiSubList = csiSubList;
-        console.log(this.csiSubList);
-        const btnSub = document.getElementById('btnSubscribe');
         if (this.inList(csiSubList, this.userId)) {
           btnSub.innerHTML = 'Unsubscribe';
         } else {
-          this.subscriptionService.getCSIRequests(this.csiData.name).subscribe(csiRequestList => {
+          this.subscriptionService.getCSIRequests(this.csiData.csiName).subscribe(csiRequestList => {
             this.csiRequestList = csiRequestList;
             if (this.inList(csiRequestList, this.userId)){
               btnSub.innerHTML = 'Cancel Subscription Request';
@@ -77,6 +85,10 @@ export class CsiPageComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  editCSI(): void{
+    this.router.navigate([{outlets: {routerSidebar: 'csiEditPage'}}], {relativeTo: this.route.parent});
   }
 
   async toggleSubscribe(): Promise<void>{

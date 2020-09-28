@@ -1,0 +1,35 @@
+<p>csi-edit-page works!</p>
+<div id="form" class="scroll">
+  <div id="titleDiv">
+    <h3 id="titleHeader">CSI Edit Form</h3>
+    <p id="titleDescription1">Please fill out the details below that you wish to change</p>
+    <p id="titleDescription2">Note: You cannot alter your CSI name</p>
+  </div>
+  <div id="typeDiv">
+    <h4 id="typeHeader">CSI Type</h4><br>
+    <Label for="typeInputClub">Club:</Label>
+    <input type="radio" id="typeInputClub" name="csiType" value="Club"><br>
+    <Label for="typeInputSociety">Society:</Label>
+    <input type="radio" id="typeInputSociety" name="csiType" value="Society"><br>
+    <Label for="typeInputInterestGroup">Interest Group:</Label>
+    <input type="radio" id="typeInputInterestGroup" name="csiType" value="Interest Group">
+  </div>
+  <div id="emailDiv">
+    <h3>Email:</h3>
+    <input type="text" id="emailInput" placeholder="CSI Email" autocomplete="off">
+  </div>
+  <div id="venueDiv">
+    <h3>Venue:</h3>
+    <input type="text" id="venueInput" placeholder="CSI Venue" autocomplete="off">
+  </div>
+  <div id="descriptionDiv">
+    <h4 id="descriptionHeader">CSI Description</h4>
+    <textarea id="descriptionInput" placeholder="CSI description" rows="4" cols="50">
+    </textarea>
+  </div>
+  <div id="submission">
+    <h4 id="SubmissionHeader">Click the button below to confirm your changes</h4>
+    <button type="button" id="buttonSubmit" (click)="updateCsi()">Submit</button>
+  </div>
+</div>
+

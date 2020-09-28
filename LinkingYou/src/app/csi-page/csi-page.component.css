@@ -26,6 +26,16 @@
   overflow-y: scroll;
 }
 
+#btnEdit{
+  display: none;
+  position: center;
+  text-align: center;
+}
+#btnSubscribe{
+  display: none;
+  position: center;
+  text-align: center;
+}
 .scroll::-webkit-scrollbar {
   display: none;
 }

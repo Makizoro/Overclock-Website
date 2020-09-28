@@ -13,6 +13,7 @@ import {CsiForumComponent} from './csi-forum/csi-forum.component';
 import {CsiForumTopicComponent} from './csi-forum-topic/csi-forum-topic.component';
 import {CsiForumCreateTopicComponent} from './csi-forum-create-topic/csi-forum-create-topic.component';
 import {CsiEventDetailsComponent} from './csi-event-details/csi-event-details.component';
+import {CsiEditPageComponent} from './csi-edit-page/csi-edit-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
           { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'},
           { path: 'csiForumCreateTopic/:name', component: CsiForumCreateTopicComponent, outlet: 'routerForum'}
         ]},
+      { path: 'csiEditPage', component: CsiEditPageComponent, outlet: 'routerSidebar'},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'adminCsiForm', component: AdminCsiAuthorisationComponent, pathMatch: 'full', outlet: 'routerSidebar'},

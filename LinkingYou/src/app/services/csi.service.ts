@@ -67,13 +67,6 @@ export class CsiService {
             person.csiName = csiData.name;
             person.type = 'CSI';
             this.personService.updatePerson(person);
-            this.getCSIRequests().subscribe(data => {
-              for (const csiRequests of data){
-                if (csiRequests[0].id === csiData.id){
-                  this.delete(csiRequests[1]);
-                }
-              }
-            });
           });
           this.csiCollection.add(csiData);
           alert('Success!');
