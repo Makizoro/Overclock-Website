@@ -24,7 +24,7 @@ const routes: Routes = [
           { path: 'csiForum/:name', component: CsiForumComponent, outlet: 'routerForum'},
           { path: 'csiEventDetails/:eventName', component: CsiEventDetailsComponent, outlet: 'routerForum'},
           { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'},
-          { path: 'csiForumCreateTopic/:name', component: CsiForumCreateTopicComponent, outlet: 'routerForum'}
+          { path: 'csiForumCreateTopic', component: CsiForumCreateTopicComponent, outlet: 'routerForum'}
         ]},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},

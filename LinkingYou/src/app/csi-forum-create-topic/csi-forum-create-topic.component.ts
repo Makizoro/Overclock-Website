@@ -27,14 +27,14 @@ export class CsiForumCreateTopicComponent implements OnInit {
     }
   }
 
-  submitTopic(): void{
+  async submitTopic(): Promise<void>{
     const topicName = (document.getElementById('topicNameInput') as HTMLInputElement).value;
     const topicMessage = (document.getElementById('topicMessageInput') as HTMLInputElement).value;
 
-    let newForum: Forum;
-    newForum.csi = this.csiName;
-    newForum.topic = topicName;
+    const newForum = {csi: this.csiName, topic: topicName} as Forum;
 
-    // this.forumService.addForum();
+    // const docRef = await this.forumService.addForum(newForum);
+
+    console.log(this.forumService.getCSITopic(this.csiName));
   }
 }

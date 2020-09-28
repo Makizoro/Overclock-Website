@@ -3,6 +3,8 @@ import { Forum } from 'src/app/entities/forum.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import DocumentReference = firebase.firestore.DocumentReference;
+import * as firebase from 'firebase';
+import {Message} from '../entities/message.model';
 
 
 @Injectable({
@@ -26,20 +28,29 @@ export class ForumService {
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {
            const data = a.payload.doc.data() as Forum;
-           return data;
+           return [data, a.payload.doc.id];
          }))
        );
       }
 
       // Get topics which were made by a certain csi
     getCSITopic(csiName: string): any{
-      return this.afs.collection('Forum',ref => ref.where('csi', '==', '' + csiName))
+      return this.afs.collection('Forum', ref => ref.where('csi', '==', '' + csiName))
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {
            const data = a.payload.doc.data() as Forum;
-           return [data,a.payload.doc.id];
+           return [data, a.payload.doc.id];
          }))
        );
       }
+
+    getTopic(topicDocId: string): any{
+      return this.afs.collection('Forum').doc(topicDocId).snapshotChanges().pipe(
+        map(topic => {
+          return topic.payload.data();
+        })
+      );
+
+    }
 
 }

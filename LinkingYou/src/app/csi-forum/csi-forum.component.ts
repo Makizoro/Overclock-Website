@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ForumService} from '../services/forum.service';
+import {Forum} from '../entities/forum.model';
 
 @Component({
   selector: 'app-csi-forum',
@@ -10,6 +11,7 @@ import {ForumService} from '../services/forum.service';
 export class CsiForumComponent implements OnInit {
 
   private csiName: string;
+  private topicList: any;
   private csiTopic: any;
   constructor(private route: ActivatedRoute, private router: Router, private forumService: ForumService) { }
 
@@ -25,13 +27,35 @@ export class CsiForumComponent implements OnInit {
 
   private async retrieveTopics(): Promise<void> {
     this.forumService.getTopics().subscribe(topicList => {
-      console.log('Topic list:');
-      console.log(topicList);
+      this.topicList = topicList;
+
+      this.displayTopics();
     });
   }
 
   createTopic(): void {
+    this.router.navigate([{outlets: {routerForum: 'csiForumCreateTopic'}}], {relativeTo: this.route.parent});
+  }
 
-    this.router.navigate(['csiForum'], {relativeTo: this.route});
+  private displayTopics(): void {
+    const forumDiv = document.getElementById('forumDiv');
+
+    for (const topic of this.topicList){
+      const thisTopic = topic[0] as Forum;
+      const topicId = topic[1];
+      const topicDiv = document.createElement('div');
+      const topicTitle = document.createElement('h6');
+      topicTitle.innerHTML = thisTopic.topic;
+      topicTitle.addEventListener('click', () => {
+        this.goToTopic(topicId);
+      });
+      topicDiv.appendChild(topicTitle);
+      forumDiv.appendChild(topicDiv);
+    }
+  }
+
+  private goToTopic(topicId): void{
+
+    this.router.navigate([{outlets: {routerForum: 'csiForumTopic/' + topicId}}], {relativeTo: this.route.parent});
   }
 }

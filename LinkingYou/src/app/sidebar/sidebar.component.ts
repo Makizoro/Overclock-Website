@@ -40,8 +40,6 @@ export class SidebarComponent implements OnInit {
     adminCSIFormLink.style.display = 'none';
 
     if (this.cookieService.check('uid')){
-      // console.log('User exists: ' + this.cookieService.get('username') + ', type: ' + this.cookieService.get('type'));
-      console.log('yes');
       const gr = [this.cookieService.get('email'), this.cookieService.get('password')];
       this.unblockElements(this.cookieService.get('type'));
     } else {
@@ -76,7 +74,6 @@ export class SidebarComponent implements OnInit {
     await this.aftAuth.signOut().finally(() => {
       this.cookieService.deleteAll('/');
       this.cookieService.deleteAll('./');
-      console.log(this.cookieService.getAll());
       this.router.navigateByUrl('login');
     });
     localStorage.removeItem('profile');
