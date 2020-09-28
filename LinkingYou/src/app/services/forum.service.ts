@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Forum } from 'src/app/entities/forum.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import DocumentReference = firebase.firestore.DocumentReference;
 
 
 @Injectable({
@@ -15,8 +16,8 @@ export class ForumService {
    }
 
    // Add to forum
-   async addForum(forum: Forum): Promise<void> {
-    this.forumCollection.add(forum);
+   async addForum(forum: Forum): Promise<DocumentReference> {
+    return await this.forumCollection.add(forum);
     }
 
     // Get topics
