@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Message} from '../entities/message.model'
+import {Message} from '../entities/message.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ export class MessageService {
 
   constructor(private afs: AngularFirestore) { }
 
-  //Add message
+  // Add message
   async addMessage(topicDocId: string, message: Message): Promise<void> {
      this.messageCollection = this.afs.collection('Forum').doc(topicDocId).collection('Message');
      this.messageCollection.add(message);
@@ -31,7 +31,7 @@ export class MessageService {
 
      // Get messages given a certain topic with a specific csi
      getCSIMessage(topicDocId: string, csiName: string): any{
-      return this.afs.collection('Forum').doc(topicDocId).collection('Message', 
+      return this.afs.collection('Forum').doc(topicDocId).collection('Message',
       ref => ref.where('csi', '==', '' + csiName))
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {

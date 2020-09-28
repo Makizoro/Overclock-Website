@@ -32,5 +32,6 @@ export class CsiForumComponent implements OnInit {
 
   createTopic(): void {
 
+    this.router.navigate(['csiForum'], {relativeTo: this.route});
   }
 }

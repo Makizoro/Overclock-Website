@@ -18,8 +18,8 @@ export class ForumService {
    async addForum(forum: Forum): Promise<void> {
     this.forumCollection.add(forum);
     }
-      
-    // Get topics 
+
+    // Get topics
     getTopics(): any{
       return this.afs.collection('Forum')
        .snapshotChanges().pipe(
