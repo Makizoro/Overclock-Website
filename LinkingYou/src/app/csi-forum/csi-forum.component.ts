@@ -34,23 +34,27 @@ export class CsiForumComponent implements OnInit {
   }
 
   createTopic(): void {
-    this.router.navigate([{outlets: {routerForum: 'csiForumCreateTopic'}}], {relativeTo: this.route.parent});
+    this.router.navigate([{outlets: {routerForum: 'csiForumCreateTopic/' + this.csiName}}], {relativeTo: this.route.parent});
   }
 
   private displayTopics(): void {
-    const forumDiv = document.getElementById('forumDiv');
 
     for (const topic of this.topicList){
-      const thisTopic = topic[0] as Forum;
-      const topicId = topic[1];
-      const topicDiv = document.createElement('div');
-      const topicTitle = document.createElement('h6');
-      topicTitle.innerHTML = thisTopic.topic;
-      topicTitle.addEventListener('click', () => {
-        this.goToTopic(topicId);
-      });
-      topicDiv.appendChild(topicTitle);
-      forumDiv.appendChild(topicDiv);
+      try {
+        const forumDiv = document.getElementById('forumDiv');
+        const thisTopic = topic[0] as Forum;
+        const topicId = topic[1];
+        const topicDiv = document.createElement('div');
+        const topicTitle = document.createElement('h6');
+        topicTitle.innerHTML = thisTopic.topic;
+        topicTitle.addEventListener('click', () => {
+          this.goToTopic(topicId);
+        });
+        topicDiv.appendChild(topicTitle);
+        forumDiv.appendChild(topicDiv);
+      } catch (e) {
+        break;
+      }
     }
   }
 

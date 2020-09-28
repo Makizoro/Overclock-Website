@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Forum} from '../entities/forum.model';
 import {ForumService} from '../services/forum.service';
 import {CookieService} from 'ngx-cookie-service';
+import {MessageService} from '../services/message.service';
+import {Message} from '../entities/message.model';
 
 @Component({
   selector: 'app-csi-forum-create-topic',
@@ -17,24 +19,44 @@ export class CsiForumCreateTopicComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private forumService: ForumService) { }
+    private forumService: ForumService,
+    private messageService: MessageService,
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
     try{
-      this.route.params.subscribe(params => this.csiName = params.name);
+      this.route.params.subscribe(params => {
+        this.csiName = params.name;
+      });
     } catch (e) {
       this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
     }
   }
 
   async submitTopic(): Promise<void>{
+    if (this.cookieService.check('username')){
+      this.username = this.cookieService.get('username');
+    } else {
+      return;
+    }
     const topicName = (document.getElementById('topicNameInput') as HTMLInputElement).value;
     const topicMessage = (document.getElementById('topicMessageInput') as HTMLInputElement).value;
 
     const newForum = {csi: this.csiName, topic: topicName} as Forum;
 
-    // const docRef = await this.forumService.addForum(newForum);
+    const docId = (await this.forumService.addForum(newForum)).id;
+    console.log(docId);
 
-    console.log(this.forumService.getCSITopic(this.csiName));
+    const message = {message: topicMessage, timestamp: 'Date', username: this.username} as Message;
+
+    this.messageService.addMessage(docId, message);
+
+    this.router.navigate([{outlets: {routerForum: 'csiForum/' + this.csiName}}], {relativeTo: this.route.parent});
+
+    /*
+    this.forumService.getCSITopic(this.csiName).subscribe(data => {
+      console.log(data);
+    });
+    */
   }
 }

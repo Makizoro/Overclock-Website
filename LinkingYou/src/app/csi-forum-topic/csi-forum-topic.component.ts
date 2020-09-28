@@ -46,7 +46,6 @@ export class CsiForumTopicComponent implements OnInit {
     topicHeader.innerHTML = this.topicName;
     topicDiv.appendChild(topicHeader);
     for (const message of this.messageList){
-      console.log(message);
 
       const messageDiv = document.createElement('div');
       const usernameHeader = document.createElement('h7');
