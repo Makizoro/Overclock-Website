@@ -36,7 +36,7 @@ export class ForumService {
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {
            const data = a.payload.doc.data() as Forum;
-           return data;
+           return [data,a.payload.doc.id];
          }))
        );
       }
