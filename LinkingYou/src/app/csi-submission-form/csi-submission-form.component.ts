@@ -3,6 +3,8 @@ import { CsiService } from '../services/csi.service';
 import {PersonService} from '../services/person.service';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {CSI} from '../entities/csi.model';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Component({
@@ -12,7 +14,13 @@ import {Router} from '@angular/router';
 })
 export class CsiSubmissionFormComponent implements OnInit {
 
-  constructor(private csiService: CsiService, private router: Router, private personService: PersonService, private afAuth: AuthService) { }
+  constructor(
+    private csiService: CsiService,
+    private router: Router,
+    private personService: PersonService,
+    private afAuth: AuthService,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
     // commented this code out due to failing test
@@ -44,8 +52,24 @@ export class CsiSubmissionFormComponent implements OnInit {
     if (name === '' || type === '' || email === '' || venue === '' || description === ''){
       alert('You have not completed all fields. Please ensure that all fields are filled and checkboxes clicked');
     } else {
-      this.csiService.addCSIRequest(name, type, description,venue,email).finally(() => {
-        this.router.navigate(['sidebar']);
+      this.csiService.getCSIRequests().subscribe(results => {
+        let valid = true;
+        for (const csi of results){
+          const csiData = csi[0];
+          if (csiData.id === this.cookieService.get('uid')){
+            alert('You may not submit more than 1 CSI request at a time');
+            valid = false;
+            break;
+          }
+        }
+
+        if (valid){
+          this.csiService.addCSIRequest(name, type, description,venue,email).finally(() => {
+            this.router.navigate(['sidebar']);
+          });
+        } else {
+          this.router.navigate(['sidebar']);
+        }
       });
     }
   }
