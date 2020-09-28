@@ -1,6 +1,7 @@
 <div id="root" class="scroll">
   <img id="group" src="../assets/group.png">
   <div id="csiDetails">
+    <button id="btnSubscribe"></button>
     <h3 id="csiNameHeader">Name</h3>
     <h4 id="csiName"></h4>
     <h3 id="csiEmailHeader">Email</h3>
@@ -11,11 +12,10 @@
     <h4 id="csiVenue"></h4>
   </div>
   <div id="forum">
-    <h3>Forum</h3>
     <router-outlet name="routerForum"></router-outlet>
   </div>
   <div id="events">
-    <h3 id="eventHeader">Events:</h3>
+    <h3 >Events:</h3>
     <app-csi-event></app-csi-event>
   </div>
 </div>

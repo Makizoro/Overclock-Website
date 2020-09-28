@@ -28,7 +28,7 @@ export class AdminCsiAuthorisationComponent implements OnInit {
         this.router.navigateByUrl('/sidebar');
       } else {
         this.csiService.getCSIRequests().subscribe(list => {
-          this.csiList = list[0];
+          this.csiList = list;
           console.log(this.csiList);
           this.displayCsiData(this.csiList);
         });
@@ -42,31 +42,32 @@ export class AdminCsiAuthorisationComponent implements OnInit {
     const ig = document.getElementById('interestGroupList');
 
     for (const csi of csiList){
+      const csiData = csi[0] as CSI;
 
       const btnAccept = document.createElement('button');
       btnAccept.name = 'btnAccept';
       btnAccept.innerHTML = 'ACCEPT';
       btnAccept.addEventListener('click', () => {
-        this.judge(true, csi);
+        this.judge(true, csiData);
       });
       const btnReject = document.createElement('button');
       btnReject.name = 'btnReject';
       btnReject.innerHTML = 'REJECT';
       btnReject.addEventListener('click', () => {
-        this.judge(false, csi);
+        this.judge(false, csiData);
       });
 
       const newDiv = document.createElement('div');
-      newDiv.id = (csi.name);
+      newDiv.id = (csiData.name);
       const csiTitle = document.createElement('h5');
-      csiTitle.innerHTML = csi.name;
+      csiTitle.innerHTML = csiData.name;
       csiTitle.appendChild(btnAccept);
       csiTitle.appendChild(btnReject);
       newDiv.appendChild(csiTitle);
       const csiDescription = document.createElement('p');
-      csiDescription.innerHTML = csi.description;
+      csiDescription.innerHTML = csiData.description;
       newDiv.appendChild(csiDescription);
-      switch (csi.type){
+      switch (csiData.type){
         case 'Club': {
           c.appendChild(newDiv);
           break;
@@ -87,7 +88,10 @@ export class AdminCsiAuthorisationComponent implements OnInit {
 
     if (verdict){
       alert('Will accept ' + csi.name + ' as a CSI');
+      console.log(csi);
+      const csiDiv = document.getElementById(csi.name);
       this.csiService.addCSI(csi);
+      csiDiv.remove();
     } else {
       alert('Will reject ' + csi.name + ' as a CSI');
     }

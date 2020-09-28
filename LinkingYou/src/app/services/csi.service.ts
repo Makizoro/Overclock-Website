@@ -14,11 +14,10 @@ export class CsiService {
   csiCollectionRequest: AngularFirestoreCollection<CSI>;
   csi: Observable<CSI[] >;
   csiAdd: CSI;
-  personService: PersonService;
   afAuth: AuthService;
 
 
-  constructor(private afs: AngularFirestore, private fb: AuthService ) {
+  constructor(private afs: AngularFirestore, private fb: AuthService, private personService: PersonService ) {
     this.csiCollection = this.afs.collection('CSI');
     this.csiCollectionRequest = this.afs.collection('CSI_Request');
     this.csi = this.csiCollection.snapshotChanges().pipe(
@@ -64,12 +63,19 @@ export class CsiService {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
-          this.personService.getPerson(csiData.id).subscribe((person: Person) => {
+          this.personService.getPerson((csiData.id as string)).subscribe((person: Person) => {
             person.csiName = csiData.name;
             person.type = 'CSI';
             this.personService.updatePerson(person);
+            this.getCSIRequests().subscribe(data => {
+              for (const csiRequests of data){
+                if (csiRequests[0].id === csiData.id){
+                  this.delete(csiRequests[1]);
+                }
+              }
+            });
           });
-          this.csiCollection.add(this.csiAdd);
+          this.csiCollection.add(csiData);
           alert('Success!');
         } else {
           alert('CSI already exists!');

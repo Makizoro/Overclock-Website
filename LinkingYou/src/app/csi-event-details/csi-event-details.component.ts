@@ -24,25 +24,27 @@ export class CsiEventDetailsComponent implements OnInit {
 
   private getEventDetails(): void{
     this.eventService.getEvent(this.eventName).subscribe(csiEvent => {
+      const csiEventData = csiEvent[0];
+      console.log(csiEventData);
       const eventHeader = document.getElementById('eventHeader');
       const eventDateHeader = document.getElementById('eventDateHeader');
       const eventVenueHeader = document.getElementById('eventVenueHeader');
       const eventCsiHeader = document.getElementById('eventCsiHeader');
       const eventDescription = document.getElementById('eventDescription');
-      eventHeader.innerHTML = csiEvent.name;
+      eventHeader.innerHTML = csiEventData.name;
       const eventDateDetails = document.createElement('h7');
-      eventDateDetails.innerHTML = csiEvent.description;
+      eventDateDetails.innerHTML = csiEventData.date;
       eventDateHeader.appendChild(eventDateDetails);
-      const eventVenueDetails = document.createElement('7');
-      eventVenueDetails.innerHTML = csiEvent.venue;
+      const eventVenueDetails = document.createElement('h7');
+      eventVenueDetails.innerHTML = csiEventData.venue;
       eventVenueHeader.appendChild(eventVenueDetails);
       const eventCsiDetails = document.createElement('h7');
-      eventCsiDetails.innerHTML = csiEvent.csi;
+      eventCsiDetails.innerHTML = csiEventData.csi;
       eventCsiHeader.appendChild(eventCsiDetails);
       const breakDiv = document.createElement('br');
       eventDescription.appendChild(breakDiv);
       const eventDescriptionDetails = document.createElement('p');
-      eventDescriptionDetails.innerHTML = csiEvent.description;
+      eventDescriptionDetails.innerHTML = csiEventData.description;
       eventDescription.appendChild(eventDescriptionDetails);
     });
   }

@@ -31,7 +31,7 @@ export class CsiEventComponent implements OnInit {
         csiEventTitle.addEventListener('click',  () => {
           this.goToEvent(csiEvent.name);
         });
-        const csiEventDate = document.createElement('p');
+        const csiEventDate = document.createElement('h6');
         csiEventDate.innerHTML = csiEvent.date;
         csiEventTitle.appendChild(csiEventDate);
         rootDiv.appendChild(csiEventTitle);
@@ -42,6 +42,6 @@ export class CsiEventComponent implements OnInit {
   }
 
   private goToEvent(eventName): void{
-    this.router.navigate(['csiEventDetails/' + eventName], {relativeTo: this.route});
+    this.router.navigate([{outlets: {routerForum: 'csiEventDetails/' + eventName}}], {relativeTo: this.route});
   }
 }

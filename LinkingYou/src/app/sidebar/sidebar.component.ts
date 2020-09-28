@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private aftAuth: AuthService ,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private personService: PersonService,
     private afAuth: AuthService,
     private cookieService: CookieService
@@ -51,17 +51,25 @@ export class SidebarComponent implements OnInit {
   unblockElements(type): void{
     const createCSILink = document.getElementById('createCSI');
     const adminCSIFormLink = document.getElementById('adminCsiForm');
+    const csiNavLink = document.getElementById('csiAdminPage');
     if (type === 'User'){
       createCSILink.style.display = 'block';
       adminCSIFormLink.style.display = 'none';
+      csiNavLink.style.display = 'none';
     } else if (type === 'Admin') {
-      adminCSIFormLink.style.display = 'block';
       createCSILink.style.display = 'none';
-    } else {
+      adminCSIFormLink.style.display = 'block';
+      csiNavLink.style.display = 'none';
+    } else if (type === 'CSI'){
       adminCSIFormLink.style.display = 'none';
       createCSILink.style.display = 'none';
-
+      csiNavLink.style.display = 'block';
     }
+  }
+
+  navToCsi(): void {
+    this.sidebarClose();
+    this.router.navigate([{outlets: {routerSidebar: 'csiPage/' + this.cookieService.get('csiName')}}], {relativeTo: this.route});
   }
 
   logout(): void{
