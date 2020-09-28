@@ -38,10 +38,10 @@ export class CsiForumComponent implements OnInit {
   }
 
   private displayTopics(): void {
+    const forumDiv = document.getElementById('forumDiv');
 
     for (const topic of this.topicList){
       try {
-        const forumDiv = document.getElementById('forumDiv');
         const thisTopic = topic[0] as Forum;
         const topicId = topic[1];
         const topicDiv = document.createElement('div');
