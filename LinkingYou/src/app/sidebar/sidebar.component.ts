@@ -73,10 +73,12 @@ export class SidebarComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   async asynclogout() {
-    this.cookieService.deleteAll();
     await this.aftAuth.signOut().finally(() => {
+      this.cookieService.deleteAll('/');
+      this.cookieService.deleteAll('./');
+      console.log(this.cookieService.getAll());
+      this.router.navigateByUrl('login');
     });
-    this.router.navigateByUrl('');
     localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
   }
