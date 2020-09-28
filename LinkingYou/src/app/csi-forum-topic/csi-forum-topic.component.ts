@@ -15,7 +15,7 @@ export class CsiForumTopicComponent implements OnInit {
 
   topicHash: string;
   topicName: string;
-  messageList: Message;
+  messageList: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,11 +29,11 @@ export class CsiForumTopicComponent implements OnInit {
         this.forumService.getTopic(this.topicHash).subscribe(topic => {
           this.topicName = topic.topic;
         });
+        this.messageService.getMessage(this.topicHash).subscribe(messageList => {
+          this.messageList = messageList;
+          this.displayTopic();
+        });
       });
-      this.messageService.getMessage(this.topicHash).subscribe(messageList => {
-        this.messageList = messageList;
-      });
-      this.displayTopic();
     } catch (e) {
       console.log(e);
       this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
@@ -41,6 +41,26 @@ export class CsiForumTopicComponent implements OnInit {
   }
 
   private displayTopic(): void {
+    const topicDiv = document.getElementById('topicDiv');
+    const topicHeader = document.createElement('h5');
+    topicHeader.innerHTML = this.topicName;
+    topicDiv.appendChild(topicHeader);
+    for (const message of this.messageList){
+      console.log(message);
+
+      const messageDiv = document.createElement('div');
+      const usernameHeader = document.createElement('h7');
+      usernameHeader.innerHTML = message.username;
+      const messageHeader = document.createElement('p');
+      messageHeader.innerHTML = message.message;
+      const breakDiv = document.createElement('br');
+      messageDiv.appendChild(usernameHeader);
+      messageDiv.appendChild(breakDiv);
+      messageDiv.appendChild(messageHeader);
+
+      topicDiv.appendChild(messageDiv);
+
+    }
 
   }
 }
