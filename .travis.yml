@@ -5,8 +5,5 @@ node_js:
 before_install:
   - cd LinkingYou
 
-script:
-  -npm test --no-watch --code-coverage
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)
