@@ -17,7 +17,7 @@
     <li><a [routerLink]="['/sidebar',{outlets:{routerSidebar:'userPage'}}]" routerLinkActive="active" (click)="sidebarClose()"><i class="far fa-question-circle"></i>User Profile</a></li>
     <li><a [routerLink]="['/sidebar',{outlets:{routerSidebar:'csiSubmissionForm'}}]" routerLinkActive="active" (click)="sidebarClose()" id="createCSI"><i class="fas fa-plus"></i>Create CSI</a></li>
     <li><a [routerLink]="['/sidebar',{outlets:{routerSidebar:'adminCsiForm'}}]" routerLinkActive="active" (click)="sidebarClose()" id="adminCsiForm"><i class="fas fa-plus"></i>CSI Authorisation</a></li>
-    <li><a (click)="navToCsi()" id="csiAdminPage"><i class="fas fa-plus"></i>CSI Authorisation</a></li>
+    <li><a (click)="navToCsi()" id="csiAdminPage"><i class="fas fa-plus"></i>My CSI Page</a></li>
     <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
 
   </ul>
