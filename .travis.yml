@@ -6,10 +6,10 @@ before_install:
   - cd LinkingYou
   
 install:
-  -npm install
+  -npm ci
 
 script:
-  -npm run test --no-watch --code-coverage
+  -npm test --no-watch --code-coverage
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
