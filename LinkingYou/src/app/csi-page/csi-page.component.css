@@ -43,7 +43,7 @@
   display: none;
 }
 
-#btnSubscribe{
+button{
   position: center;
   outline: none;
   width: 100px;
@@ -161,3 +161,5 @@ h3{
   border: 3px solid #818181;
   border-radius: 25px;
 }
+
+

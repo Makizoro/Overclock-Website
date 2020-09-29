@@ -113,3 +113,25 @@ h3{
   border: 3px solid #818181;
   border-radius: 25px;
 }
+
+button{
+  position: relative;
+  outline: none;
+  width: 100px;
+  height: 60px;
+  top: 10px;
+  border-radius: 25px;
+  border-style: hidden;
+
+  background-image: url("src/assets/background.png");
+  background-size: 200%;
+
+  font-family: 'poppins', sans-serif;
+  color: #FFD700;
+
+  transition: .5s;
+}
+
+button:hover{
+  background-position: left;
+}

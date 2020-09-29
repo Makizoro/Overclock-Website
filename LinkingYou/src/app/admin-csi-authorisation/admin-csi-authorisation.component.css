@@ -19,3 +19,36 @@
 
   opacity: 95%;
 }
+
+h3{
+  text-align: left;
+  color: #333333;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+}
+
+button{
+  position: relative;
+  outline: none;
+  width: 100px;
+  height: 60px;
+  top: 10px;
+  border-radius: 25px;
+  border-style: hidden;
+
+  background-image: url("src/assets/background.png");
+  background-size: 200%;
+
+  font-family: 'poppins', sans-serif;
+  color: #FFD700;
+
+  transition: .5s;
+}
+
+button:hover{
+  background-position: left;
+}
