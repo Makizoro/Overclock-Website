@@ -14,10 +14,11 @@ import {CsiForumTopicComponent} from './csi-forum-topic/csi-forum-topic.componen
 import {CsiForumCreateTopicComponent} from './csi-forum-create-topic/csi-forum-create-topic.component';
 import {CsiEventDetailsComponent} from './csi-event-details/csi-event-details.component';
 import {CsiEditPageComponent} from './csi-edit-page/csi-edit-page.component';
+import {CsiManageSubscriptionsComponent} from './csi-manage-subscriptions/csi-manage-subscriptions.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, pathMatch: 'full'},
+  { path: 'register', component: RegisterComponent, pathMatch: 'full'},
   { path: 'sidebar', component: SidebarComponent, children: [
       { path: 'csi', component: CsiTabsComponent, outlet: 'routerSidebar'},
       { path: 'userPage', component: UserPageComponent, outlet: 'routerSidebar'},
@@ -27,14 +28,15 @@ const routes: Routes = [
           { path: 'csiForumTopic/:topicHash', component: CsiForumTopicComponent, outlet: 'routerForum'},
           { path: 'csiForumCreateTopic/:name', component: CsiForumCreateTopicComponent, outlet: 'routerForum'}
         ]},
-      { path: 'csiEditPage', component: CsiEditPageComponent, outlet: 'routerSidebar'},
+      { path: 'csiSubscriptions', component: CsiManageSubscriptionsComponent, pathMatch: 'full', outlet: 'routerSidebar'},
+      { path: 'csiEditPage', component: CsiEditPageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'adminCsiForm', component: AdminCsiAuthorisationComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: '', redirectTo: '/sidebar/(routerSidebar:welcome)', pathMatch: 'full'},
       { path: '**', redirectTo: '/sidebar/(routerSidebar:welcome)', pathMatch: 'full'}
     ]},
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({

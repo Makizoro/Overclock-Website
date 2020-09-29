@@ -1,18 +1,23 @@
-dist: trusty
-sudo: false
-
 language: node_js
 node_js:
   - "10"
+sudo: true
+
+addons:
+  chrome: stable    
+  
+branches:
+  only:
+    - master
 
 before_install:
   - cd LinkingYou
   
-install:
-  -npm install
+before_script:
+  - npm install -g @angular/cli
 
 script:
-  -npm run test --no-watch --code-coverage
+  - ng test --no-watch --code-coverage
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

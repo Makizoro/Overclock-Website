@@ -39,6 +39,9 @@ export class CsiForumComponent implements OnInit {
 
   private displayTopics(): void {
     const forumDiv = document.getElementById('forumDiv');
+    while (forumDiv.firstChild){
+      forumDiv.removeChild(forumDiv.firstChild);
+    }
 
     for (const topic of this.topicList){
       try {
