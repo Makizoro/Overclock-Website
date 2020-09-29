@@ -1,0 +1,7 @@
+#rootDiv{
+  transition: .5s;
+}
+
+#rootDiv:hover{
+  color: #707070;
+}
