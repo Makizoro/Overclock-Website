@@ -170,7 +170,7 @@ h4{
   padding-top: 20px;
 }
 
-#buttonSubmit{
+button{
   position: relative;
   outline: none;
   width: 100px;
@@ -188,6 +188,6 @@ h4{
   transition: .5s;
 }
 
-#buttonSubmit:hover{
+button:hover{
   background-position: left;
 }

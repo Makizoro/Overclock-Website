@@ -43,7 +43,7 @@
   display: none;
 }
 
-#btnSubscribe{
+button{
   position: center;
   outline: none;
   width: 100px;
@@ -152,12 +152,14 @@ h3{
 
 .block1{
   padding: 20px 20px 20px 20px;
-  border: 3px solid gold;
+  border: 3px solid #818181;
   border-radius: 25px;
 }
 
 .block2{
   padding: 20px 20px 20px 20px;
-  border: 3px solid gold;
+  border: 3px solid #818181;
   border-radius: 25px;
 }
+
+

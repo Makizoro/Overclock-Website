@@ -45,12 +45,14 @@ export class AdminCsiAuthorisationComponent implements OnInit {
 
       const btnAccept = document.createElement('button');
       btnAccept.name = 'btnAccept';
+      btnAccept.className = 'mystyle';
       btnAccept.innerHTML = 'ACCEPT';
       btnAccept.addEventListener('click', () => {
         this.judge(true, csi);
       });
       const btnReject = document.createElement('button');
       btnReject.name = 'btnReject';
+      btnReject.className = 'mystyle';
       btnReject.innerHTML = 'REJECT';
       btnReject.addEventListener('click', () => {
         this.judge(false, csi);
