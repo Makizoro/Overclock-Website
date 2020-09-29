@@ -1,16 +1,23 @@
-dist: trusty
-sudo: false
-
 language: node_js
 node_js:
   - "10"
+sudo: true
+
+addons:
+  chrome: stable    
+  
+branches:
+  only:
+    - master
 
 before_install:
   - cd LinkingYou
   
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng test -watch false -browsers ChromeHeadless --code-coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

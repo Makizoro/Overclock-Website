@@ -127,6 +127,11 @@ export class CsiService {
      return this.csi;
    }
 
+   // update CSI info
+   updateCSI(updatedCSI:CSI){
+     this.csiCollection.doc(updatedCSI.id).update(updatedCSI);
+   }
+
    // Get list of CSI requests to accept or reject
    getCSIRequests(): any{
     return this.csiCollectionRequest
