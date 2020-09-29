@@ -52,8 +52,9 @@ export class LoginComponent implements OnInit {
     const gr = [email, password];
 
     this.afAuth.signIn(l , gr).finally(async () => {
-      await this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
-        this.cookieService.set('uid', person);
+      const uid = await this.afAuth.userId();
+      await this.personService.getPerson(uid).subscribe(person => {
+        this.cookieService.set('uid', uid);
         this.cookieService.set('username', person.username);
         this.cookieService.set('email', person.email);
         this.cookieService.set('password', person.password);

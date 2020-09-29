@@ -24,6 +24,7 @@ import { CsiEventComponent } from './csi-event/csi-event.component';
 import { CsiForumCreateTopicComponent } from './csi-forum-create-topic/csi-forum-create-topic.component';
 import { CsiEventDetailsComponent } from './csi-event-details/csi-event-details.component';
 import { CsiEditPageComponent } from './csi-edit-page/csi-edit-page.component';
+import { CsiManageSubscriptionsComponent } from './csi-manage-subscriptions/csi-manage-subscriptions.component';
 
 export const config = {
   apiKey: "AIzaSyBB7TkPj2vOImaJicfl2fZmI4MTZvWsM1s",
@@ -52,6 +53,7 @@ export const config = {
     CsiForumCreateTopicComponent,
     CsiEventDetailsComponent,
     CsiEditPageComponent,
+    CsiManageSubscriptionsComponent,
   ],
   imports: [
     BrowserModule,

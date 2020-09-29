@@ -31,7 +31,7 @@ export class PersonService {
     }
 
   getPerson(uId: string): any{
-    this.personDoc = this.afs.doc<Person>('Person/'+uId);
+    this.personDoc = this.afs.doc<Person>('Person/' + uId);
     this.person = this.personDoc.valueChanges();
     return this.person;
   }

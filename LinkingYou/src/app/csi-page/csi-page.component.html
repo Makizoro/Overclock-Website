@@ -8,8 +8,9 @@
       <h4 id="csiEmail"></h4>
     </div>
     <div id="btnDiv">
-      <button id="btnSubscribe"></button>
+      <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
       <button id="btnEdit" (click)="editCSI()">Edit Page</button>
+      <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subscriptions</button>
     </div>
   </div>
   <div id="csiDetails" class="scroll">
