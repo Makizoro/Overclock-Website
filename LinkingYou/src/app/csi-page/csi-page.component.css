@@ -17,6 +17,7 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
+  padding-top: 20px;
   cursor: default;
 
   opacity: 95%;
@@ -29,7 +30,7 @@
 .box{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 5px 2em;
+  grid-gap: 2px 1em;
 }
 
 #csiDetails.scroll{
@@ -150,5 +151,13 @@ h3{
 }
 
 .block1{
+  padding: 20px 20px 20px 20px;
   border: 3px solid gold;
+  border-radius: 25px;
+}
+
+.block2{
+  padding: 20px 20px 20px 20px;
+  border: 3px solid gold;
+  border-radius: 25px;
 }
