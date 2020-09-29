@@ -1,11 +1,16 @@
 <div id="root" class="box">
   <div id="picture" class="block1">
     <img id="group" src="../assets/group.png">
-    <div>
+    <div id="csiDetails" class="scroll">
       <h3 id="csiNameHeader">Name</h3>
       <h4 id="csiName"></h4>
       <h3 id="csiEmailHeader">Email</h3>
       <h4 id="csiEmail"></h4>
+      <h3 id="csiDescriptionHeader">Description</h3>
+      <p id="csiDescription"></p>
+      <h3 id="csiVenueHeader">Venue</h3>
+      <h4 id="csiVenue"></h4>
+      <p id="Venue"></p>
     </div>
     <div id="btnDiv">
       <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
@@ -13,23 +18,15 @@
       <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subscriptions</button>
     </div>
   </div>
-  <div id="csiDetails" class="scroll">
     <div class="block2">
-      <h3 id="csiDescriptionHeader">Description</h3>
-      <p id="csiDescription"></p>
-      <h3 id="csiVenueHeader">Venue</h3>
-      <h4 id="csiVenue"></h4>
-      <p id="Venue"></p>
-
       <div id="forum">
         <router-outlet name="routerForum"></router-outlet>
       </div>
-      <div id="events">
-        <app-csi-event></app-csi-event>
-      </div>
     </div>
-
+  <div id="events">
+    <app-csi-event></app-csi-event>
   </div>
+
 
 </div>
 
