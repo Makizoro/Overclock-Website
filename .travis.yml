@@ -17,7 +17,7 @@ before_script:
   - npm install -g @angular/cli
 
 script:
-  - ng test -watch false -browsers ChromeHeadless --code-coverage
+  - ng test --no-watch --code-coverage
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
