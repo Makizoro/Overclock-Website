@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CsiService} from '../services/csi.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {CSI} from '../entities/csi.model';
 
 @Component({
   selector: 'app-csi-edit-page',
@@ -9,7 +10,7 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./csi-edit-page.component.css']
 })
 export class CsiEditPageComponent implements OnInit {
-  csi: any;
+  csi: CSI;
 
   constructor(private csiService: CsiService, private route: ActivatedRoute, private router: Router, private cookieService: CookieService) { }
 
@@ -28,6 +29,7 @@ export class CsiEditPageComponent implements OnInit {
   updateCsi(): void {
     // type
 
+    let validFields = true;
     const typeC = document.getElementById('typeInputClub') as HTMLInputElement;
     const typeS = document.getElementById('typeInputSociety') as HTMLInputElement;
     const typeIG = document.getElementById('typeInputInterestGroup') as HTMLInputElement;
@@ -38,23 +40,40 @@ export class CsiEditPageComponent implements OnInit {
       this.csi.type = typeS.value;
     } else if (typeIG.checked) {
       this.csi.type = typeIG.value;
+    } else {
+      validFields = false;
     }
 
     const emailInput = document.getElementById('emailInput') as HTMLInputElement;
-    this.csi.email = emailInput.value;
+    if (emailInput.value === ''){
+      validFields = false;
+    } else {
+      this.csi.email = emailInput.value;
+    }
     const venueInput = document.getElementById('venueInput') as HTMLInputElement;
-    this.csi.venue = venueInput.value;
+    if (venueInput.value === '') {
+      validFields = false;
+    } else {
+      this.csi.venue = venueInput.value;
+    }
     const descriptionInput = document.getElementById('descriptionInput') as HTMLInputElement;
-    this.csi.description = descriptionInput.value;
+    if (descriptionInput.value === '') {
+      validFields = false;
+    } else {
+      this.csi.description = descriptionInput.value;
+    }
 
-    console.log(this.csi);
-    /*
-    this.csiService.updateCSI
-     */
+
+    if (validFields){
+      this.csiService.updateCSI(this.csi);
+      this.router.navigate([{outlets: {routerSidebar: 'csiPage/' + this.csi.name}}], {relativeTo: this.route.parent});
+    } else {
+      alert('Please ensure that all fields are filled and a CSI Type is checked');
+    }
+
   }
 
   private fillFields(): void {
-    console.log(this.csi);
 
     const typeC = document.getElementById('typeInputClub') as HTMLInputElement;
     const typeS = document.getElementById('typeInputSociety') as HTMLInputElement;
