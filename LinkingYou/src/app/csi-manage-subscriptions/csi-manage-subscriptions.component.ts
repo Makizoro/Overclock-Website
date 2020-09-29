@@ -83,7 +83,6 @@ export class CsiManageSubscriptionsComponent implements OnInit {
 
   acceptRequest(subscription: Subscription, docId: string): void {
     this.subscriptionService.addSubscription(subscription);
-    console.log(docId);
     this.subscriptionService.delete(docId);
     this.retrieveCsiList();
   }

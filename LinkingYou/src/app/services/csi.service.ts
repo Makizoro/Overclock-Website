@@ -128,7 +128,7 @@ export class CsiService {
    }
 
    // update CSI info
-   updateCSI(updatedCSI:CSI){
+   updateCSI(updatedCSI: CSI): any{
      this.csiCollection.doc(updatedCSI.id).update(updatedCSI);
    }
 
