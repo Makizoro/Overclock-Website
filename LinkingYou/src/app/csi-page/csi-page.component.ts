@@ -34,6 +34,8 @@ export class CsiPageComponent implements OnInit {
     btnSub.style.display = 'none';
     const btnEdit = document.getElementById('btnEdit');
     btnEdit.style.display = 'none';
+    const btnManageSubs = document.getElementById('btnManageSubscriptions');
+    btnManageSubs.style.display = 'none';
     this.route.params.subscribe(params => this.csiData.csiName = params.name);
     this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
       const csiName = document.getElementById('csiName');
@@ -47,30 +49,23 @@ export class CsiPageComponent implements OnInit {
       csiVenue.innerHTML = csi[0].venue;
 
       if (this.cookieService.check('username')){
-        this.userId = this.cookieService.get('username');
+        this.userId = this.cookieService.get('uid');
         if (this.cookieService.get('csiName') === this.csiData.csiName) {
           btnEdit.style.display = 'block';
-
+          btnManageSubs.style.display = 'block';
         } else {
           btnSub.style.display = 'block';
         }
+        this.subscriptionService.getCSIRequests(this.csiData.csiName).subscribe(csiRequestList => {
+          this.csiRequestList = csiRequestList;
+          if (this.inList(csiRequestList, this.userId)){
+            btnSub.innerHTML = 'Request Pending';
+          } else {
+            btnSub.innerHTML = 'Subscribe';
+          }
+        });
       } else {
       }
-      this.subscriptionService.getCSISubList(this.csiData.csiName).subscribe(csiSubList => {
-        this.csiSubList = csiSubList;
-        if (this.inList(csiSubList, this.userId)) {
-          btnSub.innerHTML = 'Unsubscribe';
-        } else {
-          this.subscriptionService.getCSIRequests(this.csiData.csiName).subscribe(csiRequestList => {
-            this.csiRequestList = csiRequestList;
-            if (this.inList(csiRequestList, this.userId)){
-              btnSub.innerHTML = 'Cancel Subscription Request';
-            } else {
-              btnSub.innerHTML = 'Subscribe';
-            }
-          });
-        }
-          });
 
       this.router.navigate([ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ], { relativeTo: this.route });
     }); // retrieve and display CSI data
@@ -91,33 +86,24 @@ export class CsiPageComponent implements OnInit {
     this.router.navigate([{outlets: {routerSidebar: 'csiEditPage'}}], {relativeTo: this.route.parent});
   }
 
+  manageSubs(): void{
+    this.router.navigate([{outlets: {routerSidebar: 'csiSubscriptions'}}], {relativeTo: this.route.parent});
+  }
+
   async toggleSubscribe(): Promise<void>{
     const btnSub = document.getElementById('btnSubscribe') as HTMLButtonElement;
     if (btnSub.innerHTML === 'Unsubscribe') {
       /*
-      const subscription = {csi: this.csiData.name, userId: this.userId, docId: 'dunno'} as Subscription;
+      Unneeded so far
        */
-      for (const sub of this.csiSubList){
-        const subData = sub[1] as Subscription;
-
-        if (subData.userId === this.userId) {
-          this.subscriptionService.delete(sub[0]);
-        }
-      }
     } else if (btnSub.innerHTML === 'Subscribe'){
-      /*
-      const subscription = {csi: this.csiData.name, userId: this.userId, docId: 'dunno'} as Subscription;
-      this.subscriptionService.addSubRequest(subscription);
-       */
-    } else {
-      for (const sub of this.csiRequestList){
-        const subData = sub[1] as Subscription;
+      if (confirm('Subscribe to CSI?')){
+        const subscription = {csi: this.csiData.csiName, userId: this.userId, docId: 'pending Review'} as Subscription;
+        this.subscriptionService.addSubRequest(subscription).finally(() => {
+        });
+      } else {
 
-        if (subData.userId === this.userId) {
-          this.subscriptionService.delete(sub[0]);
-        }
       }
-
     }
   }
 }

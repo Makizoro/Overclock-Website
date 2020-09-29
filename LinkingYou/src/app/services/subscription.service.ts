@@ -24,6 +24,7 @@ export class SubscriptionService {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
+          console.log('Adding CSI request');
           this.subCollectionRequest.add(sub);
           alert('Success!');
         } else {
@@ -54,7 +55,7 @@ export class SubscriptionService {
            map(changes => changes.map(a => {
              const data = a.payload.doc.data() as Subscription;
              data.docId = a.payload.doc.id;
-             return data;
+             return [a, data];
            }))
          );
         }
