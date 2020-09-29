@@ -52,8 +52,6 @@ describe('WelcomePageComponent', () => {
     expect(component.navToCSI('dave')).toBeUndefined();
   });
 
-  it('should get uid', () => {
-    expect(component.ngOnInit).toBeUndefined();
-  });
+
 
 });

@@ -40,7 +40,5 @@ describe('CsiSubmissionFormComponent', () => {
     expect(component).toBeTruthy();
   });*/
 
-  it('should display csi data', () => {
-    expect(component.submitForm()).toBeUndefined();
-  });
+  
 });

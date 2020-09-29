@@ -40,7 +40,4 @@ describe('CsiEditPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should ngOnint', () => {
-    expect(component.updateCsi()).toBeUndefined();
-  });
 });
