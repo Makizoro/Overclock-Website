@@ -1,23 +1,23 @@
 language: node_js
 node_js:
   - "10"
-dist: trusty
-sudo: false
-
-cache:
-  directories:
-    - node_modules
-    
-before_install:
-  - cd LinkingYou
+sudo: true
 
 addons:
-  chrome: stable
+  chrome: stable    
+  
+branches:
+  only:
+    - master
+
+before_install:
+  - cd LinkingYou
+  
+before_script:
+  - npm install -g @angular/cli
 
 script:
-  - npm run lint
-  - npm run test:headless
-  - npm run build
+  - ng test -watch false -browsers ChromeHeadless --code-coverage
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
