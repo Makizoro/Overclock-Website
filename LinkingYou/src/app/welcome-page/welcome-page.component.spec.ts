@@ -47,4 +47,11 @@ describe('WelcomePageComponent', () => {
   /*it('should have a P tag of "welcome-page works!" ', () => {
     expect(de.query(By.css('p')).nativeElement.innerText).toBe('welcome-page works!');
   });*/
+
+  it('should nav with csi', () => {
+    expect(component.navToCSI('dave')).toBeUndefined();
+  });
+
+
+
 });

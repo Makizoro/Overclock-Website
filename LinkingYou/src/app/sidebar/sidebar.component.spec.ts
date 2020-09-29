@@ -39,4 +39,8 @@ describe('SidebarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should ngOnint', () => {
+    expect(component.unblockElements('s')).toBeUndefined();
+  });
 });

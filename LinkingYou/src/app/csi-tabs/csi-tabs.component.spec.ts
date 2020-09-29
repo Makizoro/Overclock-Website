@@ -39,4 +39,10 @@ describe('CsiTabsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display csi data', () => {
+    expect(component.displayCSIData([1,2,3])).toBeUndefined();
+  });
+
+
 });
