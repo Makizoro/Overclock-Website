@@ -5,9 +5,14 @@ language: node_js
 node_js:
   - "10"
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+before_install:
+  - cd LinkingYou
+  
+install:
+  -npm install
+
+script:
+  -npm run test --no-watch --code-coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
