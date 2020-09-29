@@ -39,4 +39,8 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle', () => {
+    expect(component.togglePassword()).toBeUndefined();
+  });
 });

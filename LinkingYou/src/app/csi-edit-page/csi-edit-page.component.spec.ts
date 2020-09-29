@@ -39,4 +39,8 @@ describe('CsiEditPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should ngOnint', () => {
+    expect(component.updateCsi()).toBeUndefined();
+  });
 });

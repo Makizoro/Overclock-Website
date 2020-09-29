@@ -41,4 +41,12 @@ describe('AdminCsiAuthorisationComponent', () => {
  /* it('should create', () => {
     expect(component).toBeTruthy();
   });*/
+
+  it('should ngOnint', () => {
+    expect(component.displayCsiData('d')).toBeUndefined();
+  });
+
+  it('should ngOnint', () => {
+    expect(component.judge(true,'d')).toBeUndefined();
+  });
 });

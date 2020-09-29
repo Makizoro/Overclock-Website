@@ -39,4 +39,6 @@ describe('CsiEventDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
 });
