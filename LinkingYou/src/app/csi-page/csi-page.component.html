@@ -1,26 +1,37 @@
-<div id="root" class="scroll">
-  <img id="group" src="../assets/group.png">
-  <div id="csiDetails">
+<div id="root" class="box">
+  <div id="picture" class="block1">
+    <img id="group" src="../assets/group.png">
+    <div>
+      <h3 id="csiNameHeader">Name</h3>
+      <h4 id="csiName"></h4>
+      <h3 id="csiEmailHeader">Email</h3>
+      <h4 id="csiEmail"></h4>
+    </div>
     <div id="btnDiv">
       <button id="btnSubscribe"></button>
       <button id="btnEdit" (click)="editCSI()">Edit Page</button>
     </div>
-    <h3 id="csiNameHeader">Name</h3>
-    <h4 id="csiName"></h4>
-    <h3 id="csiEmailHeader">Email</h3>
-    <h4 id="csiEmail"></h4>
-    <h3 id="csiDescriptionHeader">Description</h3>
-    <p id="csiDescription"></p>
-    <h3 id="csiVenueHeader">Venue</h3>
-    <h4 id="csiVenue"></h4>
   </div>
-  <div id="forum">
-    <router-outlet name="routerForum"></router-outlet>
+  <div id="csiDetails" class="scroll">
+    <div>
+      <h3 id="csiDescriptionHeader">Description</h3>
+      <p id="csiDescription"></p>
+      <h3 id="csiVenueHeader">Venue</h3>
+      <h4 id="csiVenue"></h4>
+
+      <div id="forum">
+        <h3>Forum</h3>
+        <router-outlet name="routerForum"></router-outlet>
+      </div>
+      <div id="events">
+        <h3 >Events</h3>
+        <app-csi-event></app-csi-event>
+        <router-outlet name="routerEvent"></router-outlet>
+      </div>
+    </div>
+
   </div>
-  <div id="events">
-    <h3 >Events:</h3>
-    <app-csi-event></app-csi-event>
-  </div>
+
 </div>
 
 

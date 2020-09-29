@@ -1,0 +1,7 @@
+#root{
+  transition: .5s;
+}
+
+#root:hover{
+  color: #333333;
+}

@@ -2,11 +2,12 @@
   <h3 id="topicTitle"></h3>
   <p id="topicGuideline">Please enter your topic name and your message below.</p>
   <div id="topicDetailsDiv">
-    <h4 id="TopicNameHeader">Topic Name:</h4>
-    <input type="text" id="topicNameInput" placeholder="Topic Name">
-
-    <h4 id="TopicMessageHeader">Message:</h4>
-    <textarea id="topicMessageInput" placeholder="Message" rows="4" cols="50"></textarea>
+    <div id="input">
+      <input type="text" id="topicNameInput" placeholder="Topic Name">
+    </div>
+    <div id="message">
+      <textarea id="topicMessageInput" placeholder="Message" rows="4" cols="50"></textarea>
+    </div>
     <br><br>
     <button id="submit" (click)="submitTopic()">Submit</button>
   </div>

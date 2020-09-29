@@ -1,0 +1,33 @@
+#topicMessageInput{
+  position: relative;
+  border: none;
+  outline: none;
+  background-color: #BFBFBF;
+  border-radius: 25px;
+  text-align: center;
+  border: #707070;
+}
+
+#btnSubmit{
+  outline: none;
+  width: 100px;
+  height: 60px;
+  top: 10px;
+  border-radius: 25px;
+  border-style: hidden;
+
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  background-image: url("src/assets/background1.png");
+  background-size: 100%;
+
+  font-family: 'poppins', sans-serif;
+  color: #FFD700;
+
+  transition: .5s;
+}
+
+button:hover{
+  background-position: right;
+}

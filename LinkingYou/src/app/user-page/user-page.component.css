@@ -1,11 +1,10 @@
 #userProfileData{
-
   background-color: #E1EFF4;
   stroke: rgba(112,112,112,1);
   border-radius: 25px;
 
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  color: blue;
+  color: grey;
 
   width: 750px;
   margin-left: auto;
@@ -29,7 +28,8 @@
 }
 
 h3{
-  color: gray;
+  text-align: left;
+  color: #333333;
   display: block;
   height: 100%;
   width: 100%;

@@ -44,10 +44,6 @@
 
   transition: .3s;
 }
-#password::selection{
-  background: deepskyblue;
-  color: aliceblue;
-}
 
 #email{
   background-color: #BFBFBF;
@@ -58,17 +54,11 @@
   width: 200px;
   height: 35px;
 
-  font-family: 'poppins', sans-serif;
-
   background-image: url('src/assets/loginicon.png');
   background-position: 10px 5px;
   background-size: 25px;
   background-repeat: no-repeat;
   padding-left: 40px;
-}
-#email::selection{
-  background: deepskyblue;
-  color: aliceblue;
 }
 
 #eye{
@@ -86,10 +76,8 @@ button{
   border-radius: 25px;
   border-style: hidden;
 
-  background-image: url("src/assets/background.png");
-  background-size: 200%;
-
-  font-family: 'poppins', sans-serif;
+  background-image: url("src/assets/background1.png");
+  background-size: 100%;
   color: #FFD700;
 
   transition: .5s;

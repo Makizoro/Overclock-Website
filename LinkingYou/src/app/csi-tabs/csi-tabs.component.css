@@ -33,7 +33,8 @@
 }
 
 h3{
-  color: blue;
+  color: #333333;
+  text-align: left;
   display: block;
   height: 100%;
   width: 100%;
@@ -55,9 +56,9 @@ h3{
 }
 
 #clubList:hover{
-  background: #FFD700;
+  background: #818181;
   opacity: 75%;
-  color: blue;
+  color: white;
 }
 
 #societyList{
@@ -71,9 +72,9 @@ h3{
 }
 
 #societyList:hover{
-  background: #FFD700;
+  background: #818181;
   opacity: 75%;
-  color: blue;
+  color: white;
 }
 
 #interestGroupList{
@@ -87,7 +88,7 @@ h3{
 }
 
 #interestGroupList:hover{
-  background: #FFD700;
+  background: #818181;
   opacity: 75%;
-  color: blue;
+  color: white;
 }

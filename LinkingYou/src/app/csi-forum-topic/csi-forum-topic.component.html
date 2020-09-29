@@ -1,7 +1,11 @@
 <div id="topicRoot">
   <div id="topicDiv"></div>
   <div id="messageInputHeader">
-    <textarea id="topicMessageInput" placeholder="Message" rows="4" cols="50"></textarea>
-    <button id="btnSubmit" (click)="sendMessage()">Send</button>
+    <div id="message">
+      <textarea id="topicMessageInput" placeholder="Message" rows="4" cols="50"></textarea>
+    </div>
+    <div id="sub">
+      <button id="btnSubmit" (click)="sendMessage()">Send</button>
+    </div>
   </div>
 </div>

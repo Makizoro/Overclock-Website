@@ -1,0 +1,7 @@
+h6{
+  transition: .5s;
+}
+
+h6:hover{
+  color: #333333;
+}
