@@ -43,6 +43,15 @@
   display: none;
 }
 
+#btnDiv{
+  align-items: center;
+}
+
+.nav div{
+  display: inline;
+  padding: 20px 20px 20px 20px;
+}
+
 button{
   position: center;
   outline: none;
@@ -52,8 +61,7 @@ button{
   border-radius: 25px;
   border-style: hidden;
 
-  padding-bottom: 20px;
-  padding-top: 20px;
+  text-align: center;
 
   background-image: url("src/assets/background1.png");
   background-size: 100%;
@@ -161,5 +169,4 @@ h3{
   border: 3px solid #818181;
   border-radius: 25px;
 }
-
 

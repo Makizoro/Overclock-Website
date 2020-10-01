@@ -7,10 +7,16 @@
       <h3 id="csiEmailHeader">Email</h3>
       <h4 id="csiEmail"></h4>
     </div>
-    <div id="btnDiv">
-      <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
-      <button id="btnEdit" (click)="editCSI()">Edit Page</button>
-      <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subscriptions</button>
+    <div id="btnDiv" class="nav">
+      <div>
+        <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
+      </div>
+      <div>
+        <button id="btnEdit" (click)="editCSI()">Edit Page</button>
+      </div>
+      <div>
+        <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
+      </div>
     </div>
   </div>
   <div id="csiDetails" class="scroll">
