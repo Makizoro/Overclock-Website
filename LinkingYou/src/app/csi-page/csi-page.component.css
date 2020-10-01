@@ -33,12 +33,6 @@
   grid-gap: 2px 1em;
 }
 
-#csiDetails.scroll{
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
 .scroll::-webkit-scrollbar {
   display: none;
 }
@@ -76,49 +70,9 @@ button:hover{
   background-position: left;
 }
 
-.scroll::-webkit-scrollbar {
-  display: none;
-}
-
 #group{
   width: 150px;
   height: 150px;
-}
-
-#csiNameHeader{
-  color: #333333;
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
-}
-
-#csiEmailHeader{
-  color: #333333;
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
-}
-
-#csiDescriptionHeader{
-  color: #333333;
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
 }
 
 h3{
@@ -127,31 +81,6 @@ h3{
   display: block;
   height: 100%;
   width: 100%;
-  line-height: 65px;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
-}
-
-#EventNameHeader{
-  color: #333333;
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid black;
-}
-
-#EventDateHeader{
-  color: #333333;
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
   padding-left: 40px;
   box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
