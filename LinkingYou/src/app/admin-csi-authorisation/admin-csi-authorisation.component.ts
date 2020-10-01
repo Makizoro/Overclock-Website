@@ -62,6 +62,8 @@ export class AdminCsiAuthorisationComponent implements OnInit {
       newDiv.id = (csiData.name);
       const csiTitle = document.createElement('h5');
       csiTitle.innerHTML = csiData.name;
+      const breakDiv = document.createElement('br');
+      csiTitle.appendChild(breakDiv);
       csiTitle.appendChild(btnAccept);
       csiTitle.appendChild(btnReject);
       newDiv.appendChild(csiTitle);
