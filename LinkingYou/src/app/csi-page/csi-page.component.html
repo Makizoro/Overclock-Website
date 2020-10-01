@@ -1,28 +1,31 @@
 <div id="root" class="box">
+  <div id="profile" class="scroll">
   <div id="picture" class="block1">
-    <img id="group" src="../assets/group.png">
-    <div id="csiDetails" class="scroll">
-      <h3 id="csiNameHeader">Name</h3>
-      <h4 id="csiName"></h4>
-      <h3 id="csiEmailHeader">Email</h3>
-      <h4 id="csiEmail"></h4>
-      <h3 id="csiDescriptionHeader">Description</h3>
-      <p id="csiDescription"></p>
-      <h3 id="csiVenueHeader">Venue</h3>
-      <h4 id="csiVenue"></h4>
-      <p id="Venue"></p>
-    </div>
-    <div id="btnDiv" class="nav">
-      <div>
-        <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
+      <img id="group" src="../assets/group.png">
+      <div id="csiDetails">
+        <h3 id="csiNameHeader">Name</h3>
+        <h4 id="csiName"></h4>
+        <h3 id="csiEmailHeader">Email</h3>
+        <h4 id="csiEmail"></h4>
+        <h3 id="csiDescriptionHeader">Description</h3>
+        <p id="csiDescription"></p>
+        <h3 id="csiVenueHeader">Venue</h3>
+        <h4 id="csiVenue"></h4>
+        <p id="Venue"></p>
       </div>
-      <div>
-        <button id="btnEdit" (click)="editCSI()">Edit Page</button>
+      <div id="btnDiv" class="nav">
+        <div>
+          <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
+        </div>
+        <div>
+          <button id="btnEdit" (click)="editCSI()">Edit Page</button>
+        </div>
+        <div>
+          <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
+        </div>
       </div>
-      <div>
-        <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
       </div>
-    </div>
+
   </div>
     <div class="block2">
       <div id="forum">

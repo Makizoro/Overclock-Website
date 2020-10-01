@@ -22,7 +22,7 @@
 
   opacity: 95%;
 }
-#root.scroll{
+.scroll{
   overflow-x: hidden;
   overflow-y: scroll;
 }
