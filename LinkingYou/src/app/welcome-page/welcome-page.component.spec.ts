@@ -1,32 +1,53 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { from } from 'rxjs';
 
 import { WelcomePageComponent } from './welcome-page.component';
-
+import { Router, Route } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {DebugElement} from '@angular/core'
+import {DebugElement} from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 import { AngularFireModule } from '@angular/fire';
-import { config} from '../app.module'
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { of } from 'rxjs/internal/observable/of';
 import { AppRouteModule } from '../app.route';
+import { AuthService } from '../services/auth.service';
+import { PersonService } from '../services/person.service';
+import { Person } from '../entities/person.model';
+import { SubscriptionService } from '../services/subscription.service';
+import { Subscription } from '../entities/subscription.model';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('WelcomePageComponent', () => {
   let component: WelcomePageComponent;
   let fixture: ComponentFixture<WelcomePageComponent>;
   let de: DebugElement;
+  let spy: jasmine.Spy;
+  let spyPerson: jasmine.Spy;
+  let spyAuth: jasmine.Spy;
+  let spySub: jasmine.Spy;
+  let spyCookie: jasmine.Spy;
+  let service: Router;
+  let serviceAuth: AuthService;
+  let servicePerson: PersonService;
+  let serviceSub: SubscriptionService;
+  let serviceCookie: CookieService;
+  let sub: Subscription;
+  let person: Person;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[ 
-        AngularFireModule.initializeApp(config),
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase  ),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        AppRouteModule
+        AppRouteModule,
+        RouterTestingModule
       ],
+      providers: [ AuthService, PersonService, SubscriptionService, CookieService ],
       declarations: [ WelcomePageComponent ]
     })
     .compileComponents();
@@ -37,21 +58,56 @@ describe('WelcomePageComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
 
+    service = TestBed.inject(Router);
+    servicePerson = TestBed.inject(PersonService);
+    serviceAuth = TestBed.inject(AuthService);
+    serviceSub = TestBed.inject(SubscriptionService);
+    serviceCookie = TestBed.inject(CookieService);
+    //fixture.ngZone.run(() => router.navigate());
+
+    person = {
+      username: 'testPerson',
+      email: 'person@test.com',
+      password: '123456',
+      csiName: 'None',
+      type: 'User'
+    };
+
+    sub = {
+      csi: 'csiTest',
+      userId:'userIdTest',
+      docId: 'docIdTest'
+    };
+
+    spy = spyOn(service, 'navigate');
+    spyAuth = spyOn(serviceAuth, 'userId').and.returnValue(of('userId'));
+    spyPerson = spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));
+
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
+  it('should nav with csi', fakeAsync(() => {
+    component.navToCSI('dave');
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  }));
 
-  /*it('should have a P tag of "welcome-page works!" ', () => {
-    expect(de.query(By.css('p')).nativeElement.innerText).toBe('welcome-page works!');
-  });*/
+  it('should display subs if', fakeAsync(() => {
+    spySub = spyOn(serviceSub, 'getSubList').and.returnValue(of([[sub,sub]]));
+    spyCookie = spyOn(serviceCookie,'check').and.returnValue(true);
+    spyOn(serviceCookie,'get').and.returnValue('username/userId test');
+    component.ngOnInit();
+    tick(500);
+    fixture.detectChanges();
+    expect(spySub).toHaveBeenCalled();
+  }));
 
-  it('should nav with csi', () => {
-    expect(component.navToCSI('dave')).toBeUndefined();
-  });
-
-
+  it('should display subs else', fakeAsync(() => {
+    spySub = spyOn(serviceSub, 'getSubList').and.returnValue(of([[sub,sub]]));
+    component.ngOnInit();
+    tick(500);
+    fixture.detectChanges();
+    expect(spySub).toHaveBeenCalled();
+  }));
 
 });

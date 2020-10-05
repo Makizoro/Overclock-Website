@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import {CsiService} from '../services/csi.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -12,7 +12,8 @@ import {CSI} from '../entities/csi.model';
 export class CsiEditPageComponent implements OnInit {
   csi: CSI;
 
-  constructor(private csiService: CsiService, private route: ActivatedRoute, private router: Router, private cookieService: CookieService) { }
+  constructor(private csiService: CsiService, private route: ActivatedRoute,
+              private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     if (!this.cookieService.check('username')){

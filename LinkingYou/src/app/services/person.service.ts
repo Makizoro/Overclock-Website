@@ -21,7 +21,7 @@ export class PersonService {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.empty){
-          this.afs.doc<Person>('Person/'+ uid).set(person);
+          this.afs.doc<Person>('Person/' + uid).set(person);
           alert('Success!');
           router.navigate(['login']);
         } else {

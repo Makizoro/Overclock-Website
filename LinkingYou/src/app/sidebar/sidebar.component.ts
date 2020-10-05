@@ -15,6 +15,7 @@ import {CookieService} from 'ngx-cookie-service';
 export class SidebarComponent implements OnInit {
 
   data: any = {};
+  sideBarClick = false; 
 
   constructor(
     private router: Router,
@@ -30,7 +31,9 @@ export class SidebarComponent implements OnInit {
 
   sidebarClose(): void{
     const sidebarCancel = document.getElementById('cancel');
+    this.sideBarClick = !this.sideBarClick;
     sidebarCancel.click();
+    
   }
 
   ngOnInit(): void {

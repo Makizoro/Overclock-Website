@@ -12,6 +12,7 @@ import {NgForm} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  passViss = false;
   personForm: Person;
   user: firebase.User;
 
@@ -28,10 +29,12 @@ export class RegisterComponent implements OnInit {
     if (p.type === 'password'){
       p.type = 'text';
       p2.type = 'text';
+      this.passViss = !this.passViss;
       eye.innerHTML = 'visibility';
     } else {
       p.type = 'password';
       p2.type = 'password';
+      this.passViss = !this.passViss;
       eye.innerHTML = 'visibility_off';
     }
   }

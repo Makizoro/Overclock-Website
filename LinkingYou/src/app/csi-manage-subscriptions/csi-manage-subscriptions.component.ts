@@ -38,7 +38,7 @@ export class CsiManageSubscriptionsComponent implements OnInit {
   }
 
   private retrieveCsiList(): void {
-    this.subscriptionService.getCSIRequests(this.csiName).subscribe(csiSubList => {
+    this.subscriptionService.getCSISubRequests(this.csiName).subscribe(csiSubList => {
       this.csiSubList = csiSubList;
 
       this.displaySubList();

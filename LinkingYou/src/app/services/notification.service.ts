@@ -18,8 +18,8 @@ export class NotificationService {
           this.notifyCollection.add(notify);
     }
 
-    // Get notifications of a CSI 
-    getSubList(csiName: string): any{
+    // Get notifications of a CSI
+    getNotificationList(csiName: string): any{
       return this.afs.collection('Notification', ref => ref.where('csi', '==', '' + csiName))
        .snapshotChanges().pipe(
          map(changes => changes.map(a => {

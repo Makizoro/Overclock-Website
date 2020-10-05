@@ -56,7 +56,7 @@ export class CsiPageComponent implements OnInit {
         } else {
           btnSub.style.display = 'block';
         }
-        this.subscriptionService.getCSIRequests(this.csiData.csiName).subscribe(csiRequestList => {
+        this.subscriptionService.getCSISubRequests(this.csiData.csiName).subscribe(csiRequestList => {
           this.csiRequestList = csiRequestList;
           if (this.inList(csiRequestList, this.userId)){
             btnSub.innerHTML = 'Request Pending';

@@ -20,10 +20,10 @@ export class SubscriptionService {
   // For user to request to join a CSI
   async addSubRequest(sub: Subscription): Promise<void> {
     const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
-    .where('csi', '==', sub.csi)
+      .where('csi', '==', sub.csi)
       .get()
       .then(querySnapshot => {
-        if (querySnapshot.empty){
+        if (querySnapshot.empty) {
           console.log('Adding CSI request');
           this.subCollectionRequest.add(sub);
           alert('Success!');
@@ -31,60 +31,61 @@ export class SubscriptionService {
           alert('Subscription already sent!');
         }
       });
-    }
+  }
 
-    // When a CSI accepts a user request to join a CSI
-    async addSubscription(sub: Subscription): Promise<void> {
-      const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
+  // When a CSI accepts a user request to join a CSI
+  async addSubscription(sub: Subscription): Promise<void> {
+    const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
       .where('csi', '==', sub.csi)
-        .get()
-        .then(querySnapshot => {
-          if (querySnapshot.empty){
-            this.subCollection.add(sub);
-            alert('Success!');
-          } else {
-            alert('Subscription already accepted!');
-          }
-        });
-      }
-
-      // Get list of CSIs subscribed to
-      getSubList(userId: string): any{
-        return this.afs.collection('Subscription', ref => ref.where('userId', '==', '' + userId))
-         .snapshotChanges().pipe(
-           map(changes => changes.map(a => {
-             const data = a.payload.doc.data() as Subscription;
-             data.docId = a.payload.doc.id;
-             return [a, data];
-           }))
-         );
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) {
+          this.subCollection.add(sub);
+          alert('Success!');
+        } else {
+          alert('Subscription already accepted!');
         }
+      });
+  }
 
-      // Get list of of people subscribed to a csi
-      getCSISubList(csiName: string): any{
-        return this.afs.collection('Subscription', ref => ref.where('csi', '==', '' + csiName))
-         .snapshotChanges().pipe(
-           map(changes => changes.map(a => {
-             const data = a.payload.doc.data() as Subscription;
-             data.docId = a.payload.doc.id;
-             return [a, data];
-           }))
-         );
-        }
+  // Get list of CSIs subscribed to
+  getSubList(userId: string): any {
+    return this.afs.collection('Subscription', ref => ref.where('userId', '==', '' + userId))
+      .snapshotChanges().pipe(
+        map(changes => changes.map(a => {
+          const data = a.payload.doc.data() as Subscription;
+          data.docId = a.payload.doc.id;
+          return [a, data];
+        }))
+      );
+  }
 
-   // Get list of user requests to accept or reject
-   getCSIRequests(csiName: string): any{
+  // Get list of of people subscribed to a csi
+  getCSISubList(csiName: string): any {
+    return this.afs.collection('Subscription', ref => ref.where('csi', '==', '' + csiName))
+      .snapshotChanges().pipe(
+        map(changes => changes.map(a => {
+          const data = a.payload.doc.data() as Subscription;
+          data.docId = a.payload.doc.id;
+          return [a, data];
+        }))
+      );
+  }
+
+  // Get list of user requests to accept or reject
+  getCSISubRequests(csiName: string): any {
     return this.afs.collection('Subscription_Request', ref => ref.where('csi', '==', '' + csiName))
-     .snapshotChanges().pipe(
-       map(changes => changes.map(a => {
-         const data = a.payload.doc.data() as Subscription;
-         data.docId = a.payload.doc.id;
-         return [a, data];
-       }))
-     );
-    }
-    // Remove from request collection
-    delete(docId: string): void{
-      this.afs.doc<Subscription>('Subscription_Request/' + docId).delete();
-    }
+      .snapshotChanges().pipe(
+        map(changes => changes.map(a => {
+          const data = a.payload.doc.data() as Subscription;
+          data.docId = a.payload.doc.id;
+          return [a, data];
+        }))
+      );
+  }
+
+  // Remove from request collection
+  delete(docId: string): void {
+    this.afs.doc<Subscription>('Subscription_Request/' + docId).delete();
+  }
 }

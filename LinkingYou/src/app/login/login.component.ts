@@ -11,8 +11,9 @@ import {PersonService} from '../services/person.service';
 })
 export class LoginComponent implements OnInit {
 
-  p = document.getElementById('password') as HTMLInputElement;
-  constructor(private router: Router, private afAuth: AuthService, private cookieService: CookieService, private personService: PersonService) {
+  passViss = false;
+  constructor(private router: Router, private afAuth: AuthService,
+              private cookieService: CookieService, private personService: PersonService) {
   }
 
 
@@ -25,13 +26,15 @@ export class LoginComponent implements OnInit {
 
 
   togglePassword(): void {
-    this.p = document.getElementById('password') as HTMLInputElement;
+    const p = document.getElementById('password') as HTMLInputElement;
     const eye = document.getElementById('eye');
-    if (this.p.type === 'password'){
-      this.p.type = 'text';
+    if (p.type === 'password'){
+      p.type = 'text';
+      this.passViss = !this.passViss;
       eye.innerHTML = 'visibility';
     } else {
-      this.p.type = 'password';
+      p.type = 'password';
+      this.passViss = !this.passViss;
       eye.innerHTML = 'visibility_off';
     }
   }

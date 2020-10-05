@@ -1,12 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
 
 import { By } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
-import { config} from '../app.module'
+import { environment } from '../../environments/environment';
 import {AuthService} from '../services/auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, NgForm} from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { of } from 'rxjs/internal/observable/of';
 import { AppRouteModule } from '../app.route';
@@ -14,18 +14,20 @@ import { AppRouteModule } from '../app.route';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
+  let rgForm: NgForm;
+  let service: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[ 
-        AngularFireModule.initializeApp(config),
+      imports: [
+        AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
         AppRouteModule,
         FormsModule
       ],
       declarations: [ RegisterComponent ],
-      providers: [ AuthService ]
+      providers: [ AuthService, NgForm ]
     })
     .compileComponents();
   }));
@@ -33,6 +35,9 @@ describe('RegisterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
+
+    service = TestBed.inject(AuthService);
+    rgForm = TestBed.inject(NgForm);
     fixture.detectChanges();
   });
 
@@ -41,6 +46,14 @@ describe('RegisterComponent', () => {
   });
 
   it('should toggle', () => {
-    expect(component.togglePassword()).toBeUndefined();
+    expect(component.passViss).toBeFalsy();
+    component.togglePassword();
+    expect(component.passViss).toBeTruthy();
   });
+
+  it('should register', fakeAsync(() => {
+    const spy = spyOn(service,'register').and.returnValue(Promise.resolve());
+    component.signup(rgForm);
+    expect(spy).toHaveBeenCalled();
+  }));
 });
