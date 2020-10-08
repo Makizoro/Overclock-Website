@@ -104,9 +104,7 @@ export class CsiPageComponent implements OnInit {
         const subscription = {csi: this.csiData.csiName, userId: this.userId, docId: 'pending Review'} as Subscription;
         this.subscriptionService.addSubRequest(subscription).finally(() => {
         });
-      } else {
-
-      }
+      } else {}
     }
   }
 }
