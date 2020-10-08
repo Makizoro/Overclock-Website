@@ -1,41 +1,36 @@
-<div id="root" class="box">
-  <div id="picture" class="block1">
-    <div id="profile" class="scroll">
-      <img id="group" src="../assets/group.png">
-      <div id="csiDetails">
-        <h3 id="csiNameHeader">Name</h3>
-        <h4 id="csiName"></h4>
-        <h3 id="csiEmailHeader">Email</h3>
-        <h4 id="csiEmail"></h4>
-        <h3 id="csiDescriptionHeader">Description</h3>
-        <p id="csiDescription"></p>
-        <h3 id="csiVenueHeader">Venue</h3>
-        <h4 id="csiVenue"></h4>
-        <p id="Venue"></p>
+<div id="root" class="flex-container">
+  <div id="picture" class="flex-container">
+    <img id="group" src="../assets/group.png">
+    <div id="face">
+      <h3 id="csiName"></h3>
+      <h4 id="csiEmail"></h4>
+    </div>
+    <div id="btnDiv" class="flex-container">
+      <div>
+        <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
       </div>
-      <div id="btnDiv" class="nav">
-        <div>
-          <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
-        </div>
-        <div>
-          <button id="btnEdit" (click)="editCSI()">Edit Page</button>
-        </div>
-        <div>
-          <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
-        </div>
+      <div>
+        <button id="btnEdit" (click)="editCSI()">Edit Page</button>
       </div>
-      </div>
-  </div>
-    <div class="block2">
-      <div id="forum">
-        <router-outlet name="routerForum"></router-outlet>
+      <div>
+        <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
       </div>
     </div>
-  <div id="events">
-    <app-csi-event></app-csi-event>
   </div>
-
-
+  <div id="info" class="flex-container">
+    <div id="csiDesc">
+      <h3 id="csiDescriptionHeader">Description</h3>
+      <p id="csiDescription"></p>
+      <h3 id="csiVenueHeader">Venue</h3>
+      <h6 id="csiVenue"></h6>
+      <div id="events">
+        <app-csi-event></app-csi-event>
+      </div>
+    </div>
+    <div id="forum">
+      <router-outlet name="routerForum"></router-outlet>
+    </div>
+  </div>
 </div>
 
 

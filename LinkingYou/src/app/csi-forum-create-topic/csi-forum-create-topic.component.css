@@ -77,3 +77,12 @@ button:hover{
   background-position: left;
 }
 
+h3{
+  text-align: left;
+  color: #333333;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+

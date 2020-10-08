@@ -24,15 +24,17 @@ export class CsiEventComponent implements OnInit {
 
   private displayevents(): void{
     this.eventService.getEventList(this.csiName).subscribe(eventList => {
-      const rootDiv = document.getElementById('root');
+      const rootDiv = document.getElementById('eventsDiv');
       for (const csiEvent of eventList){
-        const csiEventTitle = document.createElement('h4');
+        const csiEventTitle = document.createElement('h3');
         csiEventTitle.innerHTML = csiEvent.name;
+        csiEventTitle.style.paddingRight = '20px';
         csiEventTitle.addEventListener('click',  () => {
           this.goToEvent(csiEvent.name);
         });
         const csiEventDate = document.createElement('h6');
         csiEventDate.innerHTML = csiEvent.date;
+        csiEventDate.style.color = '#707070';
         csiEventTitle.appendChild(csiEventDate);
         rootDiv.appendChild(csiEventTitle);
       }

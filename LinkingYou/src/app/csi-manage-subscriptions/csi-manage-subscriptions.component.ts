@@ -56,14 +56,18 @@ export class CsiManageSubscriptionsComponent implements OnInit {
       const csiRequestId = csiRequestObj[1].docId;
 
       const requestDiv = document.createElement('div');
-      const personNameHeader = document.createElement('h5');
+      const personNameHeader = document.createElement('h3');
       const btnAccept = document.createElement('button');
       btnAccept.innerHTML = 'ACCEPT';
+      btnAccept.style.marginRight = '20px';
+      btnAccept.style.borderRadius = '25px';
       btnAccept.addEventListener('click', () => {
         this.acceptRequest(csiRequest, csiRequestId);
       });
       const btnReject = document.createElement('button');
       btnReject.innerHTML = 'REJECT';
+      btnReject.style.paddingRight = '20px';
+      btnReject.style.borderRadius = '25px';
       btnReject.addEventListener('click', () => {
         this.rejectRequest(csiRequest, csiRequestId);
       });

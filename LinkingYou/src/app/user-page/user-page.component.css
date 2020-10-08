@@ -10,30 +10,52 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
+  padding: 20px;
   text-align: center;
   border-style: ridge;
   border-color: #707070;
   border-width: 1px;
-  padding-left: 20px;
-  padding-right: 20px;
   cursor: default;
 
   opacity: 95%;
 
 }
 
+#usernameDiv{
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+#userDetail{
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 20px;
+}
+
 #pic{
   width: 250px;
   height: 250px;
+  padding-right: 10px;
 }
 
 h3{
-  color: #151450;
+  text-align: left;
+  color: #333333;
   font-weight: bold;
-  text-align: center;
+  width: 100%;
+  padding-left: 40px;
+  padding-top: 20px;
 }
 
 p{
   text-align: center;
   font-size: 20px;
 }
+
+.flex-container > div{
+  justify-content: center;
+}
+
+

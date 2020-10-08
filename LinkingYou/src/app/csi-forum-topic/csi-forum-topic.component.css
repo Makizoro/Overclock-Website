@@ -3,7 +3,8 @@
   border: none;
   outline: none;
   background-color: #BFBFBF;
-  border-radius: 25px;
+  border-radius: 15px;
+  width: 100%;
   text-align: center;
   border: #707070;
 }

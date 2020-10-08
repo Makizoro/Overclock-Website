@@ -1,7 +1,19 @@
-#root{
+#eventsDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 33%;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  text-align: left;
+  font-weight: bold;
+  color: #333333;
+  width: 100%;
+  padding-left: 40px;
+  border-radius: 25px;
+  padding-top: 20px;
   transition: .5s;
 }
 
-#root:hover{
+h6:hover{
   color: #333333;
 }

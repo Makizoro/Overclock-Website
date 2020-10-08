@@ -32,10 +32,13 @@ export class CsiPageComponent implements OnInit {
   ngOnInit(): void {
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
+    btnSub.style.outline = 'none';
     const btnEdit = document.getElementById('btnEdit');
     btnEdit.style.display = 'none';
+    btnEdit.style.outline = 'none';
     const btnManageSubs = document.getElementById('btnManageSubscriptions');
     btnManageSubs.style.display = 'none';
+    btnManageSubs.style.outline = 'none';
     this.route.params.subscribe(params => this.csiData.csiName = params.name);
     this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
       const csiName = document.getElementById('csiName');
