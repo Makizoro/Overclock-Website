@@ -44,6 +44,18 @@ export class ForumService {
        );
       }
 
+       // Get a topic which was made by a certain csi
+    getACSITopic(csiName: string, csiTopic: string): any{
+      return this.afs.collection('Forum', ref => ref.where('csi', '==', '' + csiName)
+      .where('topic', '==', csiTopic))
+       .snapshotChanges().pipe(
+         map(changes => changes.map(a => {
+           const data = a.payload.doc.data() as Forum;
+           return [data, a.payload.doc.id];
+         }))
+       );
+      }
+
     getTopic(topicDocId: string): any{
       return this.afs.collection('Forum').doc(topicDocId).snapshotChanges().pipe(
         map(topic => {

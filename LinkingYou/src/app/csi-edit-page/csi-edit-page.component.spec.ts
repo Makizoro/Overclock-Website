@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { CsiEditPageComponent } from './csi-edit-page.component';
 
@@ -16,13 +16,15 @@ import { CsiService } from '../services/csi.service';
 import { CSI } from '../entities/csi.model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('CsiEditPageComponent', () => {
   let component: CsiEditPageComponent;
   let fixture: ComponentFixture<CsiEditPageComponent>;
-  let service: CsiService;
   let csi: CSI;
   let serviceR: Router;
+  let serviceCoookie: CookieService;
+  let serviceCSI: CsiService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +35,7 @@ describe('CsiEditPageComponent', () => {
         AppRouteModule,
         RouterTestingModule
       ],
-      providers: [ CsiService],
+      providers: [ CsiService, CookieService],
       declarations: [ CsiEditPageComponent ]
     })
     .compileComponents();
@@ -44,7 +46,8 @@ describe('CsiEditPageComponent', () => {
     component = fixture.componentInstance;
 
     serviceR = TestBed.inject(Router);
-    service = TestBed.inject(CsiService);
+    serviceCSI = TestBed.inject(CsiService);
+    serviceCoookie = TestBed.inject(CookieService);
 
     csi = {
       name: 'clubName',
@@ -55,26 +58,140 @@ describe('CsiEditPageComponent', () => {
       email: 'clubEmail'
     };
 
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should initiate else branch', () => {
+    const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
+    spyOn(serviceCoookie, 'check').and.returnValue(true);
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
   });
 
-  /*it('should update Club', fakeAsync(() => {
-    const spy = spyOn(service, 'updateCSI').and.returnValue(Promise.resolve());
+  it('should initiate else branch society', () => {
+    csi.type = 'Society';
+    const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
+    spyOn(serviceCoookie, 'check').and.returnValue(true);
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should initiate else branch interest group', () => {
+    csi.type = 'Interest Group';
+    const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
+    spyOn(serviceCoookie, 'check').and.returnValue(true);
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should initiate if branch', () => {
+    const spy = spyOn(serviceR,'navigate');
+    spyOn(serviceCoookie, 'check').and.returnValue(false);
+    component.ngOnInit();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should update Club', fakeAsync(() => {
+    const spy = spyOn(serviceCSI, 'updateCSI');
     spyOn(serviceR, 'navigate');
 
-    (document.getElementById('typeInputClub') as HTMLInputElement).checked;
+    (document.getElementById('typeInputClub') as HTMLInputElement).checked = true;
 
-    document.getElementById('emailInput').innerHTML = csi.email;
-    document.getElementById('venueInput').innerHTML = csi.venue;
-    document.getElementById('descriptionInput').innerHTML = csi.description;
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
 
+    component.csi = csi;
     component.updateCsi();
     
     expect(spy).toHaveBeenCalled();
-  }));*/
+  }));
+
+  it('should update Society', fakeAsync(() => {
+    const spy = spyOn(serviceCSI, 'updateCSI');
+    spyOn(serviceR, 'navigate');
+
+    (document.getElementById('typeInputSociety') as HTMLInputElement).checked = true;
+
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  }));
+
+  it('should update Interest Group', fakeAsync(() => {
+    const spy = spyOn(serviceCSI, 'updateCSI');
+    spyOn(serviceR, 'navigate');
+
+    (document.getElementById('typeInputInterestGroup') as HTMLInputElement).checked = true;
+
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  }));
+
+  it('should make type empty', () => {
+    const spy = spyOn(window, 'alert');
+
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should make email empty', () => {
+    const spy = spyOn(window, 'alert');
+
+    (document.getElementById('typeInputInterestGroup') as HTMLInputElement).checked = true;
+
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should make venue empty', () => {
+    const spy = spyOn(window, 'alert');
+
+    (document.getElementById('typeInputInterestGroup') as HTMLInputElement).checked = true;
+
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = csi.description;
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should make description empty', () => {
+    const spy = spyOn(window, 'alert');
+
+    (document.getElementById('typeInputInterestGroup') as HTMLInputElement).checked = true;
+
+    (document.getElementById('emailInput') as HTMLInputElement).value = csi.email;
+    (document.getElementById('venueInput') as HTMLInputElement).value = csi.venue;
+    (document.getElementById('descriptionInput') as HTMLInputElement).value = '';
+
+    component.csi = csi;
+    component.updateCsi();
+    
+    expect(spy).toHaveBeenCalled();
+  });
 
 });

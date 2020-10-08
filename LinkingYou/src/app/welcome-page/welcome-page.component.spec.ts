@@ -36,7 +36,7 @@ describe('WelcomePageComponent', () => {
   let serviceSub: SubscriptionService;
   let serviceCookie: CookieService;
   let sub: Subscription;
-  let person: Person;
+  let person,personNull: Person;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -72,6 +72,13 @@ describe('WelcomePageComponent', () => {
       csiName: 'None',
       type: 'User'
     };
+    personNull = {
+      username: null,
+      email: 'person@test.com',
+      password: '123456',
+      csiName: 'None',
+      type: 'User'
+    };
 
     sub = {
       csi: 'csiTest',
@@ -79,22 +86,24 @@ describe('WelcomePageComponent', () => {
       docId: 'docIdTest'
     };
 
-    spy = spyOn(service, 'navigate');
     spyAuth = spyOn(serviceAuth, 'userId').and.returnValue(of('userId'));
-    spyPerson = spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));
 
     fixture.detectChanges();
   });
 
   it('should nav with csi', fakeAsync(() => {
+    spy = spyOn(service, 'navigate');
     component.navToCSI('dave');
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   }));
 
   it('should display subs if', fakeAsync(() => {
+    spyPerson = spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));
     spySub = spyOn(serviceSub, 'getSubList').and.returnValue(of([[sub,sub]]));
     spyCookie = spyOn(serviceCookie,'check').and.returnValue(true);
+    spy = spyOn(service, 'navigate');
+
     spyOn(serviceCookie,'get').and.returnValue('username/userId test');
     component.ngOnInit();
     tick(500);
@@ -103,11 +112,13 @@ describe('WelcomePageComponent', () => {
   }));
 
   it('should display subs else', fakeAsync(() => {
-    spySub = spyOn(serviceSub, 'getSubList').and.returnValue(of([[sub,sub]]));
+    spyCookie = spyOn(serviceCookie,'check').and.returnValue(false);
+    spyPerson = spyOn(servicePerson, 'getPerson').and.returnValue(of([personNull]));
+    spy = spyOn(service, 'navigate');
+
     component.ngOnInit();
     tick(500);
-    fixture.detectChanges();
-    expect(spySub).toHaveBeenCalled();
+    expect(spyPerson).toHaveBeenCalled();
   }));
 
 });

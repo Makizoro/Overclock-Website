@@ -54,7 +54,7 @@ describe('EventService', () => {
     expect(spy).toHaveBeenCalled();
   }));
 
-  it('should get events for a csi', fakeAsync(() => {
+  it('should get events for a', fakeAsync(() => {
     const spy = spyOn(service,'getEventList').and.returnValue([event,event]);
     service.getEventList(event.csi);
     expect(spy).toHaveBeenCalled();

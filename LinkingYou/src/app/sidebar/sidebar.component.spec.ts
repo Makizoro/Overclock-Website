@@ -70,6 +70,13 @@ describe('SidebarComponent', () => {
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   }));
+  it('should display subs else', fakeAsync(() => {
+    const spy = spyOn(serviceCookie,'check').and.returnValue(false);
+    component.ngOnInit();
+    tick(500);
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();

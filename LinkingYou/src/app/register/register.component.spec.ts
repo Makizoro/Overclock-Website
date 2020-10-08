@@ -49,6 +49,8 @@ describe('RegisterComponent', () => {
     expect(component.passViss).toBeFalsy();
     component.togglePassword();
     expect(component.passViss).toBeTruthy();
+    component.togglePassword();
+    expect(component.passViss).toBeFalsy();
   });
 
   it('should register', fakeAsync(() => {
@@ -56,4 +58,5 @@ describe('RegisterComponent', () => {
     component.signup(rgForm);
     expect(spy).toHaveBeenCalled();
   }));
+
 });

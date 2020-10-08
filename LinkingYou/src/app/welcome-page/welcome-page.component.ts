@@ -34,7 +34,7 @@ export class WelcomePageComponent implements OnInit {
     } else {
       try{
         this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
-          this.username = person.name;
+          this.username = person.username;
           const welcomeHeader = document.getElementById('welcomeHeader');
           if (this.username !== null) {
             welcomeHeader.innerHTML = 'Welcome back ' + this.username;

@@ -21,10 +21,6 @@ export class AdminCsiAuthorisationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.init();
-  }
-
-  init(): void{
     this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
       if (person.type !== 'Admin'){
         this.router.navigateByUrl('/sidebar');

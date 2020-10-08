@@ -52,8 +52,8 @@ export class CsiManageSubscriptionsComponent implements OnInit {
     }
 
     for (const csiRequestObj of this.csiSubList) {
-      const csiRequest = csiRequestObj[1] as Subscription;
-      const csiRequestId = csiRequestObj[1].docId;
+      const csiRequest = csiRequestObj[0] as Subscription;
+      const csiRequestId = csiRequestObj[1];
 
       const requestDiv = document.createElement('div');
       const personNameHeader = document.createElement('h3');

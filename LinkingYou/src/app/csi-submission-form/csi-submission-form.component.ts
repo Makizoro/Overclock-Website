@@ -23,7 +23,6 @@ export class CsiSubmissionFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // commented this code out due to failing test
 
     this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
       if (person.type !== 'User'){

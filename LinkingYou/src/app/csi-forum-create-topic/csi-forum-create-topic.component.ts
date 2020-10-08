@@ -44,8 +44,14 @@ export class CsiForumCreateTopicComponent implements OnInit {
 
     const newForum = {csi: this.csiName, topic: topicName} as Forum;
 
-    const docId = (await this.forumService.addForum(newForum)).id;
-    console.log(docId);
+    this.forumService.addForum(newForum);
+
+    let docId: string;
+
+    this.forumService.getACSITopic(this.csiName, topicName).subscribe(data => {
+      docId = data[1];
+      console.log(data);
+    });
 
     const message = {message: topicMessage, timestamp: 'Date', username: this.username} as Message;
 
@@ -54,9 +60,8 @@ export class CsiForumCreateTopicComponent implements OnInit {
     this.router.navigate([{outlets: {routerForum: 'csiForum/' + this.csiName}}], {relativeTo: this.route.parent});
 
     /*
-    this.forumService.getCSITopic(this.csiName).subscribe(data => {
-      console.log(data);
-    });
+      const docId = (await this.forumService.addForum(newForum)).id;
+    console.log(docId);
     */
   }
 }

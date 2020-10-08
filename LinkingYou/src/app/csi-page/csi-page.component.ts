@@ -53,7 +53,7 @@ export class CsiPageComponent implements OnInit {
 
       if (this.cookieService.check('username')){
         this.userId = this.cookieService.get('uid');
-        if (this.cookieService.get('csiName') === this.csiData.csiName) {
+        if (this.cookieService.get('csiName') === csi[0].name) {
           btnEdit.style.display = 'block';
           btnManageSubs.style.display = 'block';
         } else {
