@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CsiService} from '../services/csi.service';
+import {CsiPageComponent} from '../csi-page/csi-page.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-csi-tabs',
@@ -11,11 +13,21 @@ export class CsiTabsComponent implements OnInit {
 
   data: any = {};
 
+  @ViewChild(CsiPageComponent)
+  private csiPageComponent: CsiPageComponent;
   // The constructor needs to retrieve all CSI names and descriptions. Then, add a div which has the CSI names and descriptions with
   // an onClick method that navigates to the csiPage (CSI profile page) with the csi name as a route parameter
-  constructor(private csiService: CsiService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private csiService: CsiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
+
+    const popup = document.getElementById('popupCSIpage');
+    popup.style.display = 'none';
 
     this.csiService.getCSI().subscribe(data => {
       this.data = data;
@@ -26,8 +38,14 @@ export class CsiTabsComponent implements OnInit {
   navigateToCSI: EventListener = (e) => {
     const temp = e.composedPath()[1] as HTMLDivElement;
     const csiName = temp.id;
+    const popup = document.getElementById('popupCSIpage');
+    popup.style.display = 'none';
 
-    this.router.navigate([ { outlets: {routerSidebar: 'csiPage/' + csiName} } ], { relativeTo: this.route.parent });
+    // this.router.navigate([ { outlets: {routerSidebar: 'csiPage/' + csiName} } ], { relativeTo: this.route.parent });
+    this.csiPageComponent.updateCsiPage(csiName).then(() => {
+      // show popup
+      popup.style.display = 'block';
+    });
   }
 
   displayCSIData(data): void{

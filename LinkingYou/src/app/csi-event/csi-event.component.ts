@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from '../services/event.service';
+import {CsiEventDetailsComponent} from '../csi-event-details/csi-event-details.component';
 
 @Component({
   selector: 'app-csi-event',
@@ -10,16 +11,19 @@ import {EventService} from '../services/event.service';
 export class CsiEventComponent implements OnInit {
 
   csiName: string;
+  @ViewChild(CsiEventDetailsComponent)
+  private csiEventDetailsComponent: CsiEventDetailsComponent;
+
   constructor(private router: Router, private route: ActivatedRoute, private eventService: EventService) { }
 
   ngOnInit(): void {
-    try{
-      this.route.params.subscribe(params => this.csiName = params.name);
-      this.displayevents();
+  }
 
-    } catch (e) {
-      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
-    }
+  public updateComponent(csiName: string): void {
+    this.csiName = csiName;
+    const eventDetails = document.getElementById('app-csi-event-details');
+    eventDetails.style.display = 'none';
+    this.displayevents();
   }
 
   private displayevents(): void{
@@ -44,6 +48,11 @@ export class CsiEventComponent implements OnInit {
   }
 
   private goToEvent(eventName): void{
-    this.router.navigate([{outlets: {routerForum: 'csiEventDetails/' + eventName}}], {relativeTo: this.route});
+
+    const eventDetails = document.getElementById('app-csi-event-details');
+    eventDetails.style.display = 'none';
+
+    this.csiEventDetailsComponent.updateComponent(eventName)
+    eventDetails.style.display = 'block';
   }
 }

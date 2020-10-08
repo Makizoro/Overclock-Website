@@ -14,18 +14,16 @@ export class CsiEventDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private eventService: EventService) { }
 
   ngOnInit(): void {
-    try{
-      this.route.params.subscribe(params => this.eventName = params.eventName);
-      this.getEventDetails();
-    } catch (e) {
-      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
-    }
+  }
+
+  public updateComponent(eventName: string): void {
+    this.eventName = eventName;
+    this.getEventDetails();
   }
 
   private getEventDetails(): void{
     this.eventService.getEvent(this.eventName).subscribe(csiEvent => {
       const csiEventData = csiEvent[0];
-      console.log(csiEventData);
       const eventHeader = document.getElementById('eventHeader');
       const eventDateHeader = document.getElementById('eventDateHeader');
       const eventVenueHeader = document.getElementById('eventVenueHeader');

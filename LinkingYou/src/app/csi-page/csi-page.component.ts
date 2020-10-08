@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ContentChild, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CsiService} from '../services/csi.service';
 import {CsiEventComponent} from '../csi-event/csi-event.component';
 import {SubscriptionService} from '../services/subscription.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Subscription} from '../entities/subscription.model';
+import {CsiForumComponent} from '../csi-forum/csi-forum.component';
+import {CsiForumTopicComponent} from '../csi-forum-topic/csi-forum-topic.component';
+import {CsiForumCreateTopicComponent} from '../csi-forum-create-topic/csi-forum-create-topic.component';
+import {CsiEventDetailsComponent} from '../csi-event-details/csi-event-details.component';
 
 @Component({
   selector: 'app-csi-page',
@@ -20,6 +24,10 @@ export class CsiPageComponent implements OnInit {
   private csiSubList: any;
   private csiRequestList: any;
   userId: any;
+  @ViewChild(CsiForumComponent)
+  private csiForumComponent: CsiForumComponent;
+  @ViewChild(CsiEventComponent)
+  private csiEventComponent: CsiEventComponent;
 
   // TODO: Retrieve all topics and messages from a particular CSI and store them in forumData
   // TODO: Retrieve all event data for a particular CSI and store them in eventData
@@ -30,6 +38,7 @@ export class CsiPageComponent implements OnInit {
               private cookieService: CookieService) {  }
 
   ngOnInit(): void {
+    // initialises the buttons to not be displayed until the type of user is established
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
     btnSub.style.outline = 'none';
@@ -39,8 +48,16 @@ export class CsiPageComponent implements OnInit {
     const btnManageSubs = document.getElementById('btnManageSubscriptions');
     btnManageSubs.style.display = 'none';
     btnManageSubs.style.outline = 'none';
-    this.route.params.subscribe(params => this.csiData.csiName = params.name);
-    this.csiService.getACSI(this.csiData.csiName).subscribe(csi => {
+
+  }
+
+  public async updateCsiPage(name: string): Promise<void>{
+    this.csiData.name = name;
+    const btnSub = document.getElementById('btnSubscribe');
+    const btnEdit = document.getElementById('btnEdit');
+    const btnManageSubs = document.getElementById('btnManageSubscriptions');
+
+    this.csiService.getACSI(name).subscribe(async csi => {
       const csiName = document.getElementById('csiName');
       const csiEmail = document.getElementById('csiEmail');
       const csiDescription = document.getElementById('csiDescription');
@@ -67,14 +84,10 @@ export class CsiPageComponent implements OnInit {
             btnSub.innerHTML = 'Subscribe';
           }
         });
-      } else {
       }
-
-      this.router.navigate(
-        [ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ],
-        { relativeTo: this.route, skipLocationChange: true });
+      this.csiForumComponent.updateComponent(this.csiData.name);
+      this.csiEventComponent.updateComponent(this.csiData.name);
     }); // retrieve and display CSI data
-
   }
 
   private inList(csiSubList: any, userId: string): boolean {

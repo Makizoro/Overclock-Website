@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ForumService} from '../services/forum.service';
 import {Forum} from '../entities/forum.model';
+import {CsiForumTopicComponent} from '../csi-forum-topic/csi-forum-topic.component';
+import {CsiForumCreateTopicComponent} from '../csi-forum-create-topic/csi-forum-create-topic.component';
+import {create} from 'domain';
 
 @Component({
   selector: 'app-csi-forum',
@@ -12,20 +15,26 @@ export class CsiForumComponent implements OnInit {
 
   private csiName: string;
   private topicList: any;
-  private csiTopic: any;
+  @ViewChild(CsiForumTopicComponent)
+  private csiForumTopicComponent: CsiForumTopicComponent;
+  @ViewChild(CsiForumCreateTopicComponent)
+  private csiForumCreateTopicComponent: CsiForumCreateTopicComponent;
+
   constructor(private route: ActivatedRoute, private router: Router, private forumService: ForumService) { }
 
   ngOnInit(): void {
-    try{
-      this.route.params.subscribe(params => this.csiName = params.name);
-    } catch (e) {
-      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
-    }
+  }
 
+  public updateComponent(name): void {
+    this.csiName = name;
+    const topicForum = document.getElementById('app-csi-forum-topic');
+    topicForum.style.display = 'none';
+    const createTopic = document.getElementById('app-csi-forum-create-topic');
+    createTopic.style.display = 'none';
     this.retrieveTopics();
   }
 
-  private async retrieveTopics(): Promise<void> {
+  private retrieveTopics(): void {
     this.forumService.getTopics().subscribe(topicList => {
       this.topicList = topicList;
 
@@ -33,8 +42,12 @@ export class CsiForumComponent implements OnInit {
     });
   }
 
-  createTopic(): void {
-    this.router.navigate([{outlets: {routerForum: 'csiForumCreateTopic/' + this.csiName}}], {relativeTo: this.route.parent});
+  public createTopic(): void {
+    const forumTopic = document.getElementById('app-csi-forum-topic');
+    forumTopic.style.display = 'none';
+    this.csiForumCreateTopicComponent.updateComponent(this.csiName);
+    const createTopic = document.getElementById('app-csi-forum-create-topic');
+    createTopic.style.display = 'block';
   }
 
   private displayTopics(): void {
@@ -65,7 +78,10 @@ export class CsiForumComponent implements OnInit {
   }
 
   private goToTopic(topicId): void{
-
-    this.router.navigate([{outlets: {routerForum: 'csiForumTopic/' + topicId}}], {relativeTo: this.route.parent});
+    const createTopic = document.getElementById('app-csi-forum-create-topic');
+    createTopic.style.display = 'none';
+    this.csiForumTopicComponent.updateComponent(topicId);
+    const forumTopic = document.getElementById('app-csi-forum-topic');
+    forumTopic.style.display = 'block';
   }
 }

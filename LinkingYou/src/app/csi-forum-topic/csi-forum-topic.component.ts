@@ -26,23 +26,22 @@ export class CsiForumTopicComponent implements OnInit {
               private cookieService: CookieService) { }
 
   ngOnInit(): void {
+
+  }
+
+  public updateComponent(topicId: string): void {
     try {
-      this.route.params.subscribe(params => {
-        this.topicHash = params.topicHash;
+        this.topicHash = topicId;
         this.forumService.getTopic(this.topicHash).subscribe(topic => {
           this.topicName = topic.topic;
         });
         if (this.cookieService.check('username')){
           this.username = this.cookieService.get('username');
 
-        } else {
-          this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
         }
         this.getMessages();
-      });
     } catch (e) {
       console.log(e);
-      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
     }
   }
 
@@ -56,10 +55,12 @@ export class CsiForumTopicComponent implements OnInit {
 
   private displayTopic(): void {
     const topicDiv = document.getElementById('topicDiv');
+    while (topicDiv.firstChild){
+      topicDiv.removeChild(topicDiv.firstChild);
+    }
     const topicHeader = document.createElement('h3');
     topicHeader.innerHTML = this.topicName;
     topicDiv.appendChild(topicHeader);
-    console.log(this.messageList);
     for (const message of this.messageList){
 
       const messageDiv = document.createElement('div');
@@ -91,7 +92,7 @@ export class CsiForumTopicComponent implements OnInit {
       topicDiv.removeChild(topicDiv.firstChild);
     }
     const topicMessageInput = (document.getElementById('topicMessageInput') as HTMLTextAreaElement);
-    topicMessageInput.innerHTML = '';
+    topicMessageInput.value = '';
     // this.getMessages();
   }
 }

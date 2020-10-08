@@ -24,13 +24,10 @@ export class CsiForumCreateTopicComponent implements OnInit {
     private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    try{
-      this.route.params.subscribe(params => {
-        this.csiName = params.name;
-      });
-    } catch (e) {
-      this.router.navigate(['/sidebar', {outlets: {routerSidebar: 'csi'}}]);
-    }
+  }
+
+  public updateComponent(csiName: string): void {
+    this.csiName = csiName;
   }
 
   async submitTopic(): Promise<void>{
@@ -41,6 +38,8 @@ export class CsiForumCreateTopicComponent implements OnInit {
     }
     const topicName = (document.getElementById('topicNameInput') as HTMLInputElement).value;
     const topicMessage = (document.getElementById('topicMessageInput') as HTMLInputElement).value;
+    (document.getElementById('topicNameInput') as HTMLInputElement).value = '';
+    (document.getElementById('topicMessageInput') as HTMLInputElement).value = '';
 
     const newForum = {csi: this.csiName, topic: topicName} as Forum;
 
@@ -57,11 +56,8 @@ export class CsiForumCreateTopicComponent implements OnInit {
 
     this.messageService.addMessage(docId, message);
 
-    this.router.navigate([{outlets: {routerForum: 'csiForum/' + this.csiName}}], {relativeTo: this.route.parent});
+    const myDiv = document.getElementById('app-csi-forum-create-topic');
+    myDiv.style.display = 'none';
 
-    /*
-      const docId = (await this.forumService.addForum(newForum)).id;
-    console.log(docId);
-    */
   }
 }
