@@ -63,6 +63,7 @@ describe('CsiEditPageComponent', () => {
   it('should initiate else branch', () => {
     const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
     spyOn(serviceCoookie, 'check').and.returnValue(true);
+    spyOn(serviceCoookie, 'get').and.returnValue(csi.name);
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
@@ -71,6 +72,7 @@ describe('CsiEditPageComponent', () => {
     csi.type = 'Society';
     const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
     spyOn(serviceCoookie, 'check').and.returnValue(true);
+    spyOn(serviceCoookie, 'get').and.returnValue(csi.name);
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
@@ -79,6 +81,7 @@ describe('CsiEditPageComponent', () => {
     csi.type = 'Interest Group';
     const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([csi, csi.id]));
     spyOn(serviceCoookie, 'check').and.returnValue(true);
+    spyOn(serviceCoookie, 'get').and.returnValue(csi.name);
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
@@ -189,7 +192,7 @@ describe('CsiEditPageComponent', () => {
     (document.getElementById('descriptionInput') as HTMLInputElement).value = '';
 
     component.csi = csi;
-    component.updateCsi();
+    component.updateCsi();  
     
     expect(spy).toHaveBeenCalled();
   });
