@@ -70,7 +70,7 @@ export class CsiPageComponent implements OnInit {
       } else {
       }
 
-      this.router.navigate([ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ], { relativeTo: this.route });
+      this.router.navigate([ { outlets: {routerForum: 'csiForum/' + this.csiData.csiName} } ], { relativeTo: this.route, skipLocationChange: true });
     }); // retrieve and display CSI data
 
   }
