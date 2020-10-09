@@ -22,10 +22,10 @@ const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent, children: [
       { path: 'csi', component: CsiTabsComponent, outlet: 'routerSidebar'},
       { path: 'userPage', component: UserPageComponent, outlet: 'routerSidebar'},
-      { path: 'csiPage/:name', component: CsiPageComponent, outlet: 'routerSidebar'},
       { path: 'csiSubscriptions', component: CsiManageSubscriptionsComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiEditPage', component: CsiEditPageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'welcome', component: WelcomePageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
+      { path: 'myCsiPage', component: CsiPageComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'csiSubmissionForm', component: CsiSubmissionFormComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: 'adminCsiForm', component: AdminCsiAuthorisationComponent, pathMatch: 'full', outlet: 'routerSidebar'},
       { path: '', redirectTo: '/sidebar/(routerSidebar:welcome)', pathMatch: 'full'},

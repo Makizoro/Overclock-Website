@@ -49,11 +49,17 @@ export class CsiPageComponent implements OnInit {
     btnManageSubs.style.display = 'none';
     btnManageSubs.style.outline = 'none';
 
+    if (this.cookieService.check('isOwner')){
+      this.cookieService.delete('isOwner');
+      this.updateCsiPage(this.cookieService.get('csiName'));
+    }
+
   }
 
   public async updateCsiPage(name: string): Promise<void>{
     this.csiData.name = name;
     const btnSub = document.getElementById('btnSubscribe');
+    btnSub.style.display = 'none';
     const btnEdit = document.getElementById('btnEdit');
     const btnManageSubs = document.getElementById('btnManageSubscriptions');
 
@@ -73,7 +79,10 @@ export class CsiPageComponent implements OnInit {
         if (this.cookieService.get('csiName') === csi[0].name) {
           btnEdit.style.display = 'block';
           btnManageSubs.style.display = 'block';
+          btnSub.style.display = 'none';
         } else {
+          btnEdit.style.display = 'none';
+          btnManageSubs.style.display = 'none';
           btnSub.style.display = 'block';
         }
         this.subscriptionService.getCSISubRequests(this.csiData.csiName).subscribe(csiRequestList => {

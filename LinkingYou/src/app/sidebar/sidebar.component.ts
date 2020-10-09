@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AuthService} from '../services/auth.service';
@@ -6,6 +6,7 @@ import {PersonService} from '../services/person.service';
 // run: npm install ngx-cookie-service --save
 // to use the import below
 import {CookieService} from 'ngx-cookie-service';
+import {WelcomePageComponent} from '../welcome-page/welcome-page.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,9 @@ import {CookieService} from 'ngx-cookie-service';
 export class SidebarComponent implements OnInit {
 
   data: any = {};
-  sideBarClick = false; 
+  sideBarClick = false;
+  @ViewChild(WelcomePageComponent)
+  private welcomePageComponent: WelcomePageComponent;
 
   constructor(
     private router: Router,
@@ -33,7 +36,6 @@ export class SidebarComponent implements OnInit {
     const sidebarCancel = document.getElementById('cancel');
     this.sideBarClick = !this.sideBarClick;
     sidebarCancel.click();
-    
   }
 
   ngOnInit(): void {
@@ -72,7 +74,8 @@ export class SidebarComponent implements OnInit {
 
   navToCsi(): void {
     this.sidebarClose();
-    this.router.navigate([{outlets: {routerSidebar: 'csiPage/' + this.cookieService.get('csiName')}}], {relativeTo: this.route});
+    this.cookieService.set('isOwner', 'true');
+    this.router.navigate([{outlets: {routerSidebar: 'myCsiPage'}}], {relativeTo: this.route});
   }
 
   logout(): void{

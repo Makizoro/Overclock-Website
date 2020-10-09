@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {PersonService} from '../services/person.service';
 import {AuthService} from '../services/auth.service';
 import {SubscriptionService} from '../services/subscription.service';
 import {Subscription} from '../entities/subscription.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CsiPageComponent} from '../csi-page/csi-page.component';
 
 @Component({
   selector: 'app-welcome-page',
@@ -16,6 +17,8 @@ export class WelcomePageComponent implements OnInit {
   username: string;
   uid: string;
   subList: any;
+  @ViewChild(CsiPageComponent)
+  private csiPageComponent: CsiPageComponent;
   constructor(
     private cookieService: CookieService,
     private personService: PersonService,
@@ -25,6 +28,8 @@ export class WelcomePageComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const popup = document.getElementById('app-csi-page-div');
+    popup.style.display = 'none';
     if (this.cookieService.check('username')){
       this.username = this.cookieService.get('username');
       this.uid = this.cookieService.get('uid');
@@ -77,6 +82,12 @@ export class WelcomePageComponent implements OnInit {
   }
 
   navToCSI(csi: string): void{
-    this.router.navigate([{outlets: {routerSidebar: 'csiPage/' + csi}}], {relativeTo: this.route.parent});
+
+    console.log('works');
+    const popup = document.getElementById('app-csi-page-div');
+    popup.style.display = 'none';
+    this.csiPageComponent.updateCsiPage(csi).then(() => {
+      popup.style.display = 'block';
+    });
   }
 }
