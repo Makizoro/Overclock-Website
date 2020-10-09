@@ -50,7 +50,6 @@ export class CsiPageComponent implements OnInit {
     btnManageSubs.style.outline = 'none';
 
     if (this.cookieService.check('isOwner')){
-      this.cookieService.delete('isOwner');
       this.updateCsiPage(this.cookieService.get('csiName'));
     }
 
