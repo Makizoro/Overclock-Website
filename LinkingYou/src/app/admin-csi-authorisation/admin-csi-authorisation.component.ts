@@ -35,8 +35,17 @@ export class AdminCsiAuthorisationComponent implements OnInit {
 
   displayCsiData(csiList): void {
     const c = document.getElementById('clubList');
+    while (c.firstChild) {
+      c.removeChild(c.firstChild);
+    }
     const s = document.getElementById('societyList');
+    while (s.firstChild) {
+      s.removeChild(s.firstChild);
+    }
     const ig = document.getElementById('interestGroupList');
+    while (ig.firstChild) {
+      ig.removeChild(ig.firstChild);
+    }
 
     for (const csi of csiList){
       const csiData = csi[0] as CSI;
