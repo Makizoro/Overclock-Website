@@ -62,6 +62,10 @@ export class CsiPageComponent implements OnInit {
     const btnEdit = document.getElementById('btnEdit');
     const btnManageSubs = document.getElementById('btnManageSubscriptions');
 
+    const appCsiEvent = document.getElementById('app-csi-event-details');
+    appCsiEvent.style.display = 'none';
+
+
     this.csiService.getACSI(name).subscribe(async csi => {
       const csiName = document.getElementById('csiName');
       const csiEmail = document.getElementById('csiEmail');

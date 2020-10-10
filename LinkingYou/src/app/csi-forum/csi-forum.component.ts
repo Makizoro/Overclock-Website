@@ -4,7 +4,6 @@ import {ForumService} from '../services/forum.service';
 import {Forum} from '../entities/forum.model';
 import {CsiForumTopicComponent} from '../csi-forum-topic/csi-forum-topic.component';
 import {CsiForumCreateTopicComponent} from '../csi-forum-create-topic/csi-forum-create-topic.component';
-import {create} from 'domain';
 
 @Component({
   selector: 'app-csi-forum',
@@ -26,6 +25,11 @@ export class CsiForumComponent implements OnInit {
   }
 
   public updateComponent(name): void {
+
+    const appCsiForumTopic = document.getElementById('app-csi-forum-topic');
+    appCsiForumTopic.style.display = 'none';
+
+
     this.csiName = name;
     const topicForum = document.getElementById('app-csi-forum-topic');
     topicForum.style.display = 'none';

@@ -32,3 +32,9 @@ button{
 button:hover{
   background-position: right;
 }
+h3{
+   color: #333333;
+   font-weight: bold;
+   width: 100%;
+   padding-left: 40px;
+ }

@@ -27,9 +27,14 @@ export class CsiEventComponent implements OnInit {
   }
 
   private displayevents(): void{
+
+    const rootDiv = document.getElementById('eventsDiv');
+    while (rootDiv.firstChild){
+      rootDiv.removeChild(rootDiv.firstChild);
+    }
     this.eventService.getEventList(this.csiName).subscribe(eventList => {
-      const rootDiv = document.getElementById('eventsDiv');
       for (const csiEvent of eventList){
+        const eventListDiv = document.createElement('div');
         const csiEventTitle = document.createElement('h3');
         csiEventTitle.innerHTML = csiEvent.name;
         csiEventTitle.style.paddingRight = '20px';
@@ -39,8 +44,17 @@ export class CsiEventComponent implements OnInit {
         const csiEventDate = document.createElement('h6');
         csiEventDate.innerHTML = csiEvent.date;
         csiEventDate.style.color = '#707070';
-        csiEventTitle.appendChild(csiEventDate);
-        rootDiv.appendChild(csiEventTitle);
+        eventListDiv.appendChild(csiEventTitle);
+        eventListDiv.appendChild(csiEventDate);
+        const breakDiv = document.createElement('br');
+        rootDiv.appendChild(eventListDiv);
+        rootDiv.appendChild(breakDiv);
+        rootDiv.appendChild(breakDiv);
+      }
+      if (!rootDiv.firstChild){
+        const noChild = document.createElement('h3');
+        noChild.innerHTML = 'No events';
+        rootDiv.appendChild(noChild);
       }
     });
 
@@ -52,7 +66,7 @@ export class CsiEventComponent implements OnInit {
     const eventDetails = document.getElementById('app-csi-event-details');
     eventDetails.style.display = 'none';
 
-    this.csiEventDetailsComponent.updateComponent(eventName)
+    this.csiEventDetailsComponent.updateComponent(eventName);
     eventDetails.style.display = 'block';
   }
 }
