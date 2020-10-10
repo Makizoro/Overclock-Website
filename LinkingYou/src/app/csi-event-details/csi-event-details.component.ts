@@ -23,12 +23,27 @@ export class CsiEventDetailsComponent implements OnInit {
 
   private getEventDetails(): void{
     this.eventService.getEvent(this.eventName).subscribe(csiEvent => {
+      const eventHeader = document.getElementById('eventDetailsHeader');
+      while (eventHeader.firstChild){
+        eventHeader.removeChild(eventHeader.firstChild);
+      }
+      const eventDateHeader = document.getElementById('eventDetailsDateHeader');
+      while (eventDateHeader.firstChild){
+        eventDateHeader.removeChild(eventDateHeader.firstChild);
+      }
+      const eventVenueHeader = document.getElementById('eventDetailsVenueHeader');
+      while (eventVenueHeader.firstChild){
+        eventVenueHeader.removeChild(eventVenueHeader.firstChild);
+      }
+      const eventCsiHeader = document.getElementById('eventDetailsCsiHeader');
+      while (eventCsiHeader.firstChild){
+        eventCsiHeader.removeChild(eventCsiHeader.firstChild);
+      }
+      const eventDescription = document.getElementById('eventDetailsDescription');
+      while (eventDescription.firstChild){
+        eventDescription.removeChild(eventDescription.firstChild);
+      }
       const csiEventData = csiEvent[0];
-      const eventHeader = document.getElementById('eventHeader');
-      const eventDateHeader = document.getElementById('eventDateHeader');
-      const eventVenueHeader = document.getElementById('eventVenueHeader');
-      const eventCsiHeader = document.getElementById('eventCsiHeader');
-      const eventDescription = document.getElementById('eventDescription');
       eventHeader.innerHTML = csiEventData.name;
       const eventDateDetails = document.createElement('h7');
       eventDateDetails.innerHTML = csiEventData.date;

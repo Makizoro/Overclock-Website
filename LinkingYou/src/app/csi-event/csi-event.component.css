@@ -17,3 +17,10 @@
 h6:hover{
   color: #333333;
 }
+h3{
+  text-align: center;
+  color: #333333;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 40px;
+ }
