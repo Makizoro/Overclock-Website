@@ -1,37 +1,42 @@
 <div id="root" class="flex-container">
-  <div id="picture" class="flex-container">
-    <img id="group" src="../assets/group.png">
-    <div id="face">
-      <h3 id="csiName"></h3>
-      <h4 id="csiEmail"></h4>
-    </div>
-    <div id="btnDiv" class="flex-container">
-      <div>
-        <h4 id="csiDescriptionHeader">Description</h4>
-        <p id="csiDescription"></p>
-        <h4 id="csiVenueHeader">Venue</h4>
-        <h6 id="csiVenue"></h6>
+  <div id="subRoot" class="flex-container">
+    <div id="picture" class="flex-container">
+      <img id="group" src="../assets/group.png">
+      <div id="face">
+        <h3 id="csiName"></h3>
+        <h4 id="csiEmail"></h4>
       </div>
-      <div>
-        <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
-      </div>
-      <div>
-        <button id="btnEdit" (click)="editCSI()">Edit Page</button>
-      </div>
-      <div>
-        <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
-      </div>
-    </div>
-  </div>
-  <div id="info" class="flex-container">
-    <div id="csiDesc">
-      <h3>Events</h3>
-      <div id="events">
-        <app-csi-event></app-csi-event>
+      <div id="btnDiv" class="flex-container">
+        <div>
+          <h4 id="csiDescriptionHeader">Description</h4>
+          <p id="csiDescription"></p>
+          <h4 id="csiVenueHeader">Venue</h4>
+          <h6 id="csiVenue"></h6>
+        </div>
+        <div>
+          <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
+        </div>
+        <div>
+          <button id="btnEdit" (click)="editCSI()">Edit Page</button>
+        </div>
+        <div>
+          <button id="btnManageSubscriptions" (click)="manageSubs()">Manage Subs</button>
+        </div>
+        <input type=checkbox id = "checks">
+        <label for="checks">
+          <i class="fas fa-times" id="cancels" (click)="popupClose()"></i>
+        </label>
       </div>
     </div>
-    <div id="app-csi-forum">
-      <app-csi-forum></app-csi-forum>
+    <div id="info" class="flex-container">
+      <div id="csiDesc">
+        <div id="events">
+          <app-csi-event></app-csi-event>
+        </div>
+      </div>
+      <div id="app-csi-forum">
+        <app-csi-forum></app-csi-forum>
+      </div>
     </div>
   </div>
 </div>

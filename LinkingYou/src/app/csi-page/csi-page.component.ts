@@ -17,6 +17,7 @@ import {CsiEventDetailsComponent} from '../csi-event-details/csi-event-details.c
 })
 export class CsiPageComponent implements OnInit {
 
+  csiPageClick = false;
   csiData: any = {};
   forumData: any = {};
   eventData: any = {};
@@ -52,7 +53,6 @@ export class CsiPageComponent implements OnInit {
     if (this.cookieService.check('isOwner')){
       this.updateCsiPage(this.cookieService.get('csiName'));
     }
-
   }
 
   public async updateCsiPage(name: string): Promise<void>{
@@ -118,6 +118,18 @@ export class CsiPageComponent implements OnInit {
 
   manageSubs(): void{
     this.router.navigate([{outlets: {routerSidebar: 'csiSubscriptions'}}], {relativeTo: this.route.parent});
+  }
+
+  popupClose(): void{
+    const csiPageCancel = document.getElementById('cancels');
+    this.csiPageClick = !this.csiPageClick;
+    csiPageCancel.click();
+  }
+
+  navToCsi(): void {
+    this.popupClose();
+    this.cookieService.set('isOwner', 'true');
+    this.router.navigate([{outlets: {routerSidebar: 'csiTab'}}], {relativeTo: this.route});
   }
 
   async toggleSubscribe(): Promise<void>{

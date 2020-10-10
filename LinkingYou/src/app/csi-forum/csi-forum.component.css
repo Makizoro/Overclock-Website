@@ -4,14 +4,13 @@ h3{
   font-weight: bold;
   width: 100%;
   padding-left: 40px;
-  padding-top: 20px;
 }
-.scroll{
+root{
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.scroll::-webkit-scrollbar {
+root::-webkit-scrollbar {
   display: none;
 }
 
@@ -22,3 +21,8 @@ h6{
 h6:hover{
   color: #333333;
 }
+
+#forumInfo{
+  padding-top: 20px;
+}
+

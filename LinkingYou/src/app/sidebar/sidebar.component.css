@@ -73,7 +73,7 @@ label #bar{
   font-size: 20px;
   color: #707070;
   padding: 4px 8px;
-
+  z-index: 1119;
   transition: all .5s;
 }
 
