@@ -7,6 +7,12 @@
     </div>
     <div id="btnDiv" class="flex-container">
       <div>
+        <h4 id="csiDescriptionHeader">Description</h4>
+        <p id="csiDescription"></p>
+        <h4 id="csiVenueHeader">Venue</h4>
+        <h6 id="csiVenue"></h6>
+      </div>
+      <div>
         <button id="btnSubscribe" (click)="toggleSubscribe()"></button>
       </div>
       <div>
@@ -19,10 +25,7 @@
   </div>
   <div id="info" class="flex-container">
     <div id="csiDesc">
-      <h3 id="csiDescriptionHeader">Description</h3>
-      <p id="csiDescription"></p>
-      <h3 id="csiVenueHeader">Venue</h3>
-      <h6 id="csiVenue"></h6>
+      <h3>Events</h3>
       <div id="events">
         <app-csi-event></app-csi-event>
       </div>

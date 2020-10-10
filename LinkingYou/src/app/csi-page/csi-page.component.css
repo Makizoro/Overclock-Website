@@ -1,22 +1,15 @@
 #root{
-  background-color: #E1EFF4;
   background-size: 100%;
-  stroke: rgba(112,112,112,1);
   border-radius: 25px;
-
-  overflow-y: scroll;
 
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: gray;
 
-  width: 1250px;
+  width: 900px;
   height: 550px;
   flex-wrap: wrap;
   margin: auto;
   text-align: center;
-  border-style: ridge;
-  border-color: #707070;
-  border-width: 1px;
   padding: 20px;
   cursor: default;
 
@@ -32,6 +25,10 @@
   flex-direction: row;
   padding-right: 20px;
   padding-left: 20px;
+
+  background-color: #E1EFF4;
+  border: 3px solid #818181;
+  border-radius: 25px;
 }
 
 #info{
@@ -122,6 +119,24 @@ h4{
   text-align: left;
   color: #333333;
   width: 100%;
-  padding: 0px 20px 20px 20px;
+  padding: 0px 10px 10px 10px;
+}
+
+#csiDesc{
+  background-color: #E1EFF4;
+  overflow-y: scroll;
+}
+
+#csiDesc::-webkit-scrollbar {
+  display: none;
+}
+
+#app-csi-forum{
+  background-color: #E1EFF4;
+  overflow-y: scroll;
+}
+
+#app-csi-forum::-webkit-scrollbar {
+  display: none;
 }
 
