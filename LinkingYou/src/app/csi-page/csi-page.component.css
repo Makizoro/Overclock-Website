@@ -179,10 +179,6 @@ h4{
   display: none;
 }
 
-#checks:checked ~ label #cancels{
-  left: 196px;
-}
-
 label #cancels{
   position: fixed;
   z-index: 1119;
@@ -202,6 +198,3 @@ label #cancels:hover{
   color: blue;
 }
 
-#checks:checked ~ #root{
-  bottom: -1300px;
-}
