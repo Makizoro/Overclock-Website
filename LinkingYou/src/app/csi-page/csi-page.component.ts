@@ -56,9 +56,14 @@ export class CsiPageComponent implements OnInit {
   }
 
   public async updateCsiPage(name: string, myDiv: string): Promise<void>{
-    if (myDiv !== 'null'){
+    if (myDiv !== 'null'){ // this means its the csi owner page which doesn't have a containing div to show
       const popup = document.getElementById(myDiv);
       popup.style.display = 'none';
+      const labelClose = document.getElementById('csiPageClose');
+      labelClose.style.display = 'block';
+    } else {
+      const labelClose = document.getElementById('csiPageClose');
+      labelClose.style.display = 'none';
     }
     this.csiData.name = name;
     const btnSub = document.getElementById('btnSubscribe');
