@@ -5,7 +5,7 @@ h3{
   width: 100%;
   padding-left: 40px;
 }
-#root{
+#app-csi-forumRoot{
   background-color: #E1EFF4;
   position: relative;
   overflow-y: scroll;
@@ -14,7 +14,7 @@ h3{
   height: 100%;
 }
 
-#root::-webkit-scrollbar {
+#app-csi-forumRoot::-webkit-scrollbar {
   display: none;
 }
 

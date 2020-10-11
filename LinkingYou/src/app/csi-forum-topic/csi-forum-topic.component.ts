@@ -26,6 +26,8 @@ export class CsiForumTopicComponent implements OnInit {
               private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    const messageHeaderDiv = document.getElementById('messageInputHeader');
+    messageHeaderDiv.style.display = 'none';
 
   }
 
@@ -76,6 +78,11 @@ export class CsiForumTopicComponent implements OnInit {
 
       topicDiv.appendChild(messageDiv);
     }
+    topicDiv.style.display = 'block';
+    const messageInputHeaderDiv = document.getElementById('messageInputHeader');
+    messageInputHeaderDiv.style.display = 'block';
+    const forumTopic = document.getElementById('app-csi-forum-topic');
+    forumTopic.style.display = 'block';
   }
 
   async sendMessage(): Promise<void> {
@@ -95,5 +102,16 @@ export class CsiForumTopicComponent implements OnInit {
     const topicMessageInput = (document.getElementById('topicMessageInput') as HTMLTextAreaElement);
     topicMessageInput.value = '';
     // this.getMessages();
+  }
+
+  public backToForum(): void{
+    const forumListDiv = document.getElementById('forumInfo');
+    const topicListDiv = document.getElementById('app-csi-forum-topic');
+    // const messageInputHeaderDiv = document.getElementById('messageInputHeader');
+
+    topicListDiv.style.display = 'none';
+    // messageInputHeaderDiv.style.display = 'none';
+    forumListDiv.style.display = 'block';
+
   }
 }

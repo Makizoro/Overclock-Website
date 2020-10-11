@@ -180,7 +180,7 @@ h4{
 }
 
 #checks:checked ~ label #cancels{
-  left: 196px;
+  left: 106px;
 }
 
 label #cancels{

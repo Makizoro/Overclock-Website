@@ -1,4 +1,4 @@
-<div id="root" class="flex-container" (click)="popupClose()">
+<div id="root" class="flex-container">
   <div id="subRoot" class="flex-container">
     <div id="picture" class="flex-container">
       <img id="group" src="../assets/group.png">
@@ -35,8 +35,7 @@
       </div>
     </div>
   </div>
+  <label>
+    <i class="fas fa-times" id="cancels" (click)="popupClose()"></i>
+  </label>
 </div>
-<input type=checkbox id = "checks">
-<label for="checks">
-  <i class="fas fa-times" id="cancels" (click)="popupClose()"></i>
-</label>
