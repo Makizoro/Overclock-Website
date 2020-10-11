@@ -126,12 +126,6 @@ export class CsiPageComponent implements OnInit {
     csiPageCancel.click();
   }
 
-  navToCsi(): void {
-    this.popupClose();
-    this.cookieService.set('isOwner', 'true');
-    this.router.navigate([{outlets: {routerSidebar: 'csiTab'}}], {relativeTo: this.route});
-  }
-
   async toggleSubscribe(): Promise<void>{
     const btnSub = document.getElementById('btnSubscribe') as HTMLButtonElement;
     if (btnSub.innerHTML === 'Unsubscribe') {

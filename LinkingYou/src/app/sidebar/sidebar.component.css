@@ -112,10 +112,10 @@ label #cancel:hover{
   left: 196px;
 }
 
-#check:checked ~ app-welcome-page{
+#check:checked ~ #app-welcome-page{
   margin-left: 250px;
 }
 
-app-welcome-page{
+#app-welcome-page{
   transition: all .5s ease;
 }
