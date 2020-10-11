@@ -24,6 +24,7 @@ export class CsiEventDetailsComponent implements OnInit {
   private getEventDetails(): void{
     this.eventService.getEvent(this.eventName).subscribe(csiEvent => {
       const eventHeader = document.getElementById('eventDetailsHeader');
+      eventHeader.style.color = '#333333';
       while (eventHeader.firstChild){
         eventHeader.removeChild(eventHeader.firstChild);
       }

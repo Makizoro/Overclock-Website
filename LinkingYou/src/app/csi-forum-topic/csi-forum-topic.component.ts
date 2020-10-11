@@ -60,6 +60,7 @@ export class CsiForumTopicComponent implements OnInit {
     }
     const topicHeader = document.createElement('h3');
     topicHeader.innerHTML = this.topicName;
+    topicHeader.style.color = '#333333';
     topicDiv.appendChild(topicHeader);
     for (const message of this.messageList){
 

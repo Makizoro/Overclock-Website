@@ -37,4 +37,43 @@ h3{
    font-weight: bold;
    width: 100%;
    padding-left: 40px;
+  transition: .5s;
  }
+
+#checking{
+  display: none;
+}
+
+label #canc{
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: darkgrey;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #707070;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+label #canc:hover{
+  background: #FFD700;
+  color: blue;
+}
+
+#checking:checked ~ .sidebar{
+  left: 0;
+}
+
+#checking:checked ~ label #bar{
+  display: none;
+}
+
+#checking:checked ~ label #cancel{
+  left: 196px;
+}
+
+#checking:checked ~ #app-csi-forum-topic{
+  display: none;
+}

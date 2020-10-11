@@ -5,12 +5,16 @@ h3{
   width: 100%;
   padding-left: 40px;
 }
-root{
+#root{
+  background-color: #E1EFF4;
+  position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
 
-root::-webkit-scrollbar {
+#root::-webkit-scrollbar {
   display: none;
 }
 
@@ -26,3 +30,23 @@ h6:hover{
   padding-top: 20px;
 }
 
+app-csi-forum-topic{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #E1EFF4;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+#app-csi-forum-create-topic{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #E1EFF4;
+  top: 0;
+  left: 0;
+  z-index: 4;
+
+}
