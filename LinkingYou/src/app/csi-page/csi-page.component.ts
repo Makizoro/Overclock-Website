@@ -42,6 +42,7 @@ export class CsiPageComponent implements OnInit {
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
     btnSub.style.outline = 'none';
+    btnSub.innerHTML = '...';
     const btnEdit = document.getElementById('btnEdit');
     btnEdit.style.display = 'none';
     btnEdit.style.outline = 'none';
