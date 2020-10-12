@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+div{
+  animation: transitionIn 1s;
+}
+
 #input{
   padding-top: 20px;
   padding-bottom: 20px;
@@ -127,4 +131,13 @@ label #canc:hover{
 
 #checking:checked ~ #app-csi-forum-topic{
   display: none;
+}
+
+@keyframes transitionIn{
+  from{
+    transform: translateY(200px);
+  }
+  to{
+    transform: translateY(0);
+  }
 }

@@ -60,4 +60,28 @@ export class CsiForumCreateTopicComponent implements OnInit {
     myDiv.style.display = 'none';
 
   }
+
+  forumCreateClose(): void{
+    // const csiPageCancel = document.getElementById('cancels');
+    // csiPageCancel.click();
+    const createPage = document.getElementById('app-csi-forum-create-topic');
+    const welcomePage = document.getElementById('app-csi-forum');
+
+    try{
+      if (createPage.style.display === 'block'){
+        createPage.style.display = 'none';
+      }
+    } catch (e) {
+      // will run if csi page is closed in the dashboard. This is expected behaviour and will run every time
+    }
+    try{
+      if (welcomePage.style.display === 'block'){
+        welcomePage.style.display = 'none';
+      }
+
+    } catch (e) {
+      // will run if csi page is closed in csi tabs. This is expected behaviour and will run every time
+    }
+  }
+
 }

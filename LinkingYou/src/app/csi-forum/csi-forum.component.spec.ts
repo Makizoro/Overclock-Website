@@ -23,15 +23,14 @@ describe('CsiForumComponent', () => {
   let activatedRoute: jasmine.SpyObj<ActivatedRoute>;
   let serviceF: ForumService;
   let forum: Forum;
-  
+
   beforeEach(async(() => {
-  
     const activatedRouteSpy = {
     queryParams: of({ tags: null }),
-    ...jasmine.createSpyObj("ActivatedRoute", ["params"]),
+    ...jasmine.createSpyObj('ActivatedRoute', ['params']),
   };
-  
-  TestBed.configureTestingModule({
+
+    TestBed.configureTestingModule({
       imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
@@ -56,12 +55,12 @@ describe('CsiForumComponent', () => {
     serviceR = TestBed.inject(Router);
     serviceF = TestBed.inject(ForumService);
     activatedRoute = TestBed.get(ActivatedRoute);
-    
+
     forum = {
       csi: 'csi',
       topic: 'csiTopic'
     };
-  
+
     fixture.detectChanges();
   });
 

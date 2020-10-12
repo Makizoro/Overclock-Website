@@ -63,4 +63,27 @@ export class CsiEventDetailsComponent implements OnInit {
     });
   }
 
+  eventPopUpClose(): void{
+    // const csiPageCancel = document.getElementById('cancels');
+    // csiPageCancel.click();
+    const csiPage = document.getElementById('app-csi-event-details');
+    const welcomePage = document.getElementById('app-csi-event');
+
+    try{
+      if (csiPage.style.display === 'block'){
+        csiPage.style.display = 'none';
+      }
+    } catch (e) {
+      // will run if csi page is closed in the dashboard. This is expected behaviour and will run every time
+    }
+    try{
+      if (welcomePage.style.display === 'block'){
+        welcomePage.style.display = 'none';
+      }
+
+    } catch (e) {
+      // will run if csi page is closed in csi tabs. This is expected behaviour and will run every time
+    }
+  }
+
 }

@@ -42,3 +42,16 @@ label #canc:hover{
 #checking:checked ~ #app-csi-forum-topic{
   display: none;
 }
+
+div{
+  animation: transitionIn 1s;
+}
+
+@keyframes transitionIn{
+  from{
+    transform: translateY(200px);
+  }
+  to{
+    transform: translateY(0);
+  }
+}

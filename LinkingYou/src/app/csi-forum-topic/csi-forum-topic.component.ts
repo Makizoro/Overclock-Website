@@ -114,4 +114,28 @@ export class CsiForumTopicComponent implements OnInit {
     forumListDiv.style.display = 'block';
 
   }
+
+  forumTopicClose(): void{
+    // const csiPageCancel = document.getElementById('cancels');
+    // csiPageCancel.click();
+    const topicPage = document.getElementById('app-csi-forum-topic');
+    const welcomePage = document.getElementById('app-csi-forum');
+
+    try{
+      if (topicPage.style.display === 'block'){
+        topicPage.style.display = 'none';
+      }
+    } catch (e) {
+      // will run if csi page is closed in the dashboard. This is expected behaviour and will run every time
+    }
+    try{
+      if (welcomePage.style.display === 'block'){
+        welcomePage.style.display = 'none';
+      }
+
+    } catch (e) {
+      // will run if csi page is closed in csi tabs. This is expected behaviour and will run every time
+    }
+  }
+
 }
