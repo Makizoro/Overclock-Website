@@ -83,11 +83,6 @@ export class WelcomePageComponent implements OnInit {
 
   navToCSI(csi: string): void{
 
-    console.log('works');
-    const popup = document.getElementById('app-csi-page-div');
-    popup.style.display = 'none';
-    this.csiPageComponent.updateCsiPage(csi).then(() => {
-      popup.style.display = 'block';
-    });
+    this.csiPageComponent.updateCsiPage(csi, 'app-csi-page-div');
   }
 }

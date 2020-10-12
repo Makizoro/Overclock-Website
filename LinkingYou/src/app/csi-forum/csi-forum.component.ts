@@ -85,7 +85,5 @@ export class CsiForumComponent implements OnInit {
     const createTopic = document.getElementById('app-csi-forum-create-topic');
     createTopic.style.display = 'none';
     this.csiForumTopicComponent.updateComponent(topicId);
-    const forumTopic = document.getElementById('app-csi-forum-topic');
-    forumTopic.style.display = 'block';
   }
 }

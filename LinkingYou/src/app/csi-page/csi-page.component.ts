@@ -17,7 +17,6 @@ import {CsiEventDetailsComponent} from '../csi-event-details/csi-event-details.c
 })
 export class CsiPageComponent implements OnInit {
 
-  csiPageClick = false;
   csiData: any = {};
   forumData: any = {};
   eventData: any = {};
@@ -43,6 +42,7 @@ export class CsiPageComponent implements OnInit {
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
     btnSub.style.outline = 'none';
+    btnSub.innerHTML = '...';
     const btnEdit = document.getElementById('btnEdit');
     btnEdit.style.display = 'none';
     btnEdit.style.outline = 'none';
@@ -51,11 +51,20 @@ export class CsiPageComponent implements OnInit {
     btnManageSubs.style.outline = 'none';
 
     if (this.cookieService.check('isOwner')){
-      this.updateCsiPage(this.cookieService.get('csiName'));
+      this.updateCsiPage(this.cookieService.get('csiName'), 'null');
     }
   }
 
-  public async updateCsiPage(name: string): Promise<void>{
+  public async updateCsiPage(name: string, myDiv: string): Promise<void>{
+    if (myDiv !== 'null'){ // this means its the csi owner page which doesn't have a containing div to show
+      const popup = document.getElementById(myDiv);
+      popup.style.display = 'none';
+      const labelClose = document.getElementById('csiPageClose');
+      labelClose.style.display = 'block';
+    } else {
+      const labelClose = document.getElementById('csiPageClose');
+      labelClose.style.display = 'none';
+    }
     this.csiData.name = name;
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
@@ -97,8 +106,12 @@ export class CsiPageComponent implements OnInit {
           }
         });
       }
-      this.csiForumComponent.updateComponent(this.csiData.name);
-      this.csiEventComponent.updateComponent(this.csiData.name);
+      await this.csiForumComponent.updateComponent(this.csiData.name);
+      await this.csiEventComponent.updateComponent(this.csiData.name);
+      if (myDiv !== 'null'){
+        const popup = document.getElementById(myDiv);
+        popup.style.display = 'block';
+      }
     }); // retrieve and display CSI data
   }
 
@@ -121,9 +134,26 @@ export class CsiPageComponent implements OnInit {
   }
 
   popupClose(): void{
-    const csiPageCancel = document.getElementById('cancels');
-    this.csiPageClick = !this.csiPageClick;
-    csiPageCancel.click();
+    // const csiPageCancel = document.getElementById('cancels');
+    // csiPageCancel.click();
+    const csiTabPage = document.getElementById('popupCSIpage');
+    const welcomePage = document.getElementById('app-csi-page-div');
+
+    try{
+      if (csiTabPage.style.display === 'block'){
+        csiTabPage.style.display = 'none';
+      }
+    } catch (e) {
+      // will run if csi page is closed in the dashboard. This is expected behaviour and will run every time
+    }
+    try{
+      if (welcomePage.style.display === 'block'){
+        welcomePage.style.display = 'none';
+      }
+
+    } catch (e) {
+      // will run if csi page is closed in csi tabs. This is expected behaviour and will run every time
+    }
   }
 
   async toggleSubscribe(): Promise<void>{
