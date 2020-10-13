@@ -16,8 +16,19 @@ import { Subscription } from '../entities/subscription.model';
 
 describe('SubscriptionService', () => {
   let service: SubscriptionService;
-  let sub: Subscription;
+  const sub = {
+  csi: 'csiName',
+  userId: 'userId',
+  docId: 'docId'
+  };
 
+  const collectionSpy = jasmine.createSpyObj({
+    snapshotChanges: of(sub),
+    delete: Promise.resolve()
+});
+const afSpy = jasmine.createSpyObj('AngularFirestore', {
+    collection: collectionSpy
+});
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -25,56 +36,35 @@ describe('SubscriptionService', () => {
         AngularFireAuthModule,
         AngularFirestoreModule,
         AppRouteModule
-      ]
+      ], 
+      providers: [ SubscriptionService, {provide: AngularFirestore, useValue: afSpy} ]
+
     });
     service = TestBed.inject(SubscriptionService);
 
-    sub = {
-      csi: 'csiName',
-      userId: 'userId',
-      docId: 'docId'
-    };
+    
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add subscription request', fakeAsync(() => {
-    const spy = spyOn(service,'addSubRequest').and.returnValue(Promise.resolve());
-    service.addSubRequest(sub);
-    expect(spy).toHaveBeenCalled();
+  it('should get an notification', fakeAsync(() => {
+    service.getSubList(sub.csi);
+    expect(collectionSpy.snapshotChanges).toHaveBeenCalled();
   }));
 
-  it('should add subscription', fakeAsync(() => {
-    const spy = spyOn(service,'addSubscription').and.returnValue(Promise.resolve());
-    service.addSubscription(sub);
-    expect(spy).toHaveBeenCalled();
-  }));
-
-  it('should delete subscription', fakeAsync(() => {
-    const spy = spyOn(service,'delete');
-    service.delete(sub.docId);
-    expect(spy).toHaveBeenCalled();
-  }));
-
-  it('should get subscription list for a csi', fakeAsync(() => {
-    const spy = spyOn(service,'getCSISubList').and.returnValue([sub, sub]);
-    service.getCSISubList(sub.csi);
-    expect(spy).toHaveBeenCalled();
-  }));
-
-  it('should get subscription request list for a csi', fakeAsync(() => {
-    const spy = spyOn(service,'getCSISubRequests').and.returnValue([sub, sub]);
+  it('should get an notification', fakeAsync(() => {
     service.getCSISubRequests(sub.csi);
-    expect(spy).toHaveBeenCalled();
+    expect(collectionSpy.snapshotChanges).toHaveBeenCalled();
   }));
 
-  it('should get subscription list for a user', fakeAsync(() => {
-    const spy = spyOn(service,'getSubList').and.returnValue([sub, sub]);
-    service.getSubList(sub.userId);
-    expect(spy).toHaveBeenCalled();
+  it('should get an notification', fakeAsync(() => {
+    service.getCSISubList(sub.csi);
+    expect(collectionSpy.snapshotChanges).toHaveBeenCalled();
   }));
+
+  
 
 
 });
