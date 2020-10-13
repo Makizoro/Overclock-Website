@@ -72,12 +72,12 @@ describe('CsiForumTopicComponent', () => {
     spyOn(serviceC, 'check').and.returnValue(true);
     spyOn(serviceC, 'get').and.returnValue(message.username);
 
-    component.ngOnInit();
+    component.updateComponent(forum.topic);
 
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should initiate cookie check false', () => {
+  /*it('should initiate cookie check false', () => {
     const spy = spyOn(serviceF, 'getTopic').and.returnValue(of(forum));
     spyOn(serviceM, 'getMessage').and.returnValue(of([[message, message.username]]));
     spyOn(serviceC, 'check').and.returnValue(false);
@@ -86,6 +86,24 @@ describe('CsiForumTopicComponent', () => {
     component.ngOnInit();
 
     expect(spy).toHaveBeenCalled();
+  });*/
+
+  it('should close forum', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    const topicPage = document.getElementById('app-csi-forum-topic');
+
+    component.forumTopicClose();
+
+    expect(topicPage).toBeDefined();
+  });
+
+  it('should back to forum', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    const messageHeaderDiv = document.getElementById('messageInputHeader');
+
+    component.ngOnInit();
+
+    expect(messageHeaderDiv).toBeDefined();
   });
 
   it('should initiate', fakeAsync(() => {

@@ -74,13 +74,15 @@ describe('CsiPageComponent', () => {
   });
 
   it('should go display csi page with cookie check true', () => {
-    const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([[csi]]));
-    spyOn(serviceCookie, 'check').and.returnValue(true);
+    const spy = spyOn(serviceCookie, 'check').and.returnValue(true);
+    spyOn(serviceCookie, 'get').and.returnValue(csi.name);
+    spyOn(serviceCSI,'getACSI').and.returnValue(of([[csi]]));
+
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should go display csi page with cookie check false', () => {
+  /*it('should go display csi page with cookie check false', () => {
     const spy = spyOn(serviceCSI,'getACSI').and.returnValue(of([[csi]]));
     spyOn(serviceCookie, 'check').and.returnValue(false);
     component.ngOnInit();
@@ -96,12 +98,21 @@ describe('CsiPageComponent', () => {
     //spyOn(serviceCookie, 'get').and.returnValue(csi.name);
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
-  });
+  });*/
 
   it('should go to edit CSIs', () => {
     const spy = spyOn(serviceR,'navigate');
     component.editCSI();
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should close forum', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    const csiTabPage = document.getElementById('popupCSIpage');
+
+    component.popupClose();
+
+    expect(csiTabPage).toBeDefined();
   });
 
   it('should go to manage subscriptions', () => {

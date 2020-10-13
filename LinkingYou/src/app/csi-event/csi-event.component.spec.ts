@@ -62,7 +62,7 @@ describe('CsiEventComponent', () => {
   it('should display events and go to event details', () => {
     const spy = spyOn(serviceEvent, 'getEventList').and.returnValue(of([event , event]));
     spyOn(serviceR, 'navigate');
-    component.ngOnInit();
+    component.updateComponent(event.name);
     expect(spy).toHaveBeenCalled();
   });
 });

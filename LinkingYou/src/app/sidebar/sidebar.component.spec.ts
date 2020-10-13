@@ -57,7 +57,7 @@ describe('SidebarComponent', () => {
   });
 
   it('should async logout', fakeAsync(() => {
-    component.logout();
+    component.asyncLogout();
     fixture.detectChanges();
     expect(spyAuth).toHaveBeenCalled();
   }));

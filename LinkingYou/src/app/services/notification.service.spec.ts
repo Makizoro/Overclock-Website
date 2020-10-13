@@ -16,7 +16,19 @@ import { from } from 'rxjs';
 
 describe('NotificationService', () => {
   let service: NotificationService;
-  let notification: Notification;
+
+  const notification = {
+    csi: 'csiName',
+    message: 'message'
+  };
+
+  const collectionSpy = jasmine.createSpyObj({
+    snapshotChanges: of(notification),
+    add: Promise.resolve()
+});
+const afSpy = jasmine.createSpyObj('AngularFirestore', {
+    collection: collectionSpy
+});
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,31 +37,27 @@ describe('NotificationService', () => {
         AngularFireAuthModule,
         AngularFirestoreModule,
         AppRouteModule
-      ]
+      ],
+      providers: [ NotificationService, {provide: AngularFirestore, useValue: afSpy} ]
+
     });
     service = TestBed.inject(NotificationService);
 
-    notification = {
-      csi: 'csiName',
-      message: 'message'
-    };
+   
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add notification', fakeAsync(() => {
-    const spy = spyOn(service,'addNotification').and.returnValue(Promise.resolve());
-    service.addNotification(notification);
-    expect(spy).toHaveBeenCalled();
-  }));
-
-  it('should get notification of csi', fakeAsync(() => {
-    const spy = spyOn(service,'getNotificationList').and.returnValue(Promise.resolve());
+  it('should get an notification', fakeAsync(() => {
     service.getNotificationList(notification.csi);
-    expect(spy).toHaveBeenCalled();
+    expect(collectionSpy.snapshotChanges).toHaveBeenCalled();
   }));
 
+  it('should add a notification', fakeAsync(() => {
+    service.addNotification(notification);
+    expect(collectionSpy.add).toHaveBeenCalled();
+  }));
 
 });

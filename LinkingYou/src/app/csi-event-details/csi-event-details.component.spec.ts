@@ -62,7 +62,16 @@ describe('CsiEventDetailsComponent', () => {
   it('should display event details', () => {
     const spy = spyOn(serviceEvent, 'getEvent').and.returnValue(of([event, event]));
     spyOn(serviceR, 'navigate');
-    component.ngOnInit();
+    component.updateComponent(event.name);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should close forum', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    const csiPage = document.getElementById('app-csi-event-details');
+
+    component.eventPopUpClose();
+
+    expect(csiPage).toBeDefined();
   });
 });

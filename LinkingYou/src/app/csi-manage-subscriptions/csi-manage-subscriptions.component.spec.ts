@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { CsiManageSubscriptionsComponent } from './csi-manage-subscriptions.component';
 import {DebugElement} from '@angular/core';
@@ -105,21 +105,30 @@ it('should initiate else', () => {
   });
 
   it('should accept', () => {
-    const spy = spyOn(serviceSub, 'addSubscription');
-    spyOn(serviceSub, 'delete');
+    const spy = spyOn(serviceSub, 'addSubscription').and.returnValue(Promise.resolve());
+    spyOn(serviceSub, 'delete').and.returnValue(Promise.resolve());
     spyOn(serviceSub, 'getCSISubRequests').and.returnValue(of([[sub, sub.docId]]));
-    spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));
-    spyOn(serviceR, 'navigate');
-    component.acceptRequest(sub, sub.docId);
+
+    const requestDiv = document.createElement('div');
+    requestDiv.id = 'rd' + person.username;
+    const subManageDiv = document.getElementById('subManageDiv') as HTMLDivElement;
+    subManageDiv.appendChild(requestDiv);
+  
+    component.acceptRequest(sub, sub.docId, person.username);
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should reject', fakeAsync(() => {
+  it('should reject',(() => {
     const spy = spyOn(serviceSub, 'delete');
     spyOn(serviceSub, 'getCSISubRequests').and.returnValue(of([[sub, sub.docId]]));
-    spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));
-    spyOn(serviceR, 'navigate');
-    component.rejectRequest(sub, sub.docId);
+
+    const requestDiv = document.createElement('div');
+    requestDiv.id = 'rd' + person.username;
+    const subManageDiv = document.getElementById('subManageDiv') as HTMLDivElement;
+    subManageDiv.appendChild(requestDiv);
+
+    component.rejectRequest(sub, sub.docId, person.username);
+
     expect(spy).toHaveBeenCalled();
   }));
   

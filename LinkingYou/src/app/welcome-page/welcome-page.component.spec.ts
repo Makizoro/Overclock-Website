@@ -91,12 +91,10 @@ describe('WelcomePageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should nav with csi', fakeAsync(() => {
-    spy = spyOn(service, 'navigate');
+  /*it('should nav with csi', fakeAsync(() => {
     component.navToCSI('dave');
-    fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
-  }));
+  }));*/
 
   it('should display subs if', fakeAsync(() => {
     spyPerson = spyOn(servicePerson, 'getPerson').and.returnValue(of([person]));

@@ -18,6 +18,8 @@ import { MessageService } from '../services/message.service';
 import { ForumService } from '../services/forum.service';
 import { Forum } from '../entities/forum.model';
 import { Message } from '../entities/message.model';
+import { query } from '@angular/animations';
+import { createComponent } from '@angular/compiler/src/core';
 
 describe('CsiForumCreateTopicComponent', () => {
   let component: CsiForumCreateTopicComponent;
@@ -77,6 +79,22 @@ describe('CsiForumCreateTopicComponent', () => {
     //const spy = spyOn(serviceActR.params, 'subscribe');
     component.ngOnInit();
     expect(component).toBeTruthy();
+  });
+
+  it('should update csi', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    component.updateComponent(forum.csi);
+    expect(component.csiName).toBe(forum.csi);
+  });
+
+  it('should close forum', () => {
+    //const spy = spyOn(serviceActR.params, 'subscribe');
+    const createPage = document.getElementById('app-csi-forum-create-topic');
+    const welcomePage = document.getElementById('app-csi-forum');
+
+    component.forumCreateClose();
+
+    expect(createPage).toBeDefined();
   });
 
   it('should submit topic cookie true', () => {

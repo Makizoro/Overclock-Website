@@ -12,7 +12,7 @@ import {CsiForumCreateTopicComponent} from '../csi-forum-create-topic/csi-forum-
 })
 export class CsiForumComponent implements OnInit {
 
-  private csiName: string;
+  csiName: string;
   private topicList: any;
   @ViewChild(CsiForumTopicComponent)
   private csiForumTopicComponent: CsiForumTopicComponent;
