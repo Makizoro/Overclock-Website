@@ -80,3 +80,15 @@ app-admin-csi-authorisation.button:hover{
   background-position: left;
 }
 
+div{
+  animation: transitionIn 1s;
+}
+
+@keyframes transitionIn{
+  from{
+    transform: translateY(200px);
+  }
+  to{
+    transform: translateY(0);
+  }
+}

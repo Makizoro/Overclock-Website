@@ -66,7 +66,7 @@ div{
 }
 @keyframes welcomeBack {
   from{
-    transform: translateY(200px);
+    transform: translateY(300px);
   }
   to{
     transform: translateY(0);

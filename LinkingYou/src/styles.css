@@ -12,12 +12,12 @@ html{
 }
 
 body{
+
   background-image: url("assets/background5.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
 
-  animation: transitionIn 0.85s;
 }
 
 button{
@@ -40,12 +40,4 @@ button:hover{
   background-position: left;
 }
 
-@keyframes transitionIn{
-  from{
-    transform: translateY(200px);
-  }
-  to{
-    transform: translateY(0);
-  }
-}
 

@@ -21,8 +21,6 @@
 
 }
 
-
-
 @keyframes transitionIn{
   from{
     transform: translateY(200px);

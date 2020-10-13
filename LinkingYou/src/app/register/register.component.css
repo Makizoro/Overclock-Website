@@ -142,3 +142,16 @@ button:hover{
 #backLogin:hover{
   color: #3E2F91;
 }
+
+div{
+  animation: transitionIn 1s;
+}
+
+@keyframes transitionIn{
+  from{
+    transform: translateY(200px);
+  }
+  to{
+    transform: translateY(0);
+  }
+}
