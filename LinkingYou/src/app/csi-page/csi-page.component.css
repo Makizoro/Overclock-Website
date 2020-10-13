@@ -26,7 +26,6 @@
 #subRoot{
   background-size: 100%;
   border-radius: 25px;
-  overflow-y: auto;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: gray;
   margin: auto;
@@ -36,7 +35,6 @@
   text-align: center;
   padding: 20px;
   cursor: default;
-
 }
 
 #subRoot::-webkit-scrollbar {

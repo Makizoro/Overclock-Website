@@ -1,7 +1,4 @@
 #welcome{
-
-  background-color: #E1EFF4;
-  stroke: rgba(112,112,112,1);
   border-radius: 25px;
 
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -12,9 +9,6 @@
   margin-right: auto;
   margin-top: 25px;
   text-align: center;
-  border-style: ridge;
-  border-color: #707070;
-  border-width: 1px;
   padding-left: 20px;
   padding-right: 20px;
   cursor: default;
@@ -22,3 +16,37 @@
   opacity: 95%;
 
 }
+
+#wel{
+  background-color: #E1EFF4;
+  stroke: rgba(112,112,112,1);
+  width: auto;
+  height: auto;
+
+  text-align: center;
+  border-style: ridge;
+  border-color: #707070;
+  border-width: 1px;
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: default;
+}
+
+#subs{
+  background-color: #E1EFF4;
+  stroke: rgba(112,112,112,1);
+  width: auto;
+  height: auto;
+
+  text-align: center;
+  border-style: ridge;
+  border-color: #707070;
+  border-width: 1px;
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: default;
+}
+
+
