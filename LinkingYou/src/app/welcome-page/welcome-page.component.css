@@ -50,10 +50,21 @@
 }
 
 div{
-  animation: transitionIn 1s;
+
 }
 
-@keyframes transitionIn{
+#app-csi-page-div{
+  animation: appPage 1s;
+}
+@keyframes appPage {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100;
+  }
+}
+@keyframes welcomeBack {
   from{
     transform: translateY(200px);
   }

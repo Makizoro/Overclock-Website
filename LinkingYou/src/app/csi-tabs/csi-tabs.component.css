@@ -65,7 +65,17 @@ h3{
 #interestGroupList:hover{
   color: #01AEF9;
 }
-
+#popupCSIpage{
+  animation: appPage 1s;
+}
+@keyframes appPage {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100;
+  }
+}
 
 .card {
   position: relative;
