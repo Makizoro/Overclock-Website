@@ -58,7 +58,7 @@ export class CsiService {
    // To add user request to become a CSI owner
    async addCSI(csiData: CSI ): Promise<void>{
 
-    const docRef = this.csiCollection.ref
+    const docRef = await this.csiCollection.ref
     .where('name', '==', csiData.name)
       .get()
       .then(querySnapshot => {
@@ -143,8 +143,8 @@ export class CsiService {
      );
     }
     // Remove from request collection
-    delete(docId: string): void{
-      this.afs.doc<CSI>('CSI_Request/' + docId).delete();
+    async delete(docId: string): Promise<void> {
+      await this.afs.doc<CSI>('CSI_Request/' + docId).delete();
     }
 
 }

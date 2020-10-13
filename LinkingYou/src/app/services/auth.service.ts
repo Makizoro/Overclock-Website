@@ -96,7 +96,7 @@ export class AuthService {
   }
 
   async signOut(): Promise<void>{
-    this.afAuth.auth.signOut();
+    await this.afAuth.auth.signOut();
   }
       // to remove user
       /*async deleteAcc(){

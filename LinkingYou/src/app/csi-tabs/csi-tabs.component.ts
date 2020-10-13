@@ -38,7 +38,6 @@ export class CsiTabsComponent implements OnInit {
   navigateToCSI: EventListener = (e) => {
     const temp = e.composedPath()[1] as HTMLDivElement;
     const csiName = temp.id;
-
     // this.router.navigate([ { outlets: {routerSidebar: 'csiPage/' + csiName} } ], { relativeTo: this.route.parent });
     this.csiPageComponent.updateCsiPage(csiName, 'popupCSIpage');
   }

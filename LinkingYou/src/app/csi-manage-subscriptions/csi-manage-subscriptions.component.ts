@@ -52,8 +52,8 @@ export class CsiManageSubscriptionsComponent implements OnInit {
     }
 
     for (const csiRequestObj of this.csiSubList) {
-      const csiRequest = csiRequestObj[0] as Subscription;
-      const csiRequestId = csiRequestObj[1];
+      const csiRequest = csiRequestObj[1] as Subscription;
+      const csiRequestId = csiRequest.docId;
 
       const requestDiv = document.createElement('div');
       const personNameHeader = document.createElement('h3');
@@ -61,18 +61,19 @@ export class CsiManageSubscriptionsComponent implements OnInit {
       btnAccept.innerHTML = 'ACCEPT';
       btnAccept.style.marginRight = '20px';
       btnAccept.style.borderRadius = '25px';
-      btnAccept.addEventListener('click', () => {
-        this.acceptRequest(csiRequest, csiRequestId);
-      });
       const btnReject = document.createElement('button');
       btnReject.innerHTML = 'REJECT';
       btnReject.style.paddingRight = '20px';
       btnReject.style.borderRadius = '25px';
-      btnReject.addEventListener('click', () => {
-        this.rejectRequest(csiRequest, csiRequestId);
-      });
 
       await this.personService.getPerson(csiRequest.userId).subscribe((person: Person) => {
+        requestDiv.id = 'rd' + person.username;
+        btnAccept.addEventListener('click', () => {
+          this.acceptRequest(csiRequest, csiRequestId, person.username);
+        });
+        btnReject.addEventListener('click', () => {
+          this.rejectRequest(csiRequest, csiRequestId, person.username);
+        });
         personNameHeader.innerHTML = person.username;
         requestDiv.appendChild(personNameHeader);
         requestDiv.appendChild(btnAccept);
@@ -83,15 +84,29 @@ export class CsiManageSubscriptionsComponent implements OnInit {
         subManageDiv.appendChild(requestDiv);
       });
     }
+
+    if (!subManageDiv.firstChild){
+
+      const tempHeader = document.createElement('h4');
+      tempHeader.innerHTML = 'No subscription requests';
+      subManageDiv.appendChild(tempHeader);
+    }
   }
 
-  acceptRequest(subscription: Subscription, docId: string): void {
-    this.subscriptionService.addSubscription(subscription);
-    this.subscriptionService.delete(docId);
-    this.retrieveCsiList();
+  acceptRequest(subscription: Subscription, docId: string, username: string): void {
+    const divToDelete = document.getElementById(('rd' + username));
+    console.log(divToDelete);
+    divToDelete.remove();
+    this.subscriptionService.addSubscription(subscription).finally(() => {
+      this.subscriptionService.delete(docId).finally(() => {
+        this.retrieveCsiList();
+      });
+    });
   }
 
-  rejectRequest(subscription: Subscription, docId: string): void {
+  rejectRequest(subscription: Subscription, docId: string, username: string): void {
+    const divToDelete = document.getElementById('rd' + username);
+    divToDelete.remove();
     this.subscriptionService.delete(docId);
     this.retrieveCsiList();
   }

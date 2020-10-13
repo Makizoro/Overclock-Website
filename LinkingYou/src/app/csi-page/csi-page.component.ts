@@ -17,6 +17,8 @@ import {CsiEventDetailsComponent} from '../csi-event-details/csi-event-details.c
 })
 export class CsiPageComponent implements OnInit {
 
+  private subscribedSent: boolean;
+  private subscribed: boolean;
   csiData: any = {};
   forumData: any = {};
   eventData: any = {};
@@ -56,6 +58,7 @@ export class CsiPageComponent implements OnInit {
   }
 
   public async updateCsiPage(name: string, myDiv: string): Promise<void>{
+    this.csiData.csiName = name;
     if (myDiv !== 'null'){ // this means its the csi owner page which doesn't have a containing div to show
       const popup = document.getElementById(myDiv);
       popup.style.display = 'none';
@@ -65,7 +68,6 @@ export class CsiPageComponent implements OnInit {
       const labelClose = document.getElementById('csiPageClose');
       labelClose.style.display = 'none';
     }
-    this.csiData.name = name;
     const btnSub = document.getElementById('btnSubscribe');
     btnSub.style.display = 'none';
     const btnEdit = document.getElementById('btnEdit');
@@ -164,6 +166,7 @@ export class CsiPageComponent implements OnInit {
        */
     } else if (btnSub.innerHTML === 'Subscribe'){
       if (confirm('Subscribe to CSI?')){
+        console.log(this.csiData.csiName);
         const subscription = {csi: this.csiData.csiName, userId: this.userId, docId: 'pending Review'} as Subscription;
         this.subscriptionService.addSubRequest(subscription).finally(() => {
         });

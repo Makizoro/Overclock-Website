@@ -79,6 +79,12 @@ export class WelcomePageComponent implements OnInit {
       subDiv.appendChild(breakDiv);
 
     }
+    if (!subDiv.firstChild){
+
+      const tempHeader = document.createElement('h4');
+      tempHeader.innerHTML = 'No subscriptions';
+      subDiv.appendChild(tempHeader);
+    }
   }
 
   navToCSI(csi: string): void{

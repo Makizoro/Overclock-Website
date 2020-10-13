@@ -35,7 +35,7 @@ export class SubscriptionService {
 
   // When a CSI accepts a user request to join a CSI
   async addSubscription(sub: Subscription): Promise<void> {
-    const docRef = this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
+    const docRef = await this.afs.collection('Subscription').ref.where('userId', '==', sub.userId)
       .where('csi', '==', sub.csi)
       .get()
       .then(querySnapshot => {
@@ -85,7 +85,7 @@ export class SubscriptionService {
   }
 
   // Remove from request collection
-  delete(docId: string): void {
-    this.afs.doc<Subscription>('Subscription_Request/' + docId).delete();
+   async delete(docId: string): Promise<void> {
+    await this.afs.doc<Subscription>('Subscription_Request/' + docId).delete();
   }
 }

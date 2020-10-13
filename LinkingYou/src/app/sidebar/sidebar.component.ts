@@ -78,20 +78,15 @@ export class SidebarComponent implements OnInit {
     this.router.navigate([{outlets: {routerSidebar: 'myCsiPage'}}], {relativeTo: this.route});
   }
 
-  logout(): void{
-
-    this.asynclogout();
-  }
-
   // tslint:disable-next-line:typedef
-  async asynclogout() {
+  async asyncLogout(): Promise<void> {
     await this.aftAuth.signOut().finally(() => {
+      localStorage.removeItem('profile');
+      localStorage.removeItem('access_token');
       this.cookieService.deleteAll('/');
       this.cookieService.deleteAll('./');
       this.router.navigateByUrl('login');
     });
-    localStorage.removeItem('profile');
-    localStorage.removeItem('access_token');
   }
 
 }

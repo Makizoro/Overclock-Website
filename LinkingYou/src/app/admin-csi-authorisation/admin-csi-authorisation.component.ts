@@ -4,6 +4,7 @@ import {AuthService} from '../services/auth.service';
 import {CsiService} from '../services/csi.service';
 import {Router} from '@angular/router';
 import { CSI } from '../entities/csi.model';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-admin-csi-authorisation',
@@ -17,23 +18,27 @@ export class AdminCsiAuthorisationComponent implements OnInit {
     private router: Router,
     private personService: PersonService,
     private afAuth: AuthService,
-    private csiService: CsiService
+    private csiService: CsiService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
-    this.personService.getPerson(this.afAuth.userId()).subscribe(person => {
-      if (person.type !== 'Admin'){
-        this.router.navigateByUrl('/sidebar');
-      } else {
-        this.csiService.getCSIRequests().subscribe(list => {
-          this.csiList = list;
-          this.displayCsiData(this.csiList);
-        });
-      }
-    });
+    this.retrieveForms();
   }
 
-  displayCsiData(csiList): void {
+  private retrieveForms(): void{
+
+    if (this.cookieService.get('type') !== 'Admin'){
+      this.router.navigateByUrl('/sidebar');
+    } else {
+      this.csiService.getCSIRequests().subscribe(list => {
+        this.csiList = list;
+        this.displayCsiData(this.csiList);
+      });
+    }
+  }
+
+  private displayCsiData(csiList): void {
     const c = document.getElementById('clubList');
     while (c.firstChild) {
       c.removeChild(c.firstChild);
@@ -90,8 +95,27 @@ export class AdminCsiAuthorisationComponent implements OnInit {
           ig.appendChild(newDiv);
           break;
         }
-      }}
+      }
+    }
 
+    if (!c.firstChild){
+
+      const tempHeader = document.createElement('h4');
+      tempHeader.innerHTML = 'No Club forms';
+      c.appendChild(tempHeader);
+    }
+    if (!s.firstChild){
+
+      const tempHeader = document.createElement('h4');
+      tempHeader.innerHTML = 'No Society forms';
+      s.appendChild(tempHeader);
+    }
+    if (!ig.firstChild){
+
+      const tempHeader = document.createElement('h4');
+      tempHeader.innerHTML = 'No Interest Group forms';
+      ig.appendChild(tempHeader);
+    }
   }
 
   judge(verdict: boolean, csi): void{
@@ -102,13 +126,18 @@ export class AdminCsiAuthorisationComponent implements OnInit {
 
     if (verdict){
       alert('Will accept ' + csiData.name + ' as a CSI');
-      this.csiService.addCSI(csiData);
-      this.csiService.delete(csiId);
-      csiDiv.remove();
+      this.csiService.addCSI(csiData).finally(() => {
+        this.csiService.delete(csiId).finally(() => {
+          csiDiv.remove();
+          this.retrieveForms();
+        });
+      });
     } else {
       alert('Will reject ' + csiData.name + ' as a CSI');
-      csiDiv.remove();
-      this.csiService.delete(csiId);
+      this.csiService.delete(csiId).finally(() => {
+        csiDiv.remove();
+        this.retrieveForms();
+      });
     }
   }
 
