@@ -63,7 +63,6 @@ export class CsiManageSubscriptionsComponent implements OnInit {
       btnAccept.style.borderRadius = '25px';
       const btnReject = document.createElement('button');
       btnReject.innerHTML = 'REJECT';
-      btnReject.style.paddingRight = '20px';
       btnReject.style.borderRadius = '25px';
 
       await this.personService.getPerson(csiRequest.userId).subscribe((person: Person) => {

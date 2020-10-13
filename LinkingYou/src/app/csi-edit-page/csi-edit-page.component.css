@@ -21,6 +21,10 @@
   opacity: 95%;
 }
 
+div > div{
+  animation: transitionIn 1s;
+}
+
 #form.scroll{
   overflow-x: hidden;
   overflow-y: auto;
@@ -185,5 +189,18 @@ button{
 
 button:hover{
   background-position: left;
+}
+
+div{
+  animation: transitionIn 1s;
+}
+
+@keyframes transitionIn{
+  from{
+    transform: translateY(200px);
+  }
+  to{
+    transform: translateY(0);
+  }
 }
 
